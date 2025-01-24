@@ -61,7 +61,12 @@ impl ProgramGenerator {
         }
     }
 
-    fn add_byte_code(&mut self, application: &Application, address_mode: &AddressMode, instruction: &InstructionDef) {
+    fn add_byte_code(
+        &mut self,
+        application: &Application,
+        address_mode: &AddressMode,
+        instruction: &InstructionDef,
+    ) {
         match address_mode {
             AddressMode::Implied => {
                 self.add_u8(instruction.implied);
@@ -116,7 +121,8 @@ impl ProgramGenerator {
             AddressMode::Relative(address_reference) => {
                 self.add_u8(instruction.relative);
                 let address = application.address(address_reference);
-                let current_instruction = application.entry_point + self.output.len() as Address - 2;
+                let current_instruction =
+                    application.entry_point + self.output.len() as Address - 2;
                 let next_instruction = current_instruction + 2;
                 let relative_address = (address as i32 - next_instruction as i32) as i8;
                 self.add_u8(relative_address as u8);

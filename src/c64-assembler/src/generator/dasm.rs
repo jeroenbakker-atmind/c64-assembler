@@ -1,5 +1,7 @@
 use crate::{
-    builder::{application::Application, function::Function, instruction::Instructions, module::Module},
+    builder::{
+        application::Application, function::Function, instruction::Instructions, module::Module,
+    },
     instruction::operation::Operation,
     memory::{
         address_mode::{AddressMode, Immediate},
@@ -29,7 +31,10 @@ impl Generator for DasmGenerator {
     type Output = String;
 
     fn generate(mut self, application: Application) -> Self::Output {
-        self.line(format!("; --- Application: {} ---", application.name.to_uppercase()));
+        self.line(format!(
+            "; --- Application: {} ---",
+            application.name.to_uppercase()
+        ));
         self.line(format!("; NOTE: This file is generated, do not modify"));
         self.line_new();
         self.line(format!("  processor 6502"));
@@ -54,17 +59,26 @@ impl Generator for DasmGenerator {
 impl DasmGenerator {
     fn module(&mut self, application: &Application, module: &Module) {
         self.line_new();
-        self.line(format!("; --- Module begin: {} ---", module.name.to_uppercase()));
+        self.line(format!(
+            "; --- Module begin: {} ---",
+            module.name.to_uppercase()
+        ));
         self.instructions(application, &module.instructions);
         for function in &module.functions {
             self.function(application, function);
         }
-        self.line(format!("; --- Module end: {} ---", module.name.to_uppercase()));
+        self.line(format!(
+            "; --- Module end: {} ---",
+            module.name.to_uppercase()
+        ));
     }
 
     fn function(&mut self, application: &Application, function: &Function) {
         self.line_new();
-        self.line(format!("; --- Function begin: {} ---", function.name.to_uppercase()));
+        self.line(format!(
+            "; --- Function begin: {} ---",
+            function.name.to_uppercase()
+        ));
         self.line_new();
         for d in &function.documentation {
             self.line(format!("; {}", d));
@@ -72,7 +86,10 @@ impl DasmGenerator {
         self.line(format!("{}:", function.name));
         self.instructions(application, &function.instructions);
 
-        self.line(format!("; --- Function end: {} ---", function.name.to_uppercase()));
+        self.line(format!(
+            "; --- Function end: {} ---",
+            function.name.to_uppercase()
+        ));
     }
 }
 
@@ -96,7 +113,14 @@ impl DasmGenerator {
                 }
                 Operation::Label(label) => line.push(format!("{}:", label)),
                 _ => {
-                    line.push(instruction.operation.definition().unwrap().instruction.to_string());
+                    line.push(
+                        instruction
+                            .operation
+                            .definition()
+                            .unwrap()
+                            .instruction
+                            .to_string(),
+                    );
                 }
             }
 
@@ -105,8 +129,12 @@ impl DasmGenerator {
                 AddressMode::Implied => {}
                 AddressMode::Immediate(immediate) => match immediate {
                     Immediate::Byte(byte) => line.push(format!(" #${byte:02X}")),
-                    Immediate::Low(address_reference) => line.push(format!(" #<{}", address_reference.name)),
-                    Immediate::High(address_reference) => line.push(format!(" #>{}", address_reference.name)),
+                    Immediate::Low(address_reference) => {
+                        line.push(format!(" #<{}", address_reference.name))
+                    }
+                    Immediate::High(address_reference) => {
+                        line.push(format!(" #>{}", address_reference.name))
+                    }
                 },
                 AddressMode::Absolute(address_reference)
                 | AddressMode::AbsoluteX(address_reference)
