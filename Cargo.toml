@@ -1,0 +1,7 @@
+[workspace]
+members = [
+    "src/c64-assembler", 
+    "src/c64-assembler-macro", 
+    "src/c64-assembler-6502", 
+]
+resolver="2"
