@@ -223,9 +223,12 @@ fn main() {
         */
 
         // Close module
-        lines.push("
+        lines.push(
+            "
             }
-            ".to_string());
+            "
+            .to_string(),
+        );
     }
 
     print!("{}", lines.join("\n"));
