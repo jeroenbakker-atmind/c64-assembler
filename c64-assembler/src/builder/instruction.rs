@@ -5,13 +5,8 @@ use crate::{
         label::AddressReference,
         Address,
     },
+    Instructions,
 };
-
-/// Stream of instructions.
-#[derive(Debug, Default, Clone)]
-pub struct Instructions {
-    pub instructions: Vec<Instruction>,
-}
 
 /// Utility to build instructions.
 ///

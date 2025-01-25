@@ -1,11 +1,4 @@
-use super::{function::Function, instruction::Instructions};
-
-#[derive(Default, Clone)]
-pub struct Module {
-    pub name: String,
-    pub instructions: Instructions,
-    pub functions: Vec<Function>,
-}
+use crate::{Function, Instructions, Module};
 
 #[derive(Default, Clone)]
 pub struct ModuleBuilder {

@@ -1,6 +1,4 @@
-use c64_assembler::{
-    builder::instruction::Instructions, instruction::operation::Operation, memory::address_mode::AddressMode,
-};
+use c64_assembler::{instruction::operation::Operation, memory::address_mode::AddressMode, Instructions};
 use c64_assembler_macro::instructions;
 
 fn test_first(instructions: Instructions, operation: Operation, address_mode: AddressMode) {

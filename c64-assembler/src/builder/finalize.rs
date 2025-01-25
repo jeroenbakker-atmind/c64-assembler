@@ -7,9 +7,8 @@ use crate::{
         user_count::UserCount,
         Address,
     },
+    Application, Instructions,
 };
-
-use super::{application::Application, instruction::Instructions};
 
 pub fn finalize(application: &mut Application) {
     defines_update_user_count(application);

@@ -1,21 +1,15 @@
 use std::collections::HashMap;
 
-use crate::memory::{
-    define::{Define, Value},
-    label::AddressReference,
-    Address,
+use crate::{
+    memory::{
+        define::{Define, Value},
+        label::AddressReference,
+        Address,
+    },
+    Application, Module,
 };
 
-use super::{finalize::finalize, module::Module};
-
-#[derive(Clone)]
-pub struct Application {
-    pub name: String,
-    pub entry_point: Address,
-    pub modules: Vec<Module>,
-    pub defines: Vec<Define>,
-    pub address_lookup: HashMap<String, Address>,
-}
+use super::finalize::finalize;
 
 #[derive(Clone)]
 pub struct ApplicationBuilder {

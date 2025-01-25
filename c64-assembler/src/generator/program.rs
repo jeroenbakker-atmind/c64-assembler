@@ -4,12 +4,12 @@ use c64_assembler_6502::{
 };
 
 use crate::{
-    builder::{application::Application, instruction::Instructions, module::Module},
     instruction::{operation::Operation, Instruction},
     memory::{
         address_mode::{AddressMode, Immediate},
         Address, ZeroPage,
     },
+    Application, Instructions, Module,
 };
 
 use super::Generator;

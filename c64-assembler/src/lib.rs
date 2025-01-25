@@ -12,23 +12,11 @@
 //!
 //! ## Modules and functions
 //!
-//! An [crate::builder::application::Application] is organized in [crate::builder::module::Module] and
-//! [crate::builder::function::Function]. The idea is that
-//! modules and functions can be switched between various implementations having the
-//! same api. Functions can also be marked to be inlined (not implemented yet).
-//!
-//! ## Targets
-//!
-//! - **Done**:
-//!   - [x] Support full 6502/6510 instruction set and address modes. See [crate::builder::instruction::InstructionBuilder]
-//!   - [x] Use a building pattern to construct the instruction stream.
-//!   - [x] Being able to output to dasm source.
-//!   - [x] Being able to output directly to a PRG
-//! - **Short term**:
-//!   - [ ] Use macros for easier to read
-//! - **Mid term**:
-//!   - [ ] Able to swap out parts of a program using modules and functions
-//!   - [ ] Being able to output to the macro source (allowing circular development).
+//! An [crate::Application] is organized in [crate::Module] and
+//! [crate::Function]. Modules can be shared between applications. A module public API is
+//! organized in functions. Multiple variations of functions can exists. By swapping out
+//! functions in a module a module can be size-optimized or CPU cycles optimized based on
+//! the actual needs of the program.
 //!
 //! ## Usage
 //!
@@ -146,6 +134,12 @@
 //! 0010:  A9 00 8D 20  D0 60
 //! ```
 //!
+
+use std::collections::HashMap;
+
+use instruction::Instruction;
+use memory::{define::Define, user_count::UserCount, Address};
+
 pub mod builder;
 pub mod generator;
 pub mod instruction;
@@ -153,3 +147,81 @@ pub mod memory;
 
 #[cfg(test)]
 mod test;
+
+/// Application is the root container for the assembler
+#[derive(Clone)]
+pub struct Application {
+    /// Name of the application; only used in comments.
+    pub name: String,
+    /// Entry point of the application, default = 0x0800
+    pub entry_point: Address,
+    /// Modules of the application
+    pub modules: Vec<Module>,
+    /// Defines of the application
+    pub defines: Vec<Define>,
+    /// Lookup for addresses.
+    pub address_lookup: HashMap<String, Address>,
+}
+
+/// Module
+///
+/// A module is reusable part between applications. If you have some frequent used
+/// code, you can group it in a module so you can reused it between applications.
+///
+/// Can be compared with an include statement.
+#[derive(Default, Clone)]
+pub struct Module {
+    /// Name of the module; only used in comments.
+    pub name: String,
+
+    /// Module specific utility instructions.
+    ///
+    /// For sharing code between functions.
+    pub instructions: Instructions,
+
+    /// Functions of this module.
+    pub functions: Vec<Function>,
+}
+
+/// Function is a replaceble public part of a module.
+///
+/// You can have multiple variations of a function. These functions can be swapped out
+/// when building the module.
+///
+/// # Variations
+///
+/// Some examples why functions can have variations.
+///
+/// - Size optimized
+/// - Performance optimized
+/// - Last known working version
+/// - Currently in development
+#[derive(Default, Clone)]
+pub struct Function {
+    /// Name of the function
+    pub name: String,
+
+    /// Documentation of the function.
+    pub documentation: Vec<String>,
+
+    /// Instructions belonging to this function.
+    pub instructions: Instructions,
+
+    user_count: usize,
+}
+
+impl UserCount for Function {
+    fn user_increase(&mut self) {
+        self.user_count += 1;
+    }
+
+    fn user_count(&self) -> usize {
+        self.user_count
+    }
+}
+
+/// Stream of instructions.
+#[derive(Debug, Default, Clone)]
+pub struct Instructions {
+    pub instructions: Vec<Instruction>,
+}

@@ -1,14 +1,4 @@
-use crate::memory::user_count::UserCount;
-
-use super::instruction::Instructions;
-
-#[derive(Default, Clone)]
-pub struct Function {
-    pub(crate) name: String,
-    pub(crate) documentation: Vec<String>,
-    pub(crate) instructions: Instructions,
-    user_count: usize,
-}
+use crate::{Function, Instructions};
 
 #[derive(Default, Clone)]
 pub struct FunctionBuilder {
@@ -35,15 +25,5 @@ impl FunctionBuilder {
 
     pub fn finalize(&self) -> Function {
         self.function.clone()
-    }
-}
-
-impl UserCount for Function {
-    fn user_increase(&mut self) {
-        self.user_count += 1;
-    }
-
-    fn user_count(&self) -> usize {
-        self.user_count
     }
 }

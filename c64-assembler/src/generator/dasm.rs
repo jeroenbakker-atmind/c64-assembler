@@ -1,5 +1,4 @@
 use crate::{
-    builder::{application::Application, function::Function, instruction::Instructions, module::Module},
     instruction::operation::Operation,
     memory::{
         address_mode::{AddressMode, Immediate},
@@ -7,6 +6,7 @@ use crate::{
         user_count::UserCount,
         ZeroPage,
     },
+    Application, Function, Instructions, Module,
 };
 
 use super::Generator;

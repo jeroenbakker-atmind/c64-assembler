@@ -1,10 +1,7 @@
 use crate::{
-    builder::{
-        application::{Application, ApplicationBuilder},
-        instruction::InstructionBuilder,
-        module::ModuleBuilder,
-    },
+    builder::{application::ApplicationBuilder, instruction::InstructionBuilder, module::ModuleBuilder},
     generator::{dasm::DasmGenerator, program::ProgramGenerator, Generator},
+    Application,
 };
 
 fn test_application() -> Application {

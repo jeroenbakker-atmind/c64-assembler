@@ -1,9 +1,9 @@
 use operation::Operation;
 
-use crate::builder::application::Application;
 use crate::memory::address_mode::AddressMode;
 use crate::memory::label::AddressReference;
 use crate::memory::ZeroPage;
+use crate::Application;
 pub mod operation;
 
 #[derive(Debug, Default, Clone, PartialEq)]
