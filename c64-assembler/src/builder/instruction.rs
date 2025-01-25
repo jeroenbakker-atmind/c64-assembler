@@ -13,7 +13,7 @@ use crate::{
 /// # Example
 ///
 /// ```
-/// use c64_assembler::builder::instruction::InstructionBuilder;
+/// use c64_assembler::builder::InstructionBuilder;
 ///
 /// let instructions = InstructionBuilder::default()
 ///     .label("main_entry_point")
@@ -45,7 +45,7 @@ impl InstructionBuilder {
     /// Record a adc instruction with data (byte).
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .adc_imm(0xC0)
     ///     .finalize();
@@ -58,7 +58,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .adc_imm_low("test_data")
     ///     .label("test_data")
@@ -74,7 +74,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .adc_imm_high("test_data")
     ///     .label("test_data")
@@ -90,7 +90,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .adc_addr("test_label")
     ///     .label("test_label")
@@ -105,7 +105,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .adc_addr_offs("test_label", 8)
     ///     .label("test_label")
@@ -122,7 +122,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .lda_imm(0x08)
     ///     .adc_addr_x("test_label")
@@ -137,7 +137,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .lda_imm(0x08)
     ///     .adc_addr_y("test_label")
@@ -165,7 +165,7 @@ impl InstructionBuilder {
     /// Record a and instruction with data (byte).
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .and_imm(0xC0)
     ///     .finalize();
@@ -178,7 +178,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .and_imm_low("test_data")
     ///     .label("test_data")
@@ -194,7 +194,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .and_imm_high("test_data")
     ///     .label("test_data")
@@ -210,7 +210,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .and_addr("test_label")
     ///     .label("test_label")
@@ -225,7 +225,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .and_addr_offs("test_label", 8)
     ///     .label("test_label")
@@ -242,7 +242,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .lda_imm(0x08)
     ///     .and_addr_x("test_label")
@@ -257,7 +257,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .lda_imm(0x08)
     ///     .and_addr_y("test_label")
@@ -286,7 +286,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .asl_acc()
     ///     .finalize();
@@ -299,7 +299,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .asl_addr("test_label")
     ///     .label("test_label")
@@ -314,7 +314,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .asl_addr_offs("test_label", 8)
     ///     .label("test_label")
@@ -331,7 +331,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .lda_imm(0x08)
     ///     .asl_addr_x("test_label")
@@ -352,7 +352,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .bcc_addr("test_label")
     ///     .label("test_label")
@@ -367,7 +367,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .bcc_addr_offs("test_label", 8)
     ///     .label("test_label")
@@ -390,7 +390,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .bcs_addr("test_label")
     ///     .label("test_label")
@@ -405,7 +405,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .bcs_addr_offs("test_label", 8)
     ///     .label("test_label")
@@ -428,7 +428,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .beq_addr("test_label")
     ///     .label("test_label")
@@ -443,7 +443,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .beq_addr_offs("test_label", 8)
     ///     .label("test_label")
@@ -466,7 +466,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .bit_addr("test_label")
     ///     .label("test_label")
@@ -481,7 +481,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .bit_addr_offs("test_label", 8)
     ///     .label("test_label")
@@ -504,7 +504,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .bmi_addr("test_label")
     ///     .label("test_label")
@@ -519,7 +519,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .bmi_addr_offs("test_label", 8)
     ///     .label("test_label")
@@ -542,7 +542,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .bne_addr("test_label")
     ///     .label("test_label")
@@ -557,7 +557,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .bne_addr_offs("test_label", 8)
     ///     .label("test_label")
@@ -580,7 +580,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .bpl_addr("test_label")
     ///     .label("test_label")
@@ -595,7 +595,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .bpl_addr_offs("test_label", 8)
     ///     .label("test_label")
@@ -612,7 +612,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .brk()
     ///     .finalize();
@@ -632,7 +632,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .bvc_addr("test_label")
     ///     .label("test_label")
@@ -647,7 +647,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .bvc_addr_offs("test_label", 8)
     ///     .label("test_label")
@@ -670,7 +670,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .bvs_addr("test_label")
     ///     .label("test_label")
@@ -685,7 +685,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .bvs_addr_offs("test_label", 8)
     ///     .label("test_label")
@@ -702,7 +702,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .clc()
     ///     .finalize();
@@ -716,7 +716,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .cld()
     ///     .finalize();
@@ -730,7 +730,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .cli()
     ///     .finalize();
@@ -744,7 +744,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .clv()
     ///     .finalize();
@@ -763,7 +763,7 @@ impl InstructionBuilder {
     /// Record a cmp instruction with data (byte).
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .cmp_imm(0xC0)
     ///     .finalize();
@@ -776,7 +776,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .cmp_imm_low("test_data")
     ///     .label("test_data")
@@ -792,7 +792,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .cmp_imm_high("test_data")
     ///     .label("test_data")
@@ -808,7 +808,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .cmp_addr("test_label")
     ///     .label("test_label")
@@ -823,7 +823,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .cmp_addr_offs("test_label", 8)
     ///     .label("test_label")
@@ -840,7 +840,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .lda_imm(0x08)
     ///     .cmp_addr_x("test_label")
@@ -855,7 +855,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .lda_imm(0x08)
     ///     .cmp_addr_y("test_label")
@@ -883,7 +883,7 @@ impl InstructionBuilder {
     /// Record a cpx instruction with data (byte).
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .cpx_imm(0xC0)
     ///     .finalize();
@@ -896,7 +896,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .cpx_imm_low("test_data")
     ///     .label("test_data")
@@ -912,7 +912,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .cpx_imm_high("test_data")
     ///     .label("test_data")
@@ -928,7 +928,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .cpx_addr("test_label")
     ///     .label("test_label")
@@ -943,7 +943,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .cpx_addr_offs("test_label", 8)
     ///     .label("test_label")
@@ -965,7 +965,7 @@ impl InstructionBuilder {
     /// Record a cpy instruction with data (byte).
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .cpy_imm(0xC0)
     ///     .finalize();
@@ -978,7 +978,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .cpy_imm_low("test_data")
     ///     .label("test_data")
@@ -994,7 +994,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .cpy_imm_high("test_data")
     ///     .label("test_data")
@@ -1010,7 +1010,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .cpy_addr("test_label")
     ///     .label("test_label")
@@ -1025,7 +1025,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .cpy_addr_offs("test_label", 8)
     ///     .label("test_label")
@@ -1048,7 +1048,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .dec_addr("test_label")
     ///     .label("test_label")
@@ -1063,7 +1063,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .dec_addr_offs("test_label", 8)
     ///     .label("test_label")
@@ -1080,7 +1080,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .lda_imm(0x08)
     ///     .dec_addr_x("test_label")
@@ -1095,7 +1095,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .dex()
     ///     .finalize();
@@ -1109,7 +1109,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .dey()
     ///     .finalize();
@@ -1128,7 +1128,7 @@ impl InstructionBuilder {
     /// Record a eor instruction with data (byte).
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .eor_imm(0xC0)
     ///     .finalize();
@@ -1141,7 +1141,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .eor_imm_low("test_data")
     ///     .label("test_data")
@@ -1157,7 +1157,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .eor_imm_high("test_data")
     ///     .label("test_data")
@@ -1173,7 +1173,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .eor_addr("test_label")
     ///     .label("test_label")
@@ -1188,7 +1188,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .eor_addr_offs("test_label", 8)
     ///     .label("test_label")
@@ -1205,7 +1205,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .lda_imm(0x08)
     ///     .eor_addr_x("test_label")
@@ -1220,7 +1220,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .lda_imm(0x08)
     ///     .eor_addr_y("test_label")
@@ -1249,7 +1249,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .inc_addr("test_label")
     ///     .label("test_label")
@@ -1264,7 +1264,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .inc_addr_offs("test_label", 8)
     ///     .label("test_label")
@@ -1281,7 +1281,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .lda_imm(0x08)
     ///     .inc_addr_x("test_label")
@@ -1296,7 +1296,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .inx()
     ///     .finalize();
@@ -1310,7 +1310,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .iny()
     ///     .finalize();
@@ -1330,7 +1330,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .jmp_addr("test_label")
     ///     .label("test_label")
@@ -1345,7 +1345,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .jmp_addr_offs("test_label", 8)
     ///     .label("test_label")
@@ -1372,7 +1372,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .jsr_addr("test_label")
     ///     .label("test_label")
@@ -1387,7 +1387,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .jsr_addr_offs("test_label", 8)
     ///     .label("test_label")
@@ -1409,7 +1409,7 @@ impl InstructionBuilder {
     /// Record a lda instruction with data (byte).
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .lda_imm(0xC0)
     ///     .finalize();
@@ -1422,7 +1422,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .lda_imm_low("test_data")
     ///     .label("test_data")
@@ -1438,7 +1438,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .lda_imm_high("test_data")
     ///     .label("test_data")
@@ -1454,7 +1454,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .lda_addr("test_label")
     ///     .label("test_label")
@@ -1469,7 +1469,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .lda_addr_offs("test_label", 8)
     ///     .label("test_label")
@@ -1486,7 +1486,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .lda_imm(0x08)
     ///     .lda_addr_x("test_label")
@@ -1501,7 +1501,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .lda_imm(0x08)
     ///     .lda_addr_y("test_label")
@@ -1529,7 +1529,7 @@ impl InstructionBuilder {
     /// Record a ldx instruction with data (byte).
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .ldx_imm(0xC0)
     ///     .finalize();
@@ -1542,7 +1542,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .ldx_imm_low("test_data")
     ///     .label("test_data")
@@ -1558,7 +1558,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .ldx_imm_high("test_data")
     ///     .label("test_data")
@@ -1574,7 +1574,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .ldx_addr("test_label")
     ///     .label("test_label")
@@ -1589,7 +1589,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .ldx_addr_offs("test_label", 8)
     ///     .label("test_label")
@@ -1606,7 +1606,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .lda_imm(0x08)
     ///     .ldx_addr_y("test_label")
@@ -1626,7 +1626,7 @@ impl InstructionBuilder {
     /// Record a ldy instruction with data (byte).
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .ldy_imm(0xC0)
     ///     .finalize();
@@ -1639,7 +1639,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .ldy_imm_low("test_data")
     ///     .label("test_data")
@@ -1655,7 +1655,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .ldy_imm_high("test_data")
     ///     .label("test_data")
@@ -1671,7 +1671,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .ldy_addr("test_label")
     ///     .label("test_label")
@@ -1686,7 +1686,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .ldy_addr_offs("test_label", 8)
     ///     .label("test_label")
@@ -1703,7 +1703,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .lda_imm(0x08)
     ///     .ldy_addr_x("test_label")
@@ -1724,7 +1724,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .lsr_acc()
     ///     .finalize();
@@ -1737,7 +1737,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .lsr_addr("test_label")
     ///     .label("test_label")
@@ -1752,7 +1752,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .lsr_addr_offs("test_label", 8)
     ///     .label("test_label")
@@ -1769,7 +1769,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .lda_imm(0x08)
     ///     .lsr_addr_x("test_label")
@@ -1784,7 +1784,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .nop()
     ///     .finalize();
@@ -1803,7 +1803,7 @@ impl InstructionBuilder {
     /// Record a ora instruction with data (byte).
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .ora_imm(0xC0)
     ///     .finalize();
@@ -1816,7 +1816,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .ora_imm_low("test_data")
     ///     .label("test_data")
@@ -1832,7 +1832,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .ora_imm_high("test_data")
     ///     .label("test_data")
@@ -1848,7 +1848,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .ora_addr("test_label")
     ///     .label("test_label")
@@ -1863,7 +1863,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .ora_addr_offs("test_label", 8)
     ///     .label("test_label")
@@ -1880,7 +1880,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .lda_imm(0x08)
     ///     .ora_addr_x("test_label")
@@ -1895,7 +1895,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .lda_imm(0x08)
     ///     .ora_addr_y("test_label")
@@ -1918,7 +1918,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .pha()
     ///     .finalize();
@@ -1932,7 +1932,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .php()
     ///     .finalize();
@@ -1946,7 +1946,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .pla()
     ///     .finalize();
@@ -1960,7 +1960,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .plp()
     ///     .finalize();
@@ -1980,7 +1980,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .rol_acc()
     ///     .finalize();
@@ -1993,7 +1993,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .rol_addr("test_label")
     ///     .label("test_label")
@@ -2008,7 +2008,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .rol_addr_offs("test_label", 8)
     ///     .label("test_label")
@@ -2025,7 +2025,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .lda_imm(0x08)
     ///     .rol_addr_x("test_label")
@@ -2046,7 +2046,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .ror_acc()
     ///     .finalize();
@@ -2059,7 +2059,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .ror_addr("test_label")
     ///     .label("test_label")
@@ -2074,7 +2074,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .ror_addr_offs("test_label", 8)
     ///     .label("test_label")
@@ -2091,7 +2091,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .lda_imm(0x08)
     ///     .ror_addr_x("test_label")
@@ -2106,7 +2106,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .rti()
     ///     .finalize();
@@ -2120,7 +2120,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .rts()
     ///     .finalize();
@@ -2139,7 +2139,7 @@ impl InstructionBuilder {
     /// Record a sbc instruction with data (byte).
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .sbc_imm(0xC0)
     ///     .finalize();
@@ -2152,7 +2152,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .sbc_imm_low("test_data")
     ///     .label("test_data")
@@ -2168,7 +2168,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .sbc_imm_high("test_data")
     ///     .label("test_data")
@@ -2184,7 +2184,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .sbc_addr("test_label")
     ///     .label("test_label")
@@ -2199,7 +2199,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .sbc_addr_offs("test_label", 8)
     ///     .label("test_label")
@@ -2216,7 +2216,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .lda_imm(0x08)
     ///     .sbc_addr_x("test_label")
@@ -2231,7 +2231,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .lda_imm(0x08)
     ///     .sbc_addr_y("test_label")
@@ -2254,7 +2254,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .sec()
     ///     .finalize();
@@ -2268,7 +2268,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .sed()
     ///     .finalize();
@@ -2282,7 +2282,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .sei()
     ///     .finalize();
@@ -2302,7 +2302,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .sta_addr("test_label")
     ///     .label("test_label")
@@ -2317,7 +2317,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .sta_addr_offs("test_label", 8)
     ///     .label("test_label")
@@ -2334,7 +2334,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .lda_imm(0x08)
     ///     .sta_addr_x("test_label")
@@ -2349,7 +2349,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .lda_imm(0x08)
     ///     .sta_addr_y("test_label")
@@ -2378,7 +2378,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .stx_addr("test_label")
     ///     .label("test_label")
@@ -2393,7 +2393,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .stx_addr_offs("test_label", 8)
     ///     .label("test_label")
@@ -2410,7 +2410,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .lda_imm(0x08)
     ///     .stx_addr_y("test_label")
@@ -2431,7 +2431,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .sty_addr("test_label")
     ///     .label("test_label")
@@ -2446,7 +2446,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .sty_addr_offs("test_label", 8)
     ///     .label("test_label")
@@ -2463,7 +2463,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .lda_imm(0x08)
     ///     .sty_addr_x("test_label")
@@ -2478,7 +2478,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .tax()
     ///     .finalize();
@@ -2492,7 +2492,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .tay()
     ///     .finalize();
@@ -2506,7 +2506,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .tsx()
     ///     .finalize();
@@ -2520,7 +2520,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .txa()
     ///     .finalize();
@@ -2534,7 +2534,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .txs()
     ///     .finalize();
@@ -2548,7 +2548,7 @@ impl InstructionBuilder {
     ///
     /// # Example
     /// ```
-    /// use c64_assembler::builder::instruction::InstructionBuilder;
+    /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
     ///     .tya()
     ///     .finalize();

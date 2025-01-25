@@ -25,9 +25,9 @@
 //! An application can be build using builder patterns.
 //!
 //! ```
-//! use c64_assembler::builder::application::ApplicationBuilder;
-//! use c64_assembler::builder::module::ModuleBuilder;
-//! use c64_assembler::builder::instruction::InstructionBuilder;
+//! use c64_assembler::builder::ApplicationBuilder;
+//! use c64_assembler::builder::ModuleBuilder;
+//! use c64_assembler::builder::InstructionBuilder;
 //!
 //! let application = ApplicationBuilder::default()
 //!     .name("Set black border")
@@ -82,7 +82,7 @@
 //! ```
 //! use c64_assembler::generator::Generator;
 //! use c64_assembler::generator::dasm::DasmGenerator;
-//! # use c64_assembler::builder::application::ApplicationBuilder;
+//! # use c64_assembler::builder::ApplicationBuilder;
 //! # let application = ApplicationBuilder::default().finalize();
 //!
 //! let source = DasmGenerator::default().generate(application);
@@ -122,7 +122,7 @@
 //! ```
 //! use c64_assembler::generator::Generator;
 //! use c64_assembler::generator::program::{ProgramGenerator, print_hexdump};
-//! # use c64_assembler::builder::application::ApplicationBuilder;
+//! # use c64_assembler::builder::ApplicationBuilder;
 //! # let application = ApplicationBuilder::default().finalize();
 //!
 //! let bytes = ProgramGenerator::default().generate(application);

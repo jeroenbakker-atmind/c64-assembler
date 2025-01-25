@@ -1,6 +1,6 @@
-use c64_assembler::builder::application::ApplicationBuilder;
-use c64_assembler::builder::instruction::InstructionBuilder;
-use c64_assembler::builder::module::ModuleBuilder;
+use c64_assembler::builder::ApplicationBuilder;
+use c64_assembler::builder::InstructionBuilder;
+use c64_assembler::builder::ModuleBuilder;
 use c64_assembler::generator::program::{print_hexdump, ProgramGenerator};
 use c64_assembler::generator::Generator;
 

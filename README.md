@@ -31,9 +31,9 @@ cargo add c64-assembler
 To assemble C64 assembly.
 
 ```rust
-use c64_assembler::builder::application::ApplicationBuilder;
+use c64_assembler::builder::ApplicationBuilder;
 use c64_assembler::builder::module::ModuleBuilder;
-use c64_assembler::builder::instruction::InstructionBuilder;
+use c64_assembler::builder::InstructionBuilder;
 
 let application = ApplicationBuilder::default()
     .name("Set black border")

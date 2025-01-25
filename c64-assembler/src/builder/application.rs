@@ -36,7 +36,7 @@ impl ApplicationBuilder {
     /// Is used in comments when exporting to a dasm source using [crate::generator::dasm::DasmGenerator]
     ///
     /// ```
-    /// use c64_assembler::builder::application::ApplicationBuilder;
+    /// use c64_assembler::builder::ApplicationBuilder;
     /// let application = ApplicationBuilder::default()
     ///     .name("My application")
     ///     .finalize();
@@ -54,7 +54,7 @@ impl ApplicationBuilder {
     /// Default entry point is set to 0x0800.
     ///
     /// ```
-    /// use c64_assembler::builder::application::ApplicationBuilder;
+    /// use c64_assembler::builder::ApplicationBuilder;
     /// let application = ApplicationBuilder::default()
     ///     .entry_point(0x0800)
     ///     .finalize();
@@ -72,7 +72,7 @@ impl ApplicationBuilder {
     /// opcode is used.
     ///
     /// ```
-    /// use c64_assembler::builder::application::ApplicationBuilder;
+    /// use c64_assembler::builder::ApplicationBuilder;
     /// let application = ApplicationBuilder::default()
     ///     .define_address("VIC_BORDER_COLOR", 0xD020)
     ///     .define_address("ZEROPAGE_FE", 0xFE)
@@ -141,7 +141,7 @@ impl ApplicationBuilder {
     /// | VIC20_SPRITE_7_COLOR             | 0xD02E          | Color of sprite 7                              |
     ///
     /// ```
-    /// use c64_assembler::builder::application::ApplicationBuilder;
+    /// use c64_assembler::builder::ApplicationBuilder;
     /// let application = ApplicationBuilder::default()
     ///     .include_vic20_defines()
     ///     .finalize();
@@ -234,7 +234,7 @@ impl ApplicationBuilder {
     /// | SID_ENV3                      | 0xD41C          | Envelope generator for voice 3 (read)           |
     ///
     /// ```
-    /// use c64_assembler::builder::application::ApplicationBuilder;
+    /// use c64_assembler::builder::ApplicationBuilder;
     /// let application = ApplicationBuilder::default()
     ///     .include_sid_defines()
     ///     .finalize();

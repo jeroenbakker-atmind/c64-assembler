@@ -5,10 +5,7 @@ pub fn application(input: TokenStream) -> TokenStream {
     dbg!(input.clone());
     let mut lines = Vec::<String>::default();
     lines.push("{".to_string());
-    lines.push("  use c64_assembler::builder::application::{*};".to_string());
-    lines.push("  use c64_assembler::builder::module::{*};".to_string());
-    lines.push("  use c64_assembler::builder::function::{*};".to_string());
-    lines.push("  use c64_assembler::builder::instruction::{*};".to_string());
+    lines.push("  use c64_assembler::builder::{*};".to_string());
     lines.push("  ApplicationBuilder::default()".to_string());
     let mut iter = input.into_iter();
     while let Some(tree) = iter.next() {
@@ -325,9 +322,7 @@ pub fn module(input: TokenStream) -> TokenStream {
     dbg!(input.clone());
     let mut lines = Vec::<String>::default();
     lines.push("{".to_string());
-    lines.push("  use c64_assembler::builder::module::{*};".to_string());
-    lines.push("  use c64_assembler::builder::function::{*};".to_string());
-    lines.push("  use c64_assembler::builder::instruction::{*};".to_string());
+    lines.push("  use c64_assembler::builder::{*};".to_string());
     lines.push(build_module(input));
     lines.push("}".to_string());
     println!("{:#?}", lines.join("\n"));
@@ -339,8 +334,7 @@ pub fn function(input: TokenStream) -> TokenStream {
     dbg!(input.clone());
     let mut lines = Vec::<String>::default();
     lines.push("{".to_string());
-    lines.push("  use c64_assembler::builder::function::{*};".to_string());
-    lines.push("  use c64_assembler::builder::instruction::{*};".to_string());
+    lines.push("  use c64_assembler::builder::{*};".to_string());
     lines.push(build_function(input));
     lines.push("}".to_string());
     println!("{:#?}", lines.join("\n"));
@@ -352,7 +346,7 @@ pub fn instructions(input: TokenStream) -> TokenStream {
     //dbg!(input.clone());
     let mut lines = Vec::<String>::default();
     lines.push("{".to_string());
-    lines.push("  use c64_assembler::builder::instruction::{*};".to_string());
+    lines.push("  use c64_assembler::builder::{*};".to_string());
     lines.push(build_instructions(input));
     lines.push("}".to_string());
     println!("{:#?}", lines.join("\n"));

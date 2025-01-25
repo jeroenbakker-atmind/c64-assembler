@@ -1,5 +1,5 @@
 use crate::{
-    builder::{application::ApplicationBuilder, instruction::InstructionBuilder, module::ModuleBuilder},
+    builder::{ApplicationBuilder, InstructionBuilder, ModuleBuilder},
     generator::{dasm::DasmGenerator, program::ProgramGenerator, Generator},
     Application,
 };

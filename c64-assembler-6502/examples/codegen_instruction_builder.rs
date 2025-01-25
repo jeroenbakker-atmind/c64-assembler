@@ -17,7 +17,7 @@ fn main() {
                 /// 
                 /// # Example
                 /// ```
-                /// use c64_assembler::builder::instruction::InstructionBuilder;
+                /// use c64_assembler::builder::InstructionBuilder;
                 /// let instructions = InstructionBuilder::default()
                 ///     .{0}()
                 ///     .finalize();
@@ -48,7 +48,7 @@ fn main() {
                 /// Record a {0} instruction with data (byte).
                 /// # Example
                 /// ```
-                /// use c64_assembler::builder::instruction::InstructionBuilder;
+                /// use c64_assembler::builder::InstructionBuilder;
                 /// let instructions = InstructionBuilder::default()
                 ///     .{0}_imm(0xC0)
                 ///     .finalize();
@@ -61,7 +61,7 @@ fn main() {
                 /// 
                 /// # Example
                 /// ```
-                /// use c64_assembler::builder::instruction::InstructionBuilder;
+                /// use c64_assembler::builder::InstructionBuilder;
                 /// let instructions = InstructionBuilder::default()
                 ///     .{0}_imm_low(\"test_data\")
                 ///     .label(\"test_data\")
@@ -77,7 +77,7 @@ fn main() {
                 /// 
                 /// # Example
                 /// ```
-                /// use c64_assembler::builder::instruction::InstructionBuilder;
+                /// use c64_assembler::builder::InstructionBuilder;
                 /// let instructions = InstructionBuilder::default()
                 ///     .{0}_imm_high(\"test_data\")
                 ///     .label(\"test_data\")
@@ -99,7 +99,7 @@ fn main() {
                 /// 
                 /// # Example
                 /// ```
-                /// use c64_assembler::builder::instruction::InstructionBuilder;
+                /// use c64_assembler::builder::InstructionBuilder;
                 /// let instructions = InstructionBuilder::default()
                 ///     .{0}_acc()
                 ///     .finalize();
@@ -119,7 +119,7 @@ fn main() {
                 /// 
                 /// # Example
                 /// ```
-                /// use c64_assembler::builder::instruction::InstructionBuilder;
+                /// use c64_assembler::builder::InstructionBuilder;
                 /// let instructions = InstructionBuilder::default()
                 ///     .{0}_addr(\"test_label\")
                 ///     .label(\"test_label\")
@@ -134,7 +134,7 @@ fn main() {
                 /// 
                 /// # Example
                 /// ```
-                /// use c64_assembler::builder::instruction::InstructionBuilder;
+                /// use c64_assembler::builder::InstructionBuilder;
                 /// let instructions = InstructionBuilder::default()
                 ///     .{0}_addr_offs(\"test_label\", 8)
                 ///     .label(\"test_label\")
@@ -156,7 +156,7 @@ fn main() {
                 /// 
                 /// # Example
                 /// ```
-                /// use c64_assembler::builder::instruction::InstructionBuilder;
+                /// use c64_assembler::builder::InstructionBuilder;
                 /// let instructions = InstructionBuilder::default()
                 ///     .lda_imm(0x08)
                 ///     .{0}_addr_x(\"test_label\")
@@ -177,7 +177,7 @@ fn main() {
                 /// 
                 /// # Example
                 /// ```
-                /// use c64_assembler::builder::instruction::InstructionBuilder;
+                /// use c64_assembler::builder::InstructionBuilder;
                 /// let instructions = InstructionBuilder::default()
                 ///     .lda_imm(0x08)
                 ///     .{0}_addr_y(\"test_label\")
@@ -198,7 +198,7 @@ fn main() {
                 /// 
                 /// # Example
                 /// ```
-                /// use c64_assembler::builder::instruction::InstructionBuilder;
+                /// use c64_assembler::builder::InstructionBuilder;
                 /// let instructions = InstructionBuilder::default()
                 ///     .{0}_addr(\"test_label\")
                 ///     .label(\"test_label\")
@@ -213,7 +213,7 @@ fn main() {
                 /// 
                 /// # Example
                 /// ```
-                /// use c64_assembler::builder::instruction::InstructionBuilder;
+                /// use c64_assembler::builder::InstructionBuilder;
                 /// let instructions = InstructionBuilder::default()
                 ///     .{0}_addr_offs(\"test_label\", 8)
                 ///     .label(\"test_label\")
