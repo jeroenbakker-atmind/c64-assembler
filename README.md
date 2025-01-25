@@ -28,7 +28,7 @@ cargo add c64-assembler
 
 ### Basic Assembly
 
-To assemble some c64 assembly file into a PRG file:
+To assemble C64 assembly.
 
 ```rust
 use c64_assembler::builder::application::ApplicationBuilder;
