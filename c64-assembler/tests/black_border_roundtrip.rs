@@ -1,4 +1,4 @@
-use c64_assembler::generator::{ProgramGenerator, Generator};
+use c64_assembler::generator::{Generator, ProgramGenerator};
 use c64_assembler_macro::application;
 use mos6502::{
     cpu::CPU,

@@ -1,5 +1,5 @@
-use c64_assembler::generator::ProgramGenerator;
 use c64_assembler::generator::Generator;
+use c64_assembler::generator::ProgramGenerator;
 use c64_assembler_macro::application;
 use cbm::disk::directory::FileType;
 use cbm::disk::file::{FileOps, Scheme};

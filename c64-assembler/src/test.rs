@@ -1,6 +1,6 @@
 use crate::{
     builder::{ApplicationBuilder, InstructionBuilder, ModuleBuilder},
-    generator::{DasmGenerator, ProgramGenerator, Generator},
+    generator::{DasmGenerator, Generator, ProgramGenerator},
     Application,
 };
 
