@@ -82,7 +82,7 @@ println!("{}", source);
 ```
 
 ```asm
-; --- Application: SET BACK BORDER ---
+; --- Application: SET BLACK BORDER ---
 ; NOTE: This file is generated, do not modify
 
   processor 6502
@@ -98,10 +98,9 @@ VIC20_BORDER_COLOR = $D020
   byte $00, $00, $00     ; End basic program
 
 main_entry_point:
-  lda #$00
+  lda #$00               ; Load black color
   sta VIC20_BORDER_COLOR
   rts
-; --- Module end: MAIN ---
 ```
 
 ### Using macros (Experimental)
@@ -111,11 +110,11 @@ main_entry_point:
 
 The `c64-assembly-macro` crate introduces several macros to reduce the boiler plating.
 
-```
+```rust
 use c64_assembler_macro::application;
 
 let application = application!(
-    name="Set back border"
+    name="Set black border"
     include_vic20_defines
     module!(
         name="main"
@@ -154,21 +153,21 @@ We welcome contributions! To get started:
 *Goal*: Initial release no macros
 
 - Easy
-  - [ ] Add description to defines that will be rendered in the dasm source
-  - [ ] Add VIC20 defines
-  - [ ] Add SID defines
-  - [ ] Add kernel defines
-  - [ ] Add basic defines
+  - [x] Add VIC20 defines
+  - [x] Add SID defines
 - Other
-  - [ ] Add example explaining how to use the defines
+  - [x] Add example explaining how to use the defines
   - [ ] Add example/documentation for module
   - [ ] Add example/documentation for functions  
-  - [ ] Add example to compile directly into a `.D64` file
+  - [x] Add example to compile directly into a `.D64` file
+  - [x] Add test that performs a full roundtrip using MOS emulation
 
 **Version 0.2**
 
 *Goal*: Add macro support to reduce boiler plating
 
+- [ ] Add kernel defines
+- [ ] Add basic defines
 - [ ] Parse indirect address mode
 - [ ] Add documentation
 - [ ] Add examples

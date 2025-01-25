@@ -70,9 +70,9 @@ impl InstructionBuilder {
     ///     .finalize();
     /// ```
     pub fn adc_imm_low(&mut self, address_name: &str) -> &mut Self {
-        self.adc(AddressMode::Immediate(Immediate::Low(
-            AddressReference::new(address_name),
-        )))
+        self.adc(AddressMode::Immediate(Immediate::Low(AddressReference::new(
+            address_name,
+        ))))
     }
 
     /// Record a adc instruction with higher byte of an address.
@@ -86,9 +86,9 @@ impl InstructionBuilder {
     ///     .finalize();
     /// ```
     pub fn adc_imm_high(&mut self, address_name: &str) -> &mut Self {
-        self.adc(AddressMode::Immediate(Immediate::High(
-            AddressReference::new(address_name),
-        )))
+        self.adc(AddressMode::Immediate(Immediate::High(AddressReference::new(
+            address_name,
+        ))))
     }
 
     /// Record a adc instruction that use an absolute address.
@@ -154,15 +154,11 @@ impl InstructionBuilder {
     }
 
     pub fn adc_ind_x(&mut self, address_name: &str) -> &mut Self {
-        self.adc(AddressMode::IndexedIndirect(AddressReference::new(
-            address_name,
-        )))
+        self.adc(AddressMode::IndexedIndirect(AddressReference::new(address_name)))
     }
 
     pub fn adc_ind_y(&mut self, address_name: &str) -> &mut Self {
-        self.adc(AddressMode::IndirectIndexed(AddressReference::new(
-            address_name,
-        )))
+        self.adc(AddressMode::IndirectIndexed(AddressReference::new(address_name)))
     }
 
     /// Record a new and instruction with the given addressing mode.
@@ -194,9 +190,9 @@ impl InstructionBuilder {
     ///     .finalize();
     /// ```
     pub fn and_imm_low(&mut self, address_name: &str) -> &mut Self {
-        self.and(AddressMode::Immediate(Immediate::Low(
-            AddressReference::new(address_name),
-        )))
+        self.and(AddressMode::Immediate(Immediate::Low(AddressReference::new(
+            address_name,
+        ))))
     }
 
     /// Record a and instruction with higher byte of an address.
@@ -210,9 +206,9 @@ impl InstructionBuilder {
     ///     .finalize();
     /// ```
     pub fn and_imm_high(&mut self, address_name: &str) -> &mut Self {
-        self.and(AddressMode::Immediate(Immediate::High(
-            AddressReference::new(address_name),
-        )))
+        self.and(AddressMode::Immediate(Immediate::High(AddressReference::new(
+            address_name,
+        ))))
     }
 
     /// Record a and instruction that use an absolute address.
@@ -278,15 +274,11 @@ impl InstructionBuilder {
     }
 
     pub fn and_ind_x(&mut self, address_name: &str) -> &mut Self {
-        self.and(AddressMode::IndexedIndirect(AddressReference::new(
-            address_name,
-        )))
+        self.and(AddressMode::IndexedIndirect(AddressReference::new(address_name)))
     }
 
     pub fn and_ind_y(&mut self, address_name: &str) -> &mut Self {
-        self.and(AddressMode::IndirectIndexed(AddressReference::new(
-            address_name,
-        )))
+        self.and(AddressMode::IndirectIndexed(AddressReference::new(address_name)))
     }
 
     /// Record a new asl instruction with the given addressing mode.
@@ -796,9 +788,9 @@ impl InstructionBuilder {
     ///     .finalize();
     /// ```
     pub fn cmp_imm_low(&mut self, address_name: &str) -> &mut Self {
-        self.cmp(AddressMode::Immediate(Immediate::Low(
-            AddressReference::new(address_name),
-        )))
+        self.cmp(AddressMode::Immediate(Immediate::Low(AddressReference::new(
+            address_name,
+        ))))
     }
 
     /// Record a cmp instruction with higher byte of an address.
@@ -812,9 +804,9 @@ impl InstructionBuilder {
     ///     .finalize();
     /// ```
     pub fn cmp_imm_high(&mut self, address_name: &str) -> &mut Self {
-        self.cmp(AddressMode::Immediate(Immediate::High(
-            AddressReference::new(address_name),
-        )))
+        self.cmp(AddressMode::Immediate(Immediate::High(AddressReference::new(
+            address_name,
+        ))))
     }
 
     /// Record a cmp instruction that use an absolute address.
@@ -880,15 +872,11 @@ impl InstructionBuilder {
     }
 
     pub fn cmp_ind_x(&mut self, address_name: &str) -> &mut Self {
-        self.cmp(AddressMode::IndexedIndirect(AddressReference::new(
-            address_name,
-        )))
+        self.cmp(AddressMode::IndexedIndirect(AddressReference::new(address_name)))
     }
 
     pub fn cmp_ind_y(&mut self, address_name: &str) -> &mut Self {
-        self.cmp(AddressMode::IndirectIndexed(AddressReference::new(
-            address_name,
-        )))
+        self.cmp(AddressMode::IndirectIndexed(AddressReference::new(address_name)))
     }
 
     /// Record a new cpx instruction with the given addressing mode.
@@ -920,9 +908,9 @@ impl InstructionBuilder {
     ///     .finalize();
     /// ```
     pub fn cpx_imm_low(&mut self, address_name: &str) -> &mut Self {
-        self.cpx(AddressMode::Immediate(Immediate::Low(
-            AddressReference::new(address_name),
-        )))
+        self.cpx(AddressMode::Immediate(Immediate::Low(AddressReference::new(
+            address_name,
+        ))))
     }
 
     /// Record a cpx instruction with higher byte of an address.
@@ -936,9 +924,9 @@ impl InstructionBuilder {
     ///     .finalize();
     /// ```
     pub fn cpx_imm_high(&mut self, address_name: &str) -> &mut Self {
-        self.cpx(AddressMode::Immediate(Immediate::High(
-            AddressReference::new(address_name),
-        )))
+        self.cpx(AddressMode::Immediate(Immediate::High(AddressReference::new(
+            address_name,
+        ))))
     }
 
     /// Record a cpx instruction that use an absolute address.
@@ -1002,9 +990,9 @@ impl InstructionBuilder {
     ///     .finalize();
     /// ```
     pub fn cpy_imm_low(&mut self, address_name: &str) -> &mut Self {
-        self.cpy(AddressMode::Immediate(Immediate::Low(
-            AddressReference::new(address_name),
-        )))
+        self.cpy(AddressMode::Immediate(Immediate::Low(AddressReference::new(
+            address_name,
+        ))))
     }
 
     /// Record a cpy instruction with higher byte of an address.
@@ -1018,9 +1006,9 @@ impl InstructionBuilder {
     ///     .finalize();
     /// ```
     pub fn cpy_imm_high(&mut self, address_name: &str) -> &mut Self {
-        self.cpy(AddressMode::Immediate(Immediate::High(
-            AddressReference::new(address_name),
-        )))
+        self.cpy(AddressMode::Immediate(Immediate::High(AddressReference::new(
+            address_name,
+        ))))
     }
 
     /// Record a cpy instruction that use an absolute address.
@@ -1165,9 +1153,9 @@ impl InstructionBuilder {
     ///     .finalize();
     /// ```
     pub fn eor_imm_low(&mut self, address_name: &str) -> &mut Self {
-        self.eor(AddressMode::Immediate(Immediate::Low(
-            AddressReference::new(address_name),
-        )))
+        self.eor(AddressMode::Immediate(Immediate::Low(AddressReference::new(
+            address_name,
+        ))))
     }
 
     /// Record a eor instruction with higher byte of an address.
@@ -1181,9 +1169,9 @@ impl InstructionBuilder {
     ///     .finalize();
     /// ```
     pub fn eor_imm_high(&mut self, address_name: &str) -> &mut Self {
-        self.eor(AddressMode::Immediate(Immediate::High(
-            AddressReference::new(address_name),
-        )))
+        self.eor(AddressMode::Immediate(Immediate::High(AddressReference::new(
+            address_name,
+        ))))
     }
 
     /// Record a eor instruction that use an absolute address.
@@ -1249,15 +1237,11 @@ impl InstructionBuilder {
     }
 
     pub fn eor_ind_x(&mut self, address_name: &str) -> &mut Self {
-        self.eor(AddressMode::IndexedIndirect(AddressReference::new(
-            address_name,
-        )))
+        self.eor(AddressMode::IndexedIndirect(AddressReference::new(address_name)))
     }
 
     pub fn eor_ind_y(&mut self, address_name: &str) -> &mut Self {
-        self.eor(AddressMode::IndirectIndexed(AddressReference::new(
-            address_name,
-        )))
+        self.eor(AddressMode::IndirectIndexed(AddressReference::new(address_name)))
     }
 
     /// Record a new inc instruction with the given addressing mode.
@@ -1450,9 +1434,9 @@ impl InstructionBuilder {
     ///     .finalize();
     /// ```
     pub fn lda_imm_low(&mut self, address_name: &str) -> &mut Self {
-        self.lda(AddressMode::Immediate(Immediate::Low(
-            AddressReference::new(address_name),
-        )))
+        self.lda(AddressMode::Immediate(Immediate::Low(AddressReference::new(
+            address_name,
+        ))))
     }
 
     /// Record a lda instruction with higher byte of an address.
@@ -1466,9 +1450,9 @@ impl InstructionBuilder {
     ///     .finalize();
     /// ```
     pub fn lda_imm_high(&mut self, address_name: &str) -> &mut Self {
-        self.lda(AddressMode::Immediate(Immediate::High(
-            AddressReference::new(address_name),
-        )))
+        self.lda(AddressMode::Immediate(Immediate::High(AddressReference::new(
+            address_name,
+        ))))
     }
 
     /// Record a lda instruction that use an absolute address.
@@ -1534,15 +1518,11 @@ impl InstructionBuilder {
     }
 
     pub fn lda_ind_x(&mut self, address_name: &str) -> &mut Self {
-        self.lda(AddressMode::IndexedIndirect(AddressReference::new(
-            address_name,
-        )))
+        self.lda(AddressMode::IndexedIndirect(AddressReference::new(address_name)))
     }
 
     pub fn lda_ind_y(&mut self, address_name: &str) -> &mut Self {
-        self.lda(AddressMode::IndirectIndexed(AddressReference::new(
-            address_name,
-        )))
+        self.lda(AddressMode::IndirectIndexed(AddressReference::new(address_name)))
     }
 
     /// Record a new ldx instruction with the given addressing mode.
@@ -1574,9 +1554,9 @@ impl InstructionBuilder {
     ///     .finalize();
     /// ```
     pub fn ldx_imm_low(&mut self, address_name: &str) -> &mut Self {
-        self.ldx(AddressMode::Immediate(Immediate::Low(
-            AddressReference::new(address_name),
-        )))
+        self.ldx(AddressMode::Immediate(Immediate::Low(AddressReference::new(
+            address_name,
+        ))))
     }
 
     /// Record a ldx instruction with higher byte of an address.
@@ -1590,9 +1570,9 @@ impl InstructionBuilder {
     ///     .finalize();
     /// ```
     pub fn ldx_imm_high(&mut self, address_name: &str) -> &mut Self {
-        self.ldx(AddressMode::Immediate(Immediate::High(
-            AddressReference::new(address_name),
-        )))
+        self.ldx(AddressMode::Immediate(Immediate::High(AddressReference::new(
+            address_name,
+        ))))
     }
 
     /// Record a ldx instruction that use an absolute address.
@@ -1671,9 +1651,9 @@ impl InstructionBuilder {
     ///     .finalize();
     /// ```
     pub fn ldy_imm_low(&mut self, address_name: &str) -> &mut Self {
-        self.ldy(AddressMode::Immediate(Immediate::Low(
-            AddressReference::new(address_name),
-        )))
+        self.ldy(AddressMode::Immediate(Immediate::Low(AddressReference::new(
+            address_name,
+        ))))
     }
 
     /// Record a ldy instruction with higher byte of an address.
@@ -1687,9 +1667,9 @@ impl InstructionBuilder {
     ///     .finalize();
     /// ```
     pub fn ldy_imm_high(&mut self, address_name: &str) -> &mut Self {
-        self.ldy(AddressMode::Immediate(Immediate::High(
-            AddressReference::new(address_name),
-        )))
+        self.ldy(AddressMode::Immediate(Immediate::High(AddressReference::new(
+            address_name,
+        ))))
     }
 
     /// Record a ldy instruction that use an absolute address.
@@ -1848,9 +1828,9 @@ impl InstructionBuilder {
     ///     .finalize();
     /// ```
     pub fn ora_imm_low(&mut self, address_name: &str) -> &mut Self {
-        self.ora(AddressMode::Immediate(Immediate::Low(
-            AddressReference::new(address_name),
-        )))
+        self.ora(AddressMode::Immediate(Immediate::Low(AddressReference::new(
+            address_name,
+        ))))
     }
 
     /// Record a ora instruction with higher byte of an address.
@@ -1864,9 +1844,9 @@ impl InstructionBuilder {
     ///     .finalize();
     /// ```
     pub fn ora_imm_high(&mut self, address_name: &str) -> &mut Self {
-        self.ora(AddressMode::Immediate(Immediate::High(
-            AddressReference::new(address_name),
-        )))
+        self.ora(AddressMode::Immediate(Immediate::High(AddressReference::new(
+            address_name,
+        ))))
     }
 
     /// Record a ora instruction that use an absolute address.
@@ -1932,15 +1912,11 @@ impl InstructionBuilder {
     }
 
     pub fn ora_ind_x(&mut self, address_name: &str) -> &mut Self {
-        self.ora(AddressMode::IndexedIndirect(AddressReference::new(
-            address_name,
-        )))
+        self.ora(AddressMode::IndexedIndirect(AddressReference::new(address_name)))
     }
 
     pub fn ora_ind_y(&mut self, address_name: &str) -> &mut Self {
-        self.ora(AddressMode::IndirectIndexed(AddressReference::new(
-            address_name,
-        )))
+        self.ora(AddressMode::IndirectIndexed(AddressReference::new(address_name)))
     }
 
     /// Record a new pha instruction (addressing mode is implied).
@@ -2188,9 +2164,9 @@ impl InstructionBuilder {
     ///     .finalize();
     /// ```
     pub fn sbc_imm_low(&mut self, address_name: &str) -> &mut Self {
-        self.sbc(AddressMode::Immediate(Immediate::Low(
-            AddressReference::new(address_name),
-        )))
+        self.sbc(AddressMode::Immediate(Immediate::Low(AddressReference::new(
+            address_name,
+        ))))
     }
 
     /// Record a sbc instruction with higher byte of an address.
@@ -2204,9 +2180,9 @@ impl InstructionBuilder {
     ///     .finalize();
     /// ```
     pub fn sbc_imm_high(&mut self, address_name: &str) -> &mut Self {
-        self.sbc(AddressMode::Immediate(Immediate::High(
-            AddressReference::new(address_name),
-        )))
+        self.sbc(AddressMode::Immediate(Immediate::High(AddressReference::new(
+            address_name,
+        ))))
     }
 
     /// Record a sbc instruction that use an absolute address.
@@ -2272,15 +2248,11 @@ impl InstructionBuilder {
     }
 
     pub fn sbc_ind_x(&mut self, address_name: &str) -> &mut Self {
-        self.sbc(AddressMode::IndexedIndirect(AddressReference::new(
-            address_name,
-        )))
+        self.sbc(AddressMode::IndexedIndirect(AddressReference::new(address_name)))
     }
 
     pub fn sbc_ind_y(&mut self, address_name: &str) -> &mut Self {
-        self.sbc(AddressMode::IndirectIndexed(AddressReference::new(
-            address_name,
-        )))
+        self.sbc(AddressMode::IndirectIndexed(AddressReference::new(address_name)))
     }
 
     /// Record a new sec instruction (addressing mode is implied).
@@ -2394,15 +2366,11 @@ impl InstructionBuilder {
     }
 
     pub fn sta_ind_x(&mut self, address_name: &str) -> &mut Self {
-        self.sta(AddressMode::IndexedIndirect(AddressReference::new(
-            address_name,
-        )))
+        self.sta(AddressMode::IndexedIndirect(AddressReference::new(address_name)))
     }
 
     pub fn sta_ind_y(&mut self, address_name: &str) -> &mut Self {
-        self.sta(AddressMode::IndirectIndexed(AddressReference::new(
-            address_name,
-        )))
+        self.sta(AddressMode::IndirectIndexed(AddressReference::new(address_name)))
     }
 
     /// Record a new stx instruction with the given addressing mode.

@@ -43,7 +43,7 @@
 //!
 //! let application = ApplicationBuilder::default()
 //!     .name("Set black border")
-//!     .add_vic20()
+//!     .include_vic20_defines()
 //!     .module(
 //!         ModuleBuilder::default()
 //!             .name("main")
@@ -70,7 +70,7 @@
 //! use c64_assembler_macro::application;
 //!
 //! let application = application!(
-//!     name="Set back border"
+//!     name="Set black border"
 //!     include_vic20_defines
 //!     module!(
 //!         name="main"
@@ -104,7 +104,7 @@
 //! Would output
 //!
 //! ```asm
-//! ; --- Application: SET BACK BORDER ---
+//! ; --- Application: SET BLACK BORDER ---
 //! ; NOTE: This file is generated, do not modify
 //!
 //!   processor 6502

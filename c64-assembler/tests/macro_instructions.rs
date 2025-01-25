@@ -1,6 +1,5 @@
 use c64_assembler::{
-    builder::instruction::Instructions, instruction::operation::Operation,
-    memory::address_mode::AddressMode,
+    builder::instruction::Instructions, instruction::operation::Operation, memory::address_mode::AddressMode,
 };
 use c64_assembler_macro::instructions;
 
@@ -31,11 +30,7 @@ mod adc {
 
     #[test]
     fn imm() {
-        test_first(
-            instructions!(adc #99),
-            OP,
-            AddressMode::Immediate(Immediate::Byte(99)),
-        );
+        test_first(instructions!(adc #99), OP, AddressMode::Immediate(Immediate::Byte(99)));
         test_first(
             instructions!(adc #$99),
             OP,
@@ -110,11 +105,7 @@ mod and {
 
     #[test]
     fn imm() {
-        test_first(
-            instructions!(and #99),
-            OP,
-            AddressMode::Immediate(Immediate::Byte(99)),
-        );
+        test_first(instructions!(and #99), OP, AddressMode::Immediate(Immediate::Byte(99)));
         test_first(
             instructions!(and #$99),
             OP,
@@ -518,11 +509,7 @@ mod cmp {
 
     #[test]
     fn imm() {
-        test_first(
-            instructions!(cmp #99),
-            OP,
-            AddressMode::Immediate(Immediate::Byte(99)),
-        );
+        test_first(instructions!(cmp #99), OP, AddressMode::Immediate(Immediate::Byte(99)));
         test_first(
             instructions!(cmp #$99),
             OP,
@@ -597,11 +584,7 @@ mod cpx {
 
     #[test]
     fn imm() {
-        test_first(
-            instructions!(cpx #99),
-            OP,
-            AddressMode::Immediate(Immediate::Byte(99)),
-        );
+        test_first(instructions!(cpx #99), OP, AddressMode::Immediate(Immediate::Byte(99)));
         test_first(
             instructions!(cpx #$99),
             OP,
@@ -658,11 +641,7 @@ mod cpy {
 
     #[test]
     fn imm() {
-        test_first(
-            instructions!(cpy #99),
-            OP,
-            AddressMode::Immediate(Immediate::Byte(99)),
-        );
+        test_first(instructions!(cpy #99), OP, AddressMode::Immediate(Immediate::Byte(99)));
         test_first(
             instructions!(cpy #$99),
             OP,
@@ -767,11 +746,7 @@ mod eor {
 
     #[test]
     fn imm() {
-        test_first(
-            instructions!(eor #99),
-            OP,
-            AddressMode::Immediate(Immediate::Byte(99)),
-        );
+        test_first(instructions!(eor #99), OP, AddressMode::Immediate(Immediate::Byte(99)));
         test_first(
             instructions!(eor #$99),
             OP,
@@ -952,11 +927,7 @@ mod lda {
 
     #[test]
     fn imm() {
-        test_first(
-            instructions!(lda #99),
-            OP,
-            AddressMode::Immediate(Immediate::Byte(99)),
-        );
+        test_first(instructions!(lda #99), OP, AddressMode::Immediate(Immediate::Byte(99)));
         test_first(
             instructions!(lda #$99),
             OP,
@@ -1031,11 +1002,7 @@ mod ldx {
 
     #[test]
     fn imm() {
-        test_first(
-            instructions!(ldx #99),
-            OP,
-            AddressMode::Immediate(Immediate::Byte(99)),
-        );
+        test_first(instructions!(ldx #99), OP, AddressMode::Immediate(Immediate::Byte(99)));
         test_first(
             instructions!(ldx #$99),
             OP,
@@ -1101,11 +1068,7 @@ mod ldy {
 
     #[test]
     fn imm() {
-        test_first(
-            instructions!(ldy #99),
-            OP,
-            AddressMode::Immediate(Immediate::Byte(99)),
-        );
+        test_first(instructions!(ldy #99), OP, AddressMode::Immediate(Immediate::Byte(99)));
         test_first(
             instructions!(ldy #$99),
             OP,
@@ -1219,11 +1182,7 @@ mod ora {
 
     #[test]
     fn imm() {
-        test_first(
-            instructions!(ora #99),
-            OP,
-            AddressMode::Immediate(Immediate::Byte(99)),
-        );
+        test_first(instructions!(ora #99), OP, AddressMode::Immediate(Immediate::Byte(99)));
         test_first(
             instructions!(ora #$99),
             OP,
@@ -1414,11 +1373,7 @@ mod sbc {
 
     #[test]
     fn imm() {
-        test_first(
-            instructions!(sbc #99),
-            OP,
-            AddressMode::Immediate(Immediate::Byte(99)),
-        );
+        test_first(instructions!(sbc #99), OP, AddressMode::Immediate(Immediate::Byte(99)));
         test_first(
             instructions!(sbc #$99),
             OP,

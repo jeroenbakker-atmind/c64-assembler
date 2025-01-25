@@ -31,18 +31,8 @@ pub const {}_{}:OpCode = 0x{:02x};",
         format_opcode(&mut lines, &def.instruction, def.zeropage_y, "ZEROPAGE_Y");
         format_opcode(&mut lines, &def.instruction, def.relative, "RELATIVE");
         format_opcode(&mut lines, &def.instruction, def.indirect, "INDIRECT");
-        format_opcode(
-            &mut lines,
-            &def.instruction,
-            def.indexed_indirect,
-            "INDEXED_INDIRECT",
-        );
-        format_opcode(
-            &mut lines,
-            &def.instruction,
-            def.indirect_indexed,
-            "INDIRECT_INDEXED",
-        );
+        format_opcode(&mut lines, &def.instruction, def.indexed_indirect, "INDEXED_INDIRECT");
+        format_opcode(&mut lines, &def.instruction, def.indirect_indexed, "INDIRECT_INDEXED");
     }
 
     println!("{}", lines.join("\n"));

@@ -10,7 +10,7 @@ use crate::{
 fn test_application() -> Application {
     ApplicationBuilder::default()
         .name("test build dasm")
-        .add_vic20()
+        .include_vic20_defines()
         .module(
             ModuleBuilder::default()
                 .name("main")
