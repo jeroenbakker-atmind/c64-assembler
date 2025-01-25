@@ -2,7 +2,7 @@ use proc_macro::{TokenStream, TokenTree};
 
 #[proc_macro]
 pub fn application(input: TokenStream) -> TokenStream {
-    dbg!(input.clone());
+    //dbg!(input.clone());
     let mut lines = Vec::<String>::default();
     lines.push("{".to_string());
     lines.push("  use c64_assembler::builder::{*};".to_string());
@@ -48,9 +48,7 @@ pub fn application(input: TokenStream) -> TokenStream {
     lines.push("    .finalize()".to_string());
     lines.push("}".to_string());
 
-    for line in &lines {
-        println!("{}", line);
-    }
+    //println!("{:#?}", lines.join("\n"));
     lines.join("\n").parse().unwrap()
 }
 
@@ -319,25 +317,25 @@ fn build_instructions(input: TokenStream) -> String {
 
 #[proc_macro]
 pub fn module(input: TokenStream) -> TokenStream {
-    dbg!(input.clone());
+    //dbg!(input.clone());
     let mut lines = Vec::<String>::default();
     lines.push("{".to_string());
     lines.push("  use c64_assembler::builder::{*};".to_string());
     lines.push(build_module(input));
     lines.push("}".to_string());
-    println!("{:#?}", lines.join("\n"));
+    //println!("{:#?}", lines.join("\n"));
     lines.join("\n").parse().unwrap()
 }
 
 #[proc_macro]
 pub fn function(input: TokenStream) -> TokenStream {
-    dbg!(input.clone());
+    //dbg!(input.clone());
     let mut lines = Vec::<String>::default();
     lines.push("{".to_string());
     lines.push("  use c64_assembler::builder::{*};".to_string());
     lines.push(build_function(input));
     lines.push("}".to_string());
-    println!("{:#?}", lines.join("\n"));
+    //println!("{:#?}", lines.join("\n"));
     lines.join("\n").parse().unwrap()
 }
 
@@ -349,6 +347,6 @@ pub fn instructions(input: TokenStream) -> TokenStream {
     lines.push("  use c64_assembler::builder::{*};".to_string());
     lines.push(build_instructions(input));
     lines.push("}".to_string());
-    println!("{:#?}", lines.join("\n"));
+    //println!("{:#?}", lines.join("\n"));
     lines.join("\n").parse().unwrap()
 }
