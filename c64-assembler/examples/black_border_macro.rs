@@ -1,4 +1,4 @@
-use c64_assembler::generator::program::{print_hexdump, ProgramGenerator};
+use c64_assembler::generator::{print_hexdump, ProgramGenerator};
 use c64_assembler::generator::Generator;
 use c64_assembler_macro::application;
 

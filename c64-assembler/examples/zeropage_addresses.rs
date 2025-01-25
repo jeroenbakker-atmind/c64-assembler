@@ -2,7 +2,7 @@
 use c64_assembler::builder::ApplicationBuilder;
 use c64_assembler::builder::InstructionBuilder;
 use c64_assembler::builder::ModuleBuilder;
-use c64_assembler::generator::program::{print_hexdump, ProgramGenerator};
+use c64_assembler::generator::{print_hexdump, ProgramGenerator};
 use c64_assembler::generator::Generator;
 
 fn main() {

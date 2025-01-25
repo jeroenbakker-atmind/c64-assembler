@@ -1,4 +1,4 @@
-use c64_assembler::generator::{program::ProgramGenerator, Generator};
+use c64_assembler::generator::{ProgramGenerator, Generator};
 use c64_assembler_macro::*;
 
 #[test]

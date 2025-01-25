@@ -81,7 +81,7 @@
 //!
 //! ```
 //! use c64_assembler::generator::Generator;
-//! use c64_assembler::generator::dasm::DasmGenerator;
+//! use c64_assembler::generator::DasmGenerator;
 //! # use c64_assembler::builder::ApplicationBuilder;
 //! # let application = ApplicationBuilder::default().finalize();
 //!
@@ -120,8 +120,7 @@
 //! The byte stream includes the loading address.
 //!
 //! ```
-//! use c64_assembler::generator::Generator;
-//! use c64_assembler::generator::program::{ProgramGenerator, print_hexdump};
+//! use c64_assembler::generator::{Generator, ProgramGenerator, print_hexdump};
 //! # use c64_assembler::builder::ApplicationBuilder;
 //! # let application = ApplicationBuilder::default().finalize();
 //!

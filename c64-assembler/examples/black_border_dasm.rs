@@ -1,7 +1,7 @@
 use c64_assembler::builder::ApplicationBuilder;
 use c64_assembler::builder::InstructionBuilder;
 use c64_assembler::builder::ModuleBuilder;
-use c64_assembler::generator::dasm::DasmGenerator;
+use c64_assembler::generator::DasmGenerator;
 use c64_assembler::generator::Generator;
 
 fn main() {
