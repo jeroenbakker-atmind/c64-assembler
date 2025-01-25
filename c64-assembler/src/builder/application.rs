@@ -37,10 +37,34 @@ impl Default for ApplicationBuilder {
 }
 
 impl ApplicationBuilder {
+    /// Set the name of the application.
+    ///
+    /// Is used in comments when exporting to a dasm source using [crate::generator::dasm::DasmGenerator]
+    ///
+    /// ```
+    /// use c64_assembler::builder::application::ApplicationBuilder;
+    /// let application = ApplicationBuilder::default()
+    ///     .name("My application")
+    ///     .finalize();
+    /// ```
     pub fn name(&mut self, name: &str) -> &mut Self {
         self.application.name = name.to_string();
         self
     }
+
+    /// Change the entry point of the application.
+    ///
+    /// NOTE: When not set to 0x0800 [crate::builder::instruction::InstructionBuilder::add_basic_header]
+    /// cannot be used.
+    ///
+    /// Default entry point is set to 0x0800.
+    ///
+    /// ```
+    /// use c64_assembler::builder::application::ApplicationBuilder;
+    /// let application = ApplicationBuilder::default()
+    ///     .entry_point(0x0800)
+    ///     .finalize();
+    /// ```
     pub fn entry_point(&mut self, entry_point: Address) -> &mut Self {
         self.application.entry_point = entry_point;
         self
@@ -259,6 +283,7 @@ impl ApplicationBuilder {
         self
     }
 
+    /// Build the application
     pub fn finalize(&mut self) -> Application {
         finalize(&mut self.application);
         self.application.clone()
