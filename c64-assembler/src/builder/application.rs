@@ -4,7 +4,7 @@ use crate::{
     memory::{
         define::{Define, Value},
         label::AddressReference,
-        Address,
+        Address, ZeroPage,
     },
     Application, Module,
 };
@@ -33,7 +33,7 @@ impl Default for ApplicationBuilder {
 impl ApplicationBuilder {
     /// Set the name of the application.
     ///
-    /// Is used in comments when exporting to a dasm source using [crate::generator::dasm::DasmGenerator]
+    /// Is used in comments when exporting to a dasm source using [crate::generator::DasmGenerator]
     ///
     /// ```
     /// use c64_assembler::builder::ApplicationBuilder;
@@ -80,9 +80,15 @@ impl ApplicationBuilder {
     /// ```
     pub fn define_address(&mut self, name: &str, address: Address) -> &mut Self {
         self.application.address_lookup.insert(name.to_string(), address);
-        self.application
-            .defines
-            .push(Define::new(name, Value::Address(address)));
+        if address.is_zeropage() {
+            self.application
+                .defines
+                .push(Define::new(name, Value::Zeropage(address)));
+        } else {
+            self.application
+                .defines
+                .push(Define::new(name, Value::Address(address)));
+        }
         self
     }
 

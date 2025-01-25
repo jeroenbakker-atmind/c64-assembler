@@ -11,6 +11,7 @@ use crate::{
 
 use super::Generator;
 
+/// Dasm source code generator
 pub struct DasmGenerator {
     output: Vec<String>,
     comment_column: usize,

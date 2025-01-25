@@ -14,6 +14,7 @@ use crate::{
 
 use super::Generator;
 
+/// .PRG byte code generator
 #[derive(Default, Debug)]
 pub struct ProgramGenerator {
     output: Vec<u8>,
@@ -158,7 +159,7 @@ impl ProgramGenerator {
     }
 }
 
-/// Utility function to output the set of bytes into a hexdump kind of format to the console.
+/// Utility function to print the set of bytes into a hexdump kind of format to the console.
 pub fn print_hexdump(bytes: &[u8]) {
     let mut address = 0;
     bytes.chunks(16).for_each(|chunk| {

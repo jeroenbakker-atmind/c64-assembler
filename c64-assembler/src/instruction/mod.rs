@@ -6,10 +6,17 @@ use crate::memory::ZeroPage;
 use crate::Application;
 pub mod operation;
 
+/// Assembly instruction
+///
+/// An instruction is the combination of the operation and the address mode that the
+/// operation should be using.
 #[derive(Debug, Default, Clone, PartialEq)]
 pub struct Instruction {
+    /// Operation of the instruction.
     pub operation: Operation,
+    /// Address mode of the instruction.
     pub address_mode: AddressMode,
+    /// Comments for when generating source code.
     pub comments: Vec<String>,
 }
 
@@ -22,7 +29,7 @@ fn is_zeropage(application: &Application, address_reference: &AddressReference) 
 }
 
 impl Instruction {
-    /// Total number of bytes this instruction occupies on a 6502.
+    /// Total number of bytes the instruction occupies on a 6502.
     pub fn byte_size(&self, application: &Application) -> u16 {
         if let Operation::Raw(bytes) = &self.operation {
             bytes.len() as u16

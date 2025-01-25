@@ -76,7 +76,7 @@
 //!
 //! ### Generating dasm source
 //!
-//! Using the [crate::generator::dasm::DasmGenerator] a dasm compatible assembly source
+//! Using the [crate::generator::DasmGenerator] a dasm compatible assembly source
 //! can be generated.
 //!
 //! ```
@@ -116,7 +116,7 @@
 //!
 //! ### Generating .PRG byte stream
 //!
-//! Using the [crate::generator::program::ProgramGenerator] to generate the byte stream.
+//! Using the [crate::generator::ProgramGenerator] to generate the byte stream.
 //! The byte stream includes the loading address.
 //!
 //! ```
