@@ -31,9 +31,9 @@ impl Generator for DasmGenerator {
 
     fn generate(mut self, application: Application) -> Self::Output {
         self.line(format!("; --- Application: {} ---", application.name.to_uppercase()));
-        self.line(format!("; NOTE: This file is generated, do not modify"));
+        self.line("; NOTE: This file is generated, do not modify".to_string());
         self.line_new();
-        self.line(format!("  processor 6502"));
+        self.line("  processor 6502".to_string());
         self.line_new();
 
         for define in &application.defines {
@@ -91,8 +91,8 @@ impl DasmGenerator {
             match &instruction.operation {
                 Operation::Raw(bytes) => {
                     line.push(format!("byte ${:02X}", bytes[0]));
-                    for i in 1..bytes.len() {
-                        line.push(format!(", ${:02X}", bytes[i]));
+                    for byte in bytes.iter().skip(1) {
+                        line.push(format!(", ${:02X}", byte));
                     }
                 }
                 Operation::Label(label) => line.push(format!("{}:", label)),
@@ -146,12 +146,8 @@ impl DasmGenerator {
                 self.line(line.join(""));
             } else {
                 let mut line_len = line.join("").len();
-                let add_comments_before = line_len > self.comment_column
-                    || if let Operation::Label(_label) = &instruction.operation {
-                        true
-                    } else {
-                        false
-                    };
+                let add_comments_before =
+                    line_len > self.comment_column || matches!(&instruction.operation, Operation::Label(_label));
 
                 if add_comments_before {
                     for comment in &instruction.comments {
