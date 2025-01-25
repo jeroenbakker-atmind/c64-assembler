@@ -15,6 +15,9 @@ A modern assembler for the Commodore 64 that integrates seamlessly with Rust and
 
 ## Installation
 
+> [!NOTE]
+> Currently not possible as the crate hasn't been released yet.
+
 You can add `c64-assembler` as a rust dependency into your cargo.toml:
 
 ```sh
@@ -143,6 +146,32 @@ We welcome contributions! To get started:
    ```
 
 3. Make your changes and submit a pull request.
+
+### Near term targets
+
+**Version 0.1**
+
+*Goal*: Initial release no macros
+
+- Easy
+  - [ ] Add description to defines that will be rendered in the dasm source
+  - [ ] Add VIC20 defines
+  - [ ] Add SID defines
+  - [ ] Add kernel defines
+  - [ ] Add basic defines
+- Other
+  - [ ] Add example explaining how to use the defines
+  - [ ] Add example/documentation for module
+  - [ ] Add example/documentation for functions  
+  - [ ] Add example to compile directly into a `.D64` file
+
+**Version 0.2**
+
+*Goal*: Add macro support to reduce boiler plating
+
+- [ ] Parse indirect address mode
+- [ ] Add documentation
+- [ ] Add examples
 
 ## License
 
