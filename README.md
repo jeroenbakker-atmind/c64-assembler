@@ -49,11 +49,11 @@ let application = ApplicationBuilder::default()
                     .comment("Load black color")
                     .sta_addr("VIC20_BORDER_COLOR")
                     .rts()
-                    .finalize(),
+                    .build(),
             )
-            .finalize(),
+            .build(),
     )
-    .finalize();
+    .build();
 ```
 
 After this the application can be generated to bytes (`Vec<u8>`) using the `ProgramGenerator`

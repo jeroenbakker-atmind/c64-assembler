@@ -20,7 +20,7 @@ fn main() {
                 /// use c64_assembler::builder::InstructionBuilder;
                 /// let instructions = InstructionBuilder::default()
                 ///     .{0}()
-                ///     .finalize();
+                ///     .build();
                 /// ```
                 pub fn {0}(&mut self) -> &mut Self {{
                     self.add_instruction(Operation::{1}, AddressMode::Implied);
@@ -51,7 +51,7 @@ fn main() {
                 /// use c64_assembler::builder::InstructionBuilder;
                 /// let instructions = InstructionBuilder::default()
                 ///     .{0}_imm(0xC0)
-                ///     .finalize();
+                ///     .build();
                 /// ```
                 pub fn {0}_imm(&mut self, byte: u8) -> &mut Self {{
                     self.{0}(AddressMode::Immediate(Immediate::Byte(byte)))
@@ -65,7 +65,7 @@ fn main() {
                 /// let instructions = InstructionBuilder::default()
                 ///     .{0}_imm_low(\"test_data\")
                 ///     .label(\"test_data\")
-                ///     .finalize();
+                ///     .build();
                 /// ```
                 pub fn {0}_imm_low(&mut self, address_name: &str) -> &mut Self {{
                     self.{0}(AddressMode::Immediate(Immediate::Low(
@@ -81,7 +81,7 @@ fn main() {
                 /// let instructions = InstructionBuilder::default()
                 ///     .{0}_imm_high(\"test_data\")
                 ///     .label(\"test_data\")
-                ///     .finalize();
+                ///     .build();
                 /// ```
                 pub fn {0}_imm_high(&mut self, address_name: &str) -> &mut Self {{
                     self.{0}(AddressMode::Immediate(Immediate::High(
@@ -102,7 +102,7 @@ fn main() {
                 /// use c64_assembler::builder::InstructionBuilder;
                 /// let instructions = InstructionBuilder::default()
                 ///     .{0}_acc()
-                ///     .finalize();
+                ///     .build();
                 /// ```
                 pub fn {0}_acc(&mut self) -> &mut Self {{
                     self.{0}(AddressMode::Accumulator)
@@ -123,7 +123,7 @@ fn main() {
                 /// let instructions = InstructionBuilder::default()
                 ///     .{0}_addr(\"test_label\")
                 ///     .label(\"test_label\")
-                ///     .finalize();
+                ///     .build();
                 /// ```
                 pub fn {0}_addr(&mut self, address_name: &str) -> &mut Self {{
                     self.{0}(AddressMode::Absolute(AddressReference::new(address_name)))
@@ -138,7 +138,7 @@ fn main() {
                 /// let instructions = InstructionBuilder::default()
                 ///     .{0}_addr_offs(\"test_label\", 8)
                 ///     .label(\"test_label\")
-                ///     .finalize();
+                ///     .build();
                 /// ```
                 pub fn {0}_addr_offs(&mut self, address_name: &str, offset: Address) -> &mut Self {{
                     self.{0}(AddressMode::Absolute(AddressReference::with_offset(
@@ -161,7 +161,7 @@ fn main() {
                 ///     .lda_imm(0x08)
                 ///     .{0}_addr_x(\"test_label\")
                 ///     .label(\"test_label\")
-                ///     .finalize();
+                ///     .build();
                 /// ```
                 pub fn {0}_addr_x(&mut self, address_name: &str) -> &mut Self {{
                     self.{0}(AddressMode::AbsoluteX(AddressReference::new(address_name)))
@@ -182,7 +182,7 @@ fn main() {
                 ///     .lda_imm(0x08)
                 ///     .{0}_addr_y(\"test_label\")
                 ///     .label(\"test_label\")
-                ///     .finalize();
+                ///     .build();
                 /// ```
                 pub fn {0}_addr_y(&mut self, address_name: &str) -> &mut Self {{
                     self.{0}(AddressMode::AbsoluteY(AddressReference::new(address_name)))
@@ -202,7 +202,7 @@ fn main() {
                 /// let instructions = InstructionBuilder::default()
                 ///     .{0}_addr(\"test_label\")
                 ///     .label(\"test_label\")
-                ///     .finalize();
+                ///     .build();
                 /// ```
                 pub fn {0}_addr(&mut self, address_name: &str) -> &mut Self {{
                     self.{0}(AddressMode::Relative(AddressReference::new(address_name)))
@@ -217,7 +217,7 @@ fn main() {
                 /// let instructions = InstructionBuilder::default()
                 ///     .{0}_addr_offs(\"test_label\", 8)
                 ///     .label(\"test_label\")
-                ///     .finalize();
+                ///     .build();
                 /// ```
                 pub fn {0}_addr_offs(&mut self, address_name: &str, offset: Address) -> &mut Self {{
                     self.{0}(AddressMode::Relative(AddressReference::with_offset(

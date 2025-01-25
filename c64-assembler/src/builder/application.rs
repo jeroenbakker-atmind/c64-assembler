@@ -39,7 +39,7 @@ impl ApplicationBuilder {
     /// use c64_assembler::builder::ApplicationBuilder;
     /// let application = ApplicationBuilder::default()
     ///     .name("My application")
-    ///     .finalize();
+    ///     .build();
     /// ```
     pub fn name(&mut self, name: &str) -> &mut Self {
         self.application.name = name.to_string();
@@ -57,7 +57,7 @@ impl ApplicationBuilder {
     /// use c64_assembler::builder::ApplicationBuilder;
     /// let application = ApplicationBuilder::default()
     ///     .entry_point(0x0800)
-    ///     .finalize();
+    ///     .build();
     /// ```
     pub fn entry_point(&mut self, entry_point: Address) -> &mut Self {
         self.application.entry_point = entry_point;
@@ -76,7 +76,7 @@ impl ApplicationBuilder {
     /// let application = ApplicationBuilder::default()
     ///     .define_address("VIC_BORDER_COLOR", 0xD020)
     ///     .define_address("ZEROPAGE_FE", 0xFE)
-    ///     .finalize();
+    ///     .build();
     /// ```
     pub fn define_address(&mut self, name: &str, address: Address) -> &mut Self {
         self.application.address_lookup.insert(name.to_string(), address);
@@ -150,7 +150,7 @@ impl ApplicationBuilder {
     /// use c64_assembler::builder::ApplicationBuilder;
     /// let application = ApplicationBuilder::default()
     ///     .include_vic20_defines()
-    ///     .finalize();
+    ///     .build();
     /// ```
     pub fn include_vic20_defines(&mut self) -> &mut Self {
         self.define_address("VIC20_BASE", 0xD000)
@@ -243,7 +243,7 @@ impl ApplicationBuilder {
     /// use c64_assembler::builder::ApplicationBuilder;
     /// let application = ApplicationBuilder::default()
     ///     .include_sid_defines()
-    ///     .finalize();
+    ///     .build();
     /// ```
     pub fn include_sid_defines(&mut self) -> &mut Self {
         self.define_address("SID_BASE", 0xD400)
@@ -284,7 +284,7 @@ impl ApplicationBuilder {
     }
 
     /// Build the application
-    pub fn finalize(&mut self) -> Application {
+    pub fn build(&mut self) -> Application {
         finalize(&mut self.application);
         self.application.clone()
     }

@@ -45,7 +45,7 @@ pub fn application(input: TokenStream) -> TokenStream {
             }
         }
     }
-    lines.push("    .finalize()".to_string());
+    lines.push("    .build()".to_string());
     lines.push("}".to_string());
 
     //println!("{:#?}", lines.join("\n"));
@@ -86,7 +86,7 @@ fn build_module(input: TokenStream) -> String {
             }
         }
     }
-    lines.push("    .finalize()".to_string());
+    lines.push("    .build()".to_string());
     lines.join("\n")
 }
 
@@ -116,7 +116,7 @@ fn build_function(input: TokenStream) -> String {
             }
         }
     }
-    lines.push("    .finalize()".to_string());
+    lines.push("    .build()".to_string());
     lines.join("\n")
 }
 
@@ -311,7 +311,7 @@ fn build_instructions(input: TokenStream) -> String {
         }
     }
 
-    lines.push("    .finalize()".to_string());
+    lines.push("    .build()".to_string());
     lines.join("\n")
 }
 

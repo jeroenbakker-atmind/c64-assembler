@@ -24,11 +24,11 @@ fn main() {
                         .lda_addr(address_c000)
                         // Will use 0xA5 as opcode as it points to a zeropage address
                         .lda_addr(zeropage_fe)
-                        .finalize(),
+                        .build(),
                 )
-                .finalize(),
+                .build(),
         )
-        .finalize();
+        .build();
 
     let bytes = ProgramGenerator::default().generate(application);
     print_hexdump(&bytes);

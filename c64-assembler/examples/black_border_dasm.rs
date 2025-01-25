@@ -19,11 +19,11 @@ fn main() {
                         .comment("Load black color")
                         .sta_addr("VIC20_BORDER_COLOR")
                         .rts()
-                        .finalize(),
+                        .build(),
                 )
-                .finalize(),
+                .build(),
         )
-        .finalize();
+        .build();
 
     let source = DasmGenerator::default().generate(application);
     println!("{source}");

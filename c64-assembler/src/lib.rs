@@ -43,11 +43,11 @@
 //!                     .comment("Load black color")
 //!                     .sta_addr("VIC20_BORDER_COLOR")
 //!                     .rts()
-//!                     .finalize(),
+//!                     .build(),
 //!             )
-//!             .finalize(),
+//!             .build(),
 //!     )
-//!     .finalize();
+//!     .build();
 //! ```
 //!
 //! ### Using macros (experimental)
@@ -83,7 +83,7 @@
 //! use c64_assembler::generator::Generator;
 //! use c64_assembler::generator::DasmGenerator;
 //! # use c64_assembler::builder::ApplicationBuilder;
-//! # let application = ApplicationBuilder::default().finalize();
+//! # let application = ApplicationBuilder::default().build();
 //!
 //! let source = DasmGenerator::default().generate(application);
 //! println!("{}", source);
@@ -122,7 +122,7 @@
 //! ```
 //! use c64_assembler::generator::{Generator, ProgramGenerator, print_hexdump};
 //! # use c64_assembler::builder::ApplicationBuilder;
-//! # let application = ApplicationBuilder::default().finalize();
+//! # let application = ApplicationBuilder::default().build();
 //!
 //! let bytes = ProgramGenerator::default().generate(application);
 //! print_hexdump(&bytes);
