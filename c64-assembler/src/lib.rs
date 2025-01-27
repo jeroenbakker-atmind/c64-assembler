@@ -50,7 +50,7 @@
 //!     .build();
 //! ```
 //!
-//! ### Using macros (experimental)
+//! ### Using macros (work in progress)
 //!
 //! To reduce the boilerplating macros can be used. This is still under development.
 //!

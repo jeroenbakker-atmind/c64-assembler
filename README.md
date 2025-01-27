@@ -103,7 +103,7 @@ main_entry_point:
   rts
 ```
 
-### Using macros (Experimental)
+### Using macros (work in progress)
 
 > [!NOTE]
 > This is still in development and doesn't include all expected features yet.

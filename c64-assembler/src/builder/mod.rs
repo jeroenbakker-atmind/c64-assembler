@@ -1,3 +1,5 @@
+//! Builder classes for application, module, function and instructions
+
 mod application;
 mod finalize;
 mod function;
