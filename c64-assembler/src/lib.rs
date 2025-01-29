@@ -74,6 +74,19 @@
 //! );
 //! ```
 //!
+//! ### Validating
+//!
+//! Using the [crate::validator::Validator] to check for consistency.
+//!
+//! ```
+//! use c64_assembler::validator::Validator;
+//! # use c64_assembler::builder::ApplicationBuilder;
+//! # let application = ApplicationBuilder::default().build();
+//!
+//! let validation_result = application.validate();
+//! assert!(validation_result.is_ok());
+//! ```
+//!
 //! ### Generating dasm source
 //!
 //! Using the [crate::generator::DasmGenerator] a dasm compatible assembly source
@@ -143,6 +156,7 @@ pub mod builder;
 pub mod generator;
 pub mod instruction;
 pub mod memory;
+pub mod validator;
 
 #[cfg(test)]
 mod test;
