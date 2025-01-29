@@ -1,8 +1,9 @@
 use c64_assembler::generator::Generator;
 use c64_assembler::generator::{print_hexdump, ProgramGenerator};
+use c64_assembler::validator::AssemblerResult;
 use c64_assembler_macro::application;
 
-fn main() {
+fn main() -> AssemblerResult<()> {
     let application = application!(
         name="Set black border"
         include_vic20_defines
@@ -17,8 +18,9 @@ fn main() {
                 rts
             )
         )
-    );
+    )?;
 
-    let bytes = ProgramGenerator::default().generate(application);
+    let bytes = ProgramGenerator::default().generate(application)?;
     print_hexdump(&bytes);
+    Ok(())
 }

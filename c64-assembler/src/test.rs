@@ -1,10 +1,11 @@
 use crate::{
     builder::{ApplicationBuilder, InstructionBuilder, ModuleBuilder},
     generator::{DasmGenerator, Generator, ProgramGenerator},
+    validator::AssemblerResult,
     Application,
 };
 
-fn test_application() -> Application {
+fn test_application() -> AssemblerResult<Application> {
     ApplicationBuilder::default()
         .name("test build dasm")
         .include_vic20_defines()
@@ -27,17 +28,18 @@ fn test_application() -> Application {
 }
 
 #[test]
-fn build_dasm() {
-    let application = test_application();
-    let dasm_source = DasmGenerator::default().generate(application);
+fn build_dasm() -> AssemblerResult<()> {
+    let application = test_application()?;
+    let dasm_source = DasmGenerator::default().generate(application)?;
     println!("{dasm_source}");
+    Ok(())
 }
 
 #[test]
-fn build_program() {
-    let application = test_application();
+fn build_program() -> AssemblerResult<()> {
+    let application = test_application()?;
     let mut address = application.entry_point;
-    let program_binary = ProgramGenerator::default().generate(application);
+    let program_binary = ProgramGenerator::default().generate(application)?;
 
     // print program to console.
     program_binary.chunks(16).for_each(|chunk| {
@@ -54,4 +56,5 @@ fn build_program() {
         });
         println!("{}", line.join(" ").trim_end());
     });
+    Ok(())
 }

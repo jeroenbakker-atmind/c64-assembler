@@ -1,8 +1,8 @@
 use crate::{memory::address_mode::AddressMode, Application, Instructions};
 
-use super::{Error, ValidatorResult};
+use super::{AssemblerResult, Error};
 
-pub fn validate_address_names_exists(application: &Application) -> ValidatorResult<()> {
+pub fn validate_address_names_exists(application: &Application) -> AssemblerResult<()> {
     for module in &application.modules {
         validate_instructions(application, &module.instructions)?;
         for function in &module.functions {
@@ -12,7 +12,7 @@ pub fn validate_address_names_exists(application: &Application) -> ValidatorResu
     Ok(())
 }
 
-fn validate_instructions(application: &Application, instructions: &Instructions) -> ValidatorResult<()> {
+fn validate_instructions(application: &Application, instructions: &Instructions) -> AssemblerResult<()> {
     for instruction in &instructions.instructions {
         match &instruction.address_mode {
             AddressMode::Implied | AddressMode::Accumulator | AddressMode::Immediate(_) => {}

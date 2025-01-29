@@ -6,6 +6,7 @@ use crate::{
         user_count::UserCount,
         ZeroPage,
     },
+    validator::AssemblerResult,
     Application, Function, Instructions, Module,
 };
 
@@ -29,7 +30,7 @@ impl Default for DasmGenerator {
 impl Generator for DasmGenerator {
     type Output = String;
 
-    fn generate(mut self, application: Application) -> Self::Output {
+    fn generate(mut self, application: Application) -> AssemblerResult<Self::Output> {
         self.line(format!("; --- Application: {} ---", application.name.to_uppercase()));
         self.line("; NOTE: This file is generated, do not modify".to_string());
         self.line_new();
@@ -48,7 +49,7 @@ impl Generator for DasmGenerator {
             self.module(&application, module);
         }
 
-        self.output.join("\n")
+        Ok(self.output.join("\n"))
     }
 }
 

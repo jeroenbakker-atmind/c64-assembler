@@ -1,32 +1,38 @@
-use c64_assembler::generator::{Generator, ProgramGenerator};
+use c64_assembler::{
+    generator::{Generator, ProgramGenerator},
+    validator::AssemblerResult,
+};
 use c64_assembler_macro::*;
 
 #[test]
-fn application_name() {
-    let application = application!(name = "HelloWorld!");
+fn application_name() -> AssemblerResult<()> {
+    let application = application!(name = "HelloWorld!")?;
     assert_eq!("HelloWorld!", application.name);
-    let byte_code = ProgramGenerator::default().generate(application);
+    let byte_code = ProgramGenerator::default().generate(application)?;
     assert_eq!(vec![0x00, 0x08,], byte_code);
+    Ok(())
 }
 
 #[test]
-fn application_entry_point() {
-    let application = application!();
+fn application_entry_point() -> AssemblerResult<()> {
+    let application = application!()?;
     assert_eq!(0x0800, application.entry_point);
-    let byte_code = ProgramGenerator::default().generate(application);
+    let byte_code = ProgramGenerator::default().generate(application)?;
     assert_eq!(vec![0x00, 0x08,], byte_code);
+    Ok(())
 }
 
 #[test]
-fn application_entry_point_0x1000() {
-    let application = application!(entry_point = 0x1000);
+fn application_entry_point_0x1000() -> AssemblerResult<()> {
+    let application = application!(entry_point = 0x1000)?;
     assert_eq!(0x1000, application.entry_point);
-    let byte_code = ProgramGenerator::default().generate(application);
+    let byte_code = ProgramGenerator::default().generate(application)?;
     assert_eq!(vec![0x00, 0x10,], byte_code);
+    Ok(())
 }
 
 #[test]
-fn application_basic_header() {
+fn application_basic_header() -> AssemblerResult<()> {
     let application = application!(
         name = "My demo"
         entry_point = 0x0800
@@ -40,10 +46,11 @@ fn application_basic_header() {
                 rts
             )
         )
-    );
-    let byte_code = ProgramGenerator::default().generate(application);
+    )?;
+    let byte_code = ProgramGenerator::default().generate(application)?;
     assert_eq!(
         vec![0x00, 0x08, 0, 12, 8, 10, 0, 158, 32, 50, 48, 54, 50, 0, 0, 0, 169, 0, 96],
         byte_code
     );
+    Ok(())
 }

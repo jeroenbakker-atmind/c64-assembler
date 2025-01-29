@@ -4,8 +4,9 @@ use c64_assembler::builder::InstructionBuilder;
 use c64_assembler::builder::ModuleBuilder;
 use c64_assembler::generator::Generator;
 use c64_assembler::generator::{print_hexdump, ProgramGenerator};
+use c64_assembler::validator::AssemblerResult;
 
-fn main() {
+fn main() -> AssemblerResult<()> {
     let zeropage_fe = "ADDRESS_ZEROPAGE_FE";
     let address_c000 = "ADDRESS_C000";
 
@@ -28,8 +29,9 @@ fn main() {
                 )
                 .build(),
         )
-        .build();
+        .build()?;
 
-    let bytes = ProgramGenerator::default().generate(application);
+    let bytes = ProgramGenerator::default().generate(application)?;
     print_hexdump(&bytes);
+    Ok(())
 }

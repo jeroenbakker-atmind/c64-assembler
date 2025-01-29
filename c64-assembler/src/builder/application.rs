@@ -6,6 +6,7 @@ use crate::{
         label::AddressReference,
         Address, ZeroPage,
     },
+    validator::AssemblerResult,
     Application, Module,
 };
 
@@ -284,9 +285,9 @@ impl ApplicationBuilder {
     }
 
     /// Build the application
-    pub fn build(&mut self) -> Application {
-        finalize(&mut self.application);
-        self.application.clone()
+    pub fn build(&mut self) -> AssemblerResult<Application> {
+        finalize(&mut self.application)?;
+        Ok(self.application.clone())
     }
 }
 

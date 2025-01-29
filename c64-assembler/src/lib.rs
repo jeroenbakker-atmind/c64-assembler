@@ -47,7 +47,7 @@
 //!             )
 //!             .build(),
 //!     )
-//!     .build();
+//!     .build().unwrap();
 //! ```
 //!
 //! ### Using macros (work in progress)
@@ -71,7 +71,7 @@
 //!             rts
 //!         )
 //!     )
-//! );
+//! ).unwrap();
 //! ```
 //!
 //! ### Validating
@@ -81,7 +81,7 @@
 //! ```
 //! use c64_assembler::validator::Validator;
 //! # use c64_assembler::builder::ApplicationBuilder;
-//! # let application = ApplicationBuilder::default().build();
+//! # let application = ApplicationBuilder::default().build().unwrap();
 //!
 //! let validation_result = application.validate();
 //! assert!(validation_result.is_ok());
@@ -96,9 +96,9 @@
 //! use c64_assembler::generator::Generator;
 //! use c64_assembler::generator::DasmGenerator;
 //! # use c64_assembler::builder::ApplicationBuilder;
-//! # let application = ApplicationBuilder::default().build();
+//! # let application = ApplicationBuilder::default().build().unwrap();
 //!
-//! let source = DasmGenerator::default().generate(application);
+//! let source = DasmGenerator::default().generate(application).unwrap();
 //! println!("{}", source);
 //! ```
 //!
@@ -135,9 +135,9 @@
 //! ```
 //! use c64_assembler::generator::{Generator, ProgramGenerator, print_hexdump};
 //! # use c64_assembler::builder::ApplicationBuilder;
-//! # let application = ApplicationBuilder::default().build();
+//! # let application = ApplicationBuilder::default().build().unwrap();
 //!
-//! let bytes = ProgramGenerator::default().generate(application);
+//! let bytes = ProgramGenerator::default().generate(application).unwrap();
 //! print_hexdump(&bytes);
 //! ```
 //!
@@ -151,6 +151,7 @@ use std::collections::HashMap;
 
 use instruction::Instruction;
 use memory::{define::Define, user_count::UserCount, Address};
+use validator::{AssemblerResult, Error};
 
 pub mod builder;
 pub mod generator;
@@ -174,6 +175,15 @@ pub struct Application {
     pub defines: Vec<Define>,
     /// Lookup for addresses.
     pub address_lookup: HashMap<String, Address>,
+}
+impl Application {
+    pub fn lookup_address(&self, address_name: &String) -> AssemblerResult<Address> {
+        if let Some(address) = self.address_lookup.get(address_name) {
+            Ok(*address)
+        } else {
+            Err(Error::AddressNameUnknown(address_name.to_string()))
+        }
+    }
 }
 
 /// Module

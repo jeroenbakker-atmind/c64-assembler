@@ -3,8 +3,9 @@ use c64_assembler::builder::InstructionBuilder;
 use c64_assembler::builder::ModuleBuilder;
 use c64_assembler::generator::DasmGenerator;
 use c64_assembler::generator::Generator;
+use c64_assembler::validator::AssemblerResult;
 
-fn main() {
+fn main() -> AssemblerResult<()> {
     let application = ApplicationBuilder::default()
         .name("Set black border")
         .include_vic20_defines()
@@ -23,8 +24,9 @@ fn main() {
                 )
                 .build(),
         )
-        .build();
+        .build()?;
 
-    let source = DasmGenerator::default().generate(application);
+    let source = DasmGenerator::default().generate(application)?;
     println!("{source}");
+    Ok(())
 }

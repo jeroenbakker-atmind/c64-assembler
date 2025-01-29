@@ -9,6 +9,7 @@ use crate::{
         address_mode::{AddressMode, Immediate},
         Address, ZeroPage,
     },
+    validator::{AssemblerResult, Error},
     Application, Instructions, Module,
 };
 
@@ -25,46 +26,53 @@ pub struct ProgramGenerator {
 impl Generator for ProgramGenerator {
     type Output = Vec<u8>;
 
-    fn generate(mut self, application: Application) -> Self::Output {
+    fn generate(mut self, application: Application) -> AssemblerResult<Self::Output> {
         self.add_u16(application.entry_point);
         for module in &application.modules {
-            self.generate_module(&application, module);
+            self.generate_module(&application, module)?;
         }
-        self.output
+        Ok(self.output)
     }
 }
 
 impl ProgramGenerator {
-    fn generate_module(&mut self, application: &Application, module: &Module) {
-        self.generate_instructions(application, &module.instructions);
+    fn generate_module(&mut self, application: &Application, module: &Module) -> AssemblerResult<()> {
+        self.generate_instructions(application, &module.instructions)?;
         for function in &module.functions {
-            self.generate_instructions(application, &function.instructions);
+            self.generate_instructions(application, &function.instructions)?;
         }
+        Ok(())
     }
 
-    fn generate_instructions(&mut self, application: &Application, instructions: &Instructions) {
+    fn generate_instructions(&mut self, application: &Application, instructions: &Instructions) -> AssemblerResult<()> {
         for instruction in &instructions.instructions {
-            self.generate_instruction(application, instruction);
+            self.generate_instruction(application, instruction)?;
         }
+        Ok(())
     }
 
-    fn generate_instruction(&mut self, application: &Application, instruction: &Instruction) {
+    fn generate_instruction(&mut self, application: &Application, instruction: &Instruction) -> AssemblerResult<()> {
         match (&instruction.operation.definition(), &instruction.operation) {
-            (Some(definition), _) => {
-                self.add_byte_code(application, &instruction.address_mode, definition);
-            }
+            (Some(definition), _) => self.add_byte_code(application, &instruction.address_mode, definition),
             (None, Operation::Label(_)) => {
                 // Labels don't have bytes in the byte stream, they are only markers
+                Ok(())
             }
             (None, Operation::Raw(bytes)) => {
                 self.add_bytes(bytes);
+                Ok(())
             }
 
-            (_, _) => panic!(),
+            (_, _) => Err(Error::InternalCompilerError),
         }
     }
 
-    fn add_byte_code(&mut self, application: &Application, address_mode: &AddressMode, instruction: &InstructionDef) {
+    fn add_byte_code(
+        &mut self,
+        application: &Application,
+        address_mode: &AddressMode,
+        instruction: &InstructionDef,
+    ) -> AssemblerResult<()> {
         match address_mode {
             AddressMode::Implied => {
                 self.add_u8(instruction.implied);
@@ -117,11 +125,10 @@ impl ProgramGenerator {
                 self.add_u16(address);
             }
             AddressMode::Relative(address_reference) => {
-                const RELATIVE_INSTRUCTION_BYTE_SIZE: Address = 2;
                 let current_instruction =
                     application.entry_point + self.output.len() as Address - PROGRAM_HEADER_BYTE_SIZE;
                 let address = application.address(address_reference);
-                let next_instruction = current_instruction + RELATIVE_INSTRUCTION_BYTE_SIZE;
+                let next_instruction = current_instruction + address_mode.byte_size(application)?;
                 let relative_address = (address as i32 - next_instruction as i32) as i8;
 
                 self.add_u8(instruction.relative);
@@ -144,6 +151,7 @@ impl ProgramGenerator {
                 self.add_u8(address.low());
             }
         };
+        Ok(())
     }
 }
 

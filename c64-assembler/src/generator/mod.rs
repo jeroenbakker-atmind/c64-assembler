@@ -1,5 +1,5 @@
 //! Generators to export to a .PRG or source code.
-use crate::Application;
+use crate::{validator::AssemblerResult, Application};
 
 mod dasm;
 mod program;
@@ -9,7 +9,7 @@ pub trait Generator {
     type Output;
 
     /// Generate an output for the given application.
-    fn generate(self, application: Application) -> Self::Output;
+    fn generate(self, application: Application) -> AssemblerResult<Self::Output>;
 }
 
 pub use dasm::*;
