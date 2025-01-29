@@ -94,6 +94,29 @@ fn count_users_instructions(instructions: &Instructions, name: &String) -> usize
 }
 
 fn update_label_addresses(application: &mut Application) -> AssemblerResult<()> {
+    // First go over all labels and add dummy addresses to the application address lookup.
+    // This will ensure that the correct instruction byte size can be determined.
+    let mut label_addresses = HashMap::<String, Address>::default();
+    let mut function_addresses = HashMap::<String, Address>::default();
+
+    let mut init_label_addresses = |instructions: &Instructions| {
+        for instruction in &instructions.instructions {
+            if let Operation::Label(label) = &instruction.operation {
+                label_addresses.insert(label.clone(), 0xFFFF);
+            }
+        }
+    };
+    for module in &application.modules {
+        init_label_addresses(&module.instructions);
+        for function in &module.functions {
+            function_addresses.insert(function.name.clone(), 0xFFFF);
+            init_label_addresses(&function.instructions);
+        }
+    }
+    application.address_lookup.extend(label_addresses);
+    application.address_lookup.extend(function_addresses);
+
+    // Now go over all the labels again and determine the correct address.
     let mut label_addresses = HashMap::<String, Address>::default();
     let mut function_addresses = HashMap::<String, Address>::default();
     let mut current_address = application.entry_point;
