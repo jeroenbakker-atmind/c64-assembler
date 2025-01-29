@@ -14,6 +14,8 @@ use crate::{
 
 use super::Generator;
 
+const PROGRAM_HEADER_BYTE_SIZE: Address = 2;
+
 /// .PRG byte code generator
 #[derive(Default, Debug)]
 pub struct ProgramGenerator {
@@ -115,11 +117,14 @@ impl ProgramGenerator {
                 self.add_u16(address);
             }
             AddressMode::Relative(address_reference) => {
-                self.add_u8(instruction.relative);
+                const RELATIVE_INSTRUCTION_BYTE_SIZE: Address = 2;
+                let current_instruction =
+                    application.entry_point + self.output.len() as Address - PROGRAM_HEADER_BYTE_SIZE;
                 let address = application.address(address_reference);
-                let current_instruction = application.entry_point + self.output.len() as Address - 2;
-                let next_instruction = current_instruction + 2;
+                let next_instruction = current_instruction + RELATIVE_INSTRUCTION_BYTE_SIZE;
                 let relative_address = (address as i32 - next_instruction as i32) as i8;
+
+                self.add_u8(instruction.relative);
                 self.add_u8(relative_address as u8);
             }
             AddressMode::Indirect(address_reference) => {
