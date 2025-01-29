@@ -1,10 +1,11 @@
-use c64_assembler::builder::application::ApplicationBuilder;
-use c64_assembler::builder::instruction::InstructionBuilder;
-use c64_assembler::builder::module::ModuleBuilder;
-use c64_assembler::generator::program::{print_hexdump, ProgramGenerator};
+use c64_assembler::builder::ApplicationBuilder;
+use c64_assembler::builder::InstructionBuilder;
+use c64_assembler::builder::ModuleBuilder;
 use c64_assembler::generator::Generator;
+use c64_assembler::generator::{print_hexdump, ProgramGenerator};
+use c64_assembler::validator::AssemblerResult;
 
-fn main() {
+fn main() -> AssemblerResult<()> {
     let application = ApplicationBuilder::default()
         .name("Set black border")
         .include_vic20_defines()
@@ -19,12 +20,13 @@ fn main() {
                         .comment("Load black color")
                         .sta_addr("VIC20_BORDER_COLOR")
                         .rts()
-                        .finalize(),
+                        .build(),
                 )
-                .finalize(),
+                .build(),
         )
-        .finalize();
+        .build()?;
 
-    let bytes = ProgramGenerator::default().generate(application);
+    let bytes = ProgramGenerator::default().generate(application)?;
     print_hexdump(&bytes);
+    Ok(())
 }

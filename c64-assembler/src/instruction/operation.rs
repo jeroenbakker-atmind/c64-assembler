@@ -1,5 +1,6 @@
 use c64_assembler_6502::instruction::*;
 
+/// Enumeration containing all operations.
 #[derive(Clone, Default, Debug, PartialEq)]
 pub enum Operation {
     /// Add Memory to Accumulator with Carry

@@ -23,7 +23,7 @@ impl FunctionBuilder {
         self
     }
 
-    pub fn finalize(&self) -> Function {
+    pub fn build(&self) -> Function {
         self.function.clone()
     }
 }

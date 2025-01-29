@@ -6,11 +6,13 @@ use crate::{
         user_count::UserCount,
         ZeroPage,
     },
+    validator::AssemblerResult,
     Application, Function, Instructions, Module,
 };
 
 use super::Generator;
 
+/// Dasm source code generator
 pub struct DasmGenerator {
     output: Vec<String>,
     comment_column: usize,
@@ -28,11 +30,11 @@ impl Default for DasmGenerator {
 impl Generator for DasmGenerator {
     type Output = String;
 
-    fn generate(mut self, application: Application) -> Self::Output {
+    fn generate(mut self, application: Application) -> AssemblerResult<Self::Output> {
         self.line(format!("; --- Application: {} ---", application.name.to_uppercase()));
-        self.line(format!("; NOTE: This file is generated, do not modify"));
+        self.line("; NOTE: This file is generated, do not modify".to_string());
         self.line_new();
-        self.line(format!("  processor 6502"));
+        self.line("  processor 6502".to_string());
         self.line_new();
 
         for define in &application.defines {
@@ -47,7 +49,7 @@ impl Generator for DasmGenerator {
             self.module(&application, module);
         }
 
-        self.output.join("\n")
+        Ok(self.output.join("\n"))
     }
 }
 
@@ -74,9 +76,7 @@ impl DasmGenerator {
 
         self.line(format!("; --- Function end: {} ---", function.name.to_uppercase()));
     }
-}
 
-impl DasmGenerator {
     fn instructions(&mut self, _application: &Application, instructions: &Instructions) {
         for instruction in &instructions.instructions {
             let mut line: Vec<String> = vec![];
@@ -90,8 +90,8 @@ impl DasmGenerator {
             match &instruction.operation {
                 Operation::Raw(bytes) => {
                     line.push(format!("byte ${:02X}", bytes[0]));
-                    for i in 1..bytes.len() {
-                        line.push(format!(", ${:02X}", bytes[i]));
+                    for byte in bytes.iter().skip(1) {
+                        line.push(format!(", ${:02X}", byte));
                     }
                 }
                 Operation::Label(label) => line.push(format!("{}:", label)),
@@ -145,12 +145,8 @@ impl DasmGenerator {
                 self.line(line.join(""));
             } else {
                 let mut line_len = line.join("").len();
-                let add_comments_before = line_len > self.comment_column
-                    || if let Operation::Label(_label) = &instruction.operation {
-                        true
-                    } else {
-                        false
-                    };
+                let add_comments_before =
+                    line_len > self.comment_column || matches!(&instruction.operation, Operation::Label(_label));
 
                 if add_comments_before {
                     for comment in &instruction.comments {
@@ -169,9 +165,7 @@ impl DasmGenerator {
             }
         }
     }
-}
 
-impl DasmGenerator {
     fn add_define(&mut self, define: &Define) {
         let mut line = vec![];
         line.push(define.name.clone());

@@ -20,7 +20,7 @@ impl ModuleBuilder {
         self
     }
 
-    pub fn finalize(&self) -> Module {
+    pub fn build(&self) -> Module {
         self.module.clone()
     }
 }

@@ -28,12 +28,12 @@ cargo add c64-assembler
 
 ### Basic Assembly
 
-To assemble some c64 assembly file into a PRG file:
+To assemble C64 assembly.
 
 ```rust
-use c64_assembler::builder::application::ApplicationBuilder;
+use c64_assembler::builder::ApplicationBuilder;
 use c64_assembler::builder::module::ModuleBuilder;
-use c64_assembler::builder::instruction::InstructionBuilder;
+use c64_assembler::builder::InstructionBuilder;
 
 let application = ApplicationBuilder::default()
     .name("Set black border")
@@ -49,11 +49,11 @@ let application = ApplicationBuilder::default()
                     .comment("Load black color")
                     .sta_addr("VIC20_BORDER_COLOR")
                     .rts()
-                    .finalize(),
+                    .build(),
             )
-            .finalize(),
+            .build(),
     )
-    .finalize();
+    .build();
 ```
 
 After this the application can be generated to bytes (`Vec<u8>`) using the `ProgramGenerator`
@@ -103,10 +103,10 @@ main_entry_point:
   rts
 ```
 
-### Using macros (Experimental)
+### Using macros (work in progress)
 
 > [!NOTE]
-> This is still in development and doesn't include all expected features yet.
+> This is still in development and doesn't include all features yet.
 
 The `c64-assembly-macro` crate introduces several macros to reduce the boiler plating.
 

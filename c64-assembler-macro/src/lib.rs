@@ -2,13 +2,10 @@ use proc_macro::{TokenStream, TokenTree};
 
 #[proc_macro]
 pub fn application(input: TokenStream) -> TokenStream {
-    dbg!(input.clone());
+    //dbg!(input.clone());
     let mut lines = Vec::<String>::default();
     lines.push("{".to_string());
-    lines.push("  use c64_assembler::builder::application::{*};".to_string());
-    lines.push("  use c64_assembler::builder::module::{*};".to_string());
-    lines.push("  use c64_assembler::builder::function::{*};".to_string());
-    lines.push("  use c64_assembler::builder::instruction::{*};".to_string());
+    lines.push("  use c64_assembler::builder::{*};".to_string());
     lines.push("  ApplicationBuilder::default()".to_string());
     let mut iter = input.into_iter();
     while let Some(tree) = iter.next() {
@@ -48,12 +45,10 @@ pub fn application(input: TokenStream) -> TokenStream {
             }
         }
     }
-    lines.push("    .finalize()".to_string());
+    lines.push("    .build()".to_string());
     lines.push("}".to_string());
 
-    for line in &lines {
-        println!("{}", line);
-    }
+    //println!("{:#?}", lines.join("\n"));
     lines.join("\n").parse().unwrap()
 }
 
@@ -91,7 +86,7 @@ fn build_module(input: TokenStream) -> String {
             }
         }
     }
-    lines.push("    .finalize()".to_string());
+    lines.push("    .build()".to_string());
     lines.join("\n")
 }
 
@@ -121,7 +116,7 @@ fn build_function(input: TokenStream) -> String {
             }
         }
     }
-    lines.push("    .finalize()".to_string());
+    lines.push("    .build()".to_string());
     lines.join("\n")
 }
 
@@ -145,12 +140,12 @@ fn build_address_mode(
             }
         }
         TokenTree::Ident(ident) => {
-            if ident.to_string() == "a".to_string() {
+            if ident.to_string() == *"a" {
                 assert!(allow_accumulator);
-                return build_address_mode_accumulator(line, &tokens);
+                return build_address_mode_accumulator(line, tokens);
             }
             assert!(allow_absolute);
-            return build_address_mode_absolute(line, &tokens);
+            return build_address_mode_absolute(line, tokens);
         }
         _ => todo!(),
     }
@@ -159,7 +154,7 @@ fn build_address_mode(
 
 fn build_address_mode_accumulator(line: &mut Vec<String>, _tokens: &[TokenTree]) -> usize {
     line.push("_acc()".to_string());
-    return 1;
+    1
 }
 
 fn build_address_mode_absolute(line: &mut Vec<String>, tokens: &[TokenTree]) -> usize {
@@ -187,18 +182,18 @@ fn build_address_mode_absolute(line: &mut Vec<String>, tokens: &[TokenTree]) -> 
         }
     }
     if (offset) > 0 {
-        line.push(format!("_offs"));
+        line.push("_offs".to_string());
     }
     if !index.is_empty() {
         line.push(format!("_{}", index));
     }
 
-    line.push(format!("("));
+    line.push("(".to_string());
     line.push(format!("\"{}\"", address));
     if offset > 0 {
         line.push(format!(", {}", offset));
     }
-    line.push(format!(")"));
+    line.push(")".to_string());
     num_tokens
 }
 
@@ -228,21 +223,21 @@ fn build_address_mode_imm(line: &mut Vec<String>, tokens: &[TokenTree]) -> usize
             }
             TokenTree::Literal(value) => {
                 if is_hex {
-                    line.push(format!("(0x{})", value.to_string()));
+                    line.push(format!("(0x{})", value));
                 } else {
-                    line.push(format!("({})", value.to_string()));
+                    line.push(format!("({})", value));
                 }
                 break;
             }
             TokenTree::Ident(value) => {
                 if is_low {
-                    line.push(format!("_low(\"{}\")", value.to_string()));
+                    line.push(format!("_low(\"{}\")", value));
                 } else if is_high {
-                    line.push(format!("_high(\"{}\")", value.to_string()));
+                    line.push(format!("_high(\"{}\")", value));
                 } else if is_hex {
-                    line.push(format!("(0x{})", value.to_string()));
+                    line.push(format!("(0x{})", value));
                 } else {
-                    line.push(format!("(\"{}\")", value.to_string()));
+                    line.push(format!("(\"{}\")", value));
                 }
                 break;
             }
@@ -316,34 +311,31 @@ fn build_instructions(input: TokenStream) -> String {
         }
     }
 
-    lines.push("    .finalize()".to_string());
+    lines.push("    .build()".to_string());
     lines.join("\n")
 }
 
 #[proc_macro]
 pub fn module(input: TokenStream) -> TokenStream {
-    dbg!(input.clone());
+    //dbg!(input.clone());
     let mut lines = Vec::<String>::default();
     lines.push("{".to_string());
-    lines.push("  use c64_assembler::builder::module::{*};".to_string());
-    lines.push("  use c64_assembler::builder::function::{*};".to_string());
-    lines.push("  use c64_assembler::builder::instruction::{*};".to_string());
+    lines.push("  use c64_assembler::builder::{*};".to_string());
     lines.push(build_module(input));
     lines.push("}".to_string());
-    println!("{:#?}", lines.join("\n"));
+    //println!("{:#?}", lines.join("\n"));
     lines.join("\n").parse().unwrap()
 }
 
 #[proc_macro]
 pub fn function(input: TokenStream) -> TokenStream {
-    dbg!(input.clone());
+    //dbg!(input.clone());
     let mut lines = Vec::<String>::default();
     lines.push("{".to_string());
-    lines.push("  use c64_assembler::builder::function::{*};".to_string());
-    lines.push("  use c64_assembler::builder::instruction::{*};".to_string());
+    lines.push("  use c64_assembler::builder::{*};".to_string());
     lines.push(build_function(input));
     lines.push("}".to_string());
-    println!("{:#?}", lines.join("\n"));
+    //println!("{:#?}", lines.join("\n"));
     lines.join("\n").parse().unwrap()
 }
 
@@ -352,9 +344,9 @@ pub fn instructions(input: TokenStream) -> TokenStream {
     //dbg!(input.clone());
     let mut lines = Vec::<String>::default();
     lines.push("{".to_string());
-    lines.push("  use c64_assembler::builder::instruction::{*};".to_string());
+    lines.push("  use c64_assembler::builder::{*};".to_string());
     lines.push(build_instructions(input));
     lines.push("}".to_string());
-    println!("{:#?}", lines.join("\n"));
+    //println!("{:#?}", lines.join("\n"));
     lines.join("\n").parse().unwrap()
 }

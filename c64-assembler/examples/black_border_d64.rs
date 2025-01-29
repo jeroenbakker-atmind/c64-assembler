@@ -1,12 +1,13 @@
-use c64_assembler::generator::program::ProgramGenerator;
 use c64_assembler::generator::Generator;
+use c64_assembler::generator::ProgramGenerator;
+use c64_assembler::validator::AssemblerResult;
 use c64_assembler_macro::application;
 use cbm::disk::directory::FileType;
 use cbm::disk::file::{FileOps, Scheme};
 use cbm::disk::{Disk, Id, D64};
 use cbm::Petscii;
 
-fn main() {
+fn main() -> AssemblerResult<()> {
     let application = application!(
         name="Set black border"
         include_vic20_defines
@@ -21,10 +22,10 @@ fn main() {
                 rts
             )
         )
-    );
+    )?;
 
     // Compile to program.
-    let program = ProgramGenerator::default().generate(application);
+    let program = ProgramGenerator::default().generate(application)?;
 
     // Create a disk in memory.
     let geometry = D64::geometry(false);
@@ -42,4 +43,5 @@ fn main() {
     disk.iter().flatten().for_each(|entry| {
         println!("{:<4} {:<16}", entry.file_size, entry.filename);
     });
+    Ok(())
 }

@@ -1,4 +1,7 @@
-use c64_assembler::generator::{program::ProgramGenerator, Generator};
+use c64_assembler::{
+    generator::{Generator, ProgramGenerator},
+    validator::AssemblerResult,
+};
 use c64_assembler_macro::application;
 use mos6502::{
     cpu::CPU,
@@ -7,7 +10,7 @@ use mos6502::{
 };
 
 #[test]
-fn set_black_border() {
+fn set_black_border() -> AssemblerResult<()> {
     let application = application!(
         name="Set black border"
         include_vic20_defines
@@ -21,9 +24,9 @@ fn set_black_border() {
                 rts
             )
         )
-    );
+    )?;
 
-    let bytes = ProgramGenerator::default().generate(application);
+    let bytes = ProgramGenerator::default().generate(application)?;
 
     // Emulate the program on 6502 CPU
     let mut cpu = CPU::new(Memory::new(), Nmos6502);
@@ -37,4 +40,6 @@ fn set_black_border() {
     cpu.single_step();
     assert_eq!(0x00, cpu.memory.get_byte(0xd020));
     cpu.single_step();
+
+    Ok(())
 }

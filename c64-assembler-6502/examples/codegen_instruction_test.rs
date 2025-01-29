@@ -35,7 +35,7 @@ fn main() {
                 use crate::test_first;
                 const OP: Operation = Operation::{1};
             ",
-            def.instruction.to_string(),
+            def.instruction,
             def.instruction.to_string().to_uppercase()
         ));
 
@@ -61,7 +61,7 @@ fn main() {
                     test_first(
                         instructions!({0} #<test),
                         OP,
-                        AddressMode::Immediate(Immediate::Low(AddressReference::new(\"test\"))),
+                        AddressMode::Immediate(Immediate::Low(AddressReference::new(&\"test\"))),
                     );
                 }}
 
@@ -70,7 +70,7 @@ fn main() {
                     test_first(
                         instructions!({0} #>test),
                         OP,
-                        AddressMode::Immediate(Immediate::High(AddressReference::new(\"test\"))),
+                        AddressMode::Immediate(Immediate::High(AddressReference::new(&\"test\"))),
                     );
                 }}
                 ",
@@ -90,7 +90,7 @@ fn main() {
                     );
                 }}
                 ",
-                def.instruction.to_string()
+                def.instruction
             ));
         }
 
@@ -155,7 +155,7 @@ fn main() {
                     );
                 }}
                 ",
-                def.instruction.to_string()
+                def.instruction
             ));
         }
         if def.absolute_y != NO_ABSOLUTE_Y || def.zeropage_y != NO_ZEROPAGE_Y {
@@ -170,7 +170,7 @@ fn main() {
                     );
                 }}
                 ",
-                def.instruction.to_string()
+                def.instruction
             ));
         }
         /*
@@ -223,11 +223,12 @@ fn main() {
         */
 
         // Close module
-        lines.push(format!(
+        lines.push(
             "
-            }}
+            }
             "
-        ));
+            .to_string(),
+        );
     }
 
     print!("{}", lines.join("\n"));

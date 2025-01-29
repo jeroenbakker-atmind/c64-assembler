@@ -9,11 +9,15 @@ use crate::{
         address_mode::{AddressMode, Immediate},
         Address, ZeroPage,
     },
+    validator::{AssemblerResult, Error},
     Application, Instructions, Module,
 };
 
 use super::Generator;
 
+const PROGRAM_HEADER_BYTE_SIZE: Address = 2;
+
+/// .PRG byte code generator
 #[derive(Default, Debug)]
 pub struct ProgramGenerator {
     output: Vec<u8>,
@@ -22,46 +26,53 @@ pub struct ProgramGenerator {
 impl Generator for ProgramGenerator {
     type Output = Vec<u8>;
 
-    fn generate(mut self, application: Application) -> Self::Output {
+    fn generate(mut self, application: Application) -> AssemblerResult<Self::Output> {
         self.add_u16(application.entry_point);
         for module in &application.modules {
-            self.generate_module(&application, module);
+            self.generate_module(&application, module)?;
         }
-        self.output
+        Ok(self.output)
     }
 }
 
 impl ProgramGenerator {
-    fn generate_module(&mut self, application: &Application, module: &Module) {
-        self.generate_instructions(application, &module.instructions);
+    fn generate_module(&mut self, application: &Application, module: &Module) -> AssemblerResult<()> {
+        self.generate_instructions(application, &module.instructions)?;
         for function in &module.functions {
-            self.generate_instructions(application, &function.instructions);
+            self.generate_instructions(application, &function.instructions)?;
         }
+        Ok(())
     }
 
-    fn generate_instructions(&mut self, application: &Application, instructions: &Instructions) {
+    fn generate_instructions(&mut self, application: &Application, instructions: &Instructions) -> AssemblerResult<()> {
         for instruction in &instructions.instructions {
-            self.generate_instruction(application, instruction);
+            self.generate_instruction(application, instruction)?;
         }
+        Ok(())
     }
 
-    fn generate_instruction(&mut self, application: &Application, instruction: &Instruction) {
+    fn generate_instruction(&mut self, application: &Application, instruction: &Instruction) -> AssemblerResult<()> {
         match (&instruction.operation.definition(), &instruction.operation) {
-            (Some(definition), _) => {
-                self.add_byte_code(application, &instruction.address_mode, definition);
-            }
+            (Some(definition), _) => self.add_byte_code(application, &instruction.address_mode, definition),
             (None, Operation::Label(_)) => {
                 // Labels don't have bytes in the byte stream, they are only markers
+                Ok(())
             }
             (None, Operation::Raw(bytes)) => {
                 self.add_bytes(bytes);
+                Ok(())
             }
 
-            (_, _) => panic!(),
+            (_, _) => Err(Error::InternalCompilerError),
         }
     }
 
-    fn add_byte_code(&mut self, application: &Application, address_mode: &AddressMode, instruction: &InstructionDef) {
+    fn add_byte_code(
+        &mut self,
+        application: &Application,
+        address_mode: &AddressMode,
+        instruction: &InstructionDef,
+    ) -> AssemblerResult<()> {
         match address_mode {
             AddressMode::Implied => {
                 self.add_u8(instruction.implied);
@@ -114,11 +125,13 @@ impl ProgramGenerator {
                 self.add_u16(address);
             }
             AddressMode::Relative(address_reference) => {
-                self.add_u8(instruction.relative);
+                let current_instruction =
+                    application.entry_point + self.output.len() as Address - PROGRAM_HEADER_BYTE_SIZE;
                 let address = application.address(address_reference);
-                let current_instruction = application.entry_point + self.output.len() as Address - 2;
-                let next_instruction = current_instruction + 2;
+                let next_instruction = current_instruction + address_mode.byte_size(application)?;
                 let relative_address = (address as i32 - next_instruction as i32) as i8;
+
+                self.add_u8(instruction.relative);
                 self.add_u8(relative_address as u8);
             }
             AddressMode::Indirect(address_reference) => {
@@ -138,6 +151,7 @@ impl ProgramGenerator {
                 self.add_u8(address.low());
             }
         };
+        Ok(())
     }
 }
 
@@ -158,7 +172,7 @@ impl ProgramGenerator {
     }
 }
 
-/// Utility function to output the set of bytes into a hexdump kind of format to the console.
+/// Utility function to print the set of bytes into a hexdump kind of format to the console.
 pub fn print_hexdump(bytes: &[u8]) {
     let mut address = 0;
     bytes.chunks(16).for_each(|chunk| {

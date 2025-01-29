@@ -25,9 +25,9 @@
 //! An application can be build using builder patterns.
 //!
 //! ```
-//! use c64_assembler::builder::application::ApplicationBuilder;
-//! use c64_assembler::builder::module::ModuleBuilder;
-//! use c64_assembler::builder::instruction::InstructionBuilder;
+//! use c64_assembler::builder::ApplicationBuilder;
+//! use c64_assembler::builder::ModuleBuilder;
+//! use c64_assembler::builder::InstructionBuilder;
 //!
 //! let application = ApplicationBuilder::default()
 //!     .name("Set black border")
@@ -43,49 +43,38 @@
 //!                     .comment("Load black color")
 //!                     .sta_addr("VIC20_BORDER_COLOR")
 //!                     .rts()
-//!                     .finalize(),
+//!                     .build(),
 //!             )
-//!             .finalize(),
+//!             .build(),
 //!     )
-//!     .finalize();
+//!     .build().unwrap();
 //! ```
 //!
-//! ### Using macros (experimental)
+//! ### Validating
 //!
-//! To reduce the boilerplating macros can be used. This is still under development.
+//! Using the [crate::validator::Validator] to check for consistency.
 //!
 //! ```
-//! use c64_assembler_macro::application;
+//! use c64_assembler::validator::Validator;
+//! # use c64_assembler::builder::ApplicationBuilder;
+//! # let application = ApplicationBuilder::default().build().unwrap();
 //!
-//! let application = application!(
-//!     name="Set black border"
-//!     include_vic20_defines
-//!     module!(
-//!         name="main"
-//!         instructions!(
-//!         include_basic_header
-//!         main_entry_point:
-//!             "Load black color into accumulator"
-//!             lda #$00
-//!             sta VIC20_BORDER_COLOR
-//!             rts
-//!         )
-//!     )
-//! );
+//! let validation_result = application.validate();
+//! assert!(validation_result.is_ok());
 //! ```
 //!
 //! ### Generating dasm source
 //!
-//! Using the [crate::generator::dasm::DasmGenerator] a dasm compatible assembly source
+//! Using the [crate::generator::DasmGenerator] a dasm compatible assembly source
 //! can be generated.
 //!
 //! ```
 //! use c64_assembler::generator::Generator;
-//! use c64_assembler::generator::dasm::DasmGenerator;
-//! # use c64_assembler::builder::application::ApplicationBuilder;
-//! # let application = ApplicationBuilder::default().finalize();
+//! use c64_assembler::generator::DasmGenerator;
+//! # use c64_assembler::builder::ApplicationBuilder;
+//! # let application = ApplicationBuilder::default().build().unwrap();
 //!
-//! let source = DasmGenerator::default().generate(application);
+//! let source = DasmGenerator::default().generate(application).unwrap();
 //! println!("{}", source);
 //! ```
 //!
@@ -116,16 +105,15 @@
 //!
 //! ### Generating .PRG byte stream
 //!
-//! Using the [crate::generator::program::ProgramGenerator] to generate the byte stream.
+//! Using the [crate::generator::ProgramGenerator] to generate the byte stream.
 //! The byte stream includes the loading address.
 //!
 //! ```
-//! use c64_assembler::generator::Generator;
-//! use c64_assembler::generator::program::{ProgramGenerator, print_hexdump};
-//! # use c64_assembler::builder::application::ApplicationBuilder;
-//! # let application = ApplicationBuilder::default().finalize();
+//! use c64_assembler::generator::{Generator, ProgramGenerator, print_hexdump};
+//! # use c64_assembler::builder::ApplicationBuilder;
+//! # let application = ApplicationBuilder::default().build().unwrap();
 //!
-//! let bytes = ProgramGenerator::default().generate(application);
+//! let bytes = ProgramGenerator::default().generate(application).unwrap();
 //! print_hexdump(&bytes);
 //! ```
 //!
@@ -134,16 +122,42 @@
 //! 0010:  A9 00 8D 20  D0 60
 //! ```
 //!
+//! ### Using macros (work in progress)
+//!
+//! To reduce the boilerplating macros can be used. This is still under development.
+//! Expect less stability, error messages and some instructions not supported.
+//!
+//! ```
+//! use c64_assembler_macro::application;
+//!
+//! let application = application!(
+//!     name="Set black border"
+//!     include_vic20_defines
+//!     module!(
+//!         name="main"
+//!         instructions!(
+//!         include_basic_header
+//!         main_entry_point:
+//!             "Load black color into accumulator"
+//!             lda #$00
+//!             sta VIC20_BORDER_COLOR
+//!             rts
+//!         )
+//!     )
+//! ).unwrap();
+//! ```
 
 use std::collections::HashMap;
 
 use instruction::Instruction;
 use memory::{define::Define, user_count::UserCount, Address};
+use validator::{AssemblerResult, Error};
 
 pub mod builder;
 pub mod generator;
 pub mod instruction;
 pub mod memory;
+pub mod validator;
 
 #[cfg(test)]
 mod test;
@@ -161,6 +175,15 @@ pub struct Application {
     pub defines: Vec<Define>,
     /// Lookup for addresses.
     pub address_lookup: HashMap<String, Address>,
+}
+impl Application {
+    pub fn lookup_address(&self, address_name: &String) -> AssemblerResult<Address> {
+        if let Some(address) = self.address_lookup.get(address_name) {
+            Ok(*address)
+        } else {
+            Err(Error::AddressNameUnknown(address_name.to_string()))
+        }
+    }
 }
 
 /// Module

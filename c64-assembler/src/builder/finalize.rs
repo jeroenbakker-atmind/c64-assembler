@@ -7,13 +7,14 @@ use crate::{
         user_count::UserCount,
         Address,
     },
+    validator::AssemblerResult,
     Application, Instructions,
 };
 
-pub fn finalize(application: &mut Application) {
+pub fn finalize(application: &mut Application) -> AssemblerResult<()> {
     defines_update_user_count(application);
     functions_update_user_count(application);
-    update_label_addresses(application);
+    update_label_addresses(application)
 }
 
 fn defines_update_user_count(application: &mut Application) {
@@ -92,29 +93,32 @@ fn count_users_instructions(instructions: &Instructions, name: &String) -> usize
     result
 }
 
-fn update_label_addresses(application: &mut Application) {
+fn update_label_addresses(application: &mut Application) -> AssemblerResult<()> {
     let mut label_addresses = HashMap::<String, Address>::default();
     let mut function_addresses = HashMap::<String, Address>::default();
     let mut current_address = application.entry_point;
 
-    let mut update_label_addresses_instructions = |current_address: &mut Address, instructions: &Instructions| {
-        for instruction in &instructions.instructions {
-            if let Operation::Label(label) = &instruction.operation {
-                label_addresses.insert(label.clone(), *current_address);
+    let mut update_label_addresses_instructions =
+        |current_address: &mut Address, instructions: &Instructions| -> AssemblerResult<()> {
+            for instruction in &instructions.instructions {
+                if let Operation::Label(label) = &instruction.operation {
+                    label_addresses.insert(label.clone(), *current_address);
+                }
+                let byte_size = instruction.byte_size(application)?;
+                *current_address += byte_size;
             }
-            let byte_size = instruction.byte_size(application);
-            *current_address += byte_size;
-        }
-    };
+            Ok(())
+        };
 
     for module in &application.modules {
-        update_label_addresses_instructions(&mut current_address, &module.instructions);
+        update_label_addresses_instructions(&mut current_address, &module.instructions)?;
         for function in &module.functions {
             function_addresses.insert(function.name.clone(), current_address);
-            update_label_addresses_instructions(&mut current_address, &function.instructions);
+            update_label_addresses_instructions(&mut current_address, &function.instructions)?;
         }
     }
 
     application.address_lookup.extend(label_addresses);
     application.address_lookup.extend(function_addresses);
+    Ok(())
 }

@@ -4,8 +4,9 @@ use crate::{
     memory::{
         define::{Define, Value},
         label::AddressReference,
-        Address,
+        Address, ZeroPage,
     },
+    validator::AssemblerResult,
     Application, Module,
 };
 
@@ -33,13 +34,13 @@ impl Default for ApplicationBuilder {
 impl ApplicationBuilder {
     /// Set the name of the application.
     ///
-    /// Is used in comments when exporting to a dasm source using [crate::generator::dasm::DasmGenerator]
+    /// Is used in comments when exporting to a dasm source using [crate::generator::DasmGenerator]
     ///
     /// ```
-    /// use c64_assembler::builder::application::ApplicationBuilder;
+    /// use c64_assembler::builder::ApplicationBuilder;
     /// let application = ApplicationBuilder::default()
     ///     .name("My application")
-    ///     .finalize();
+    ///     .build();
     /// ```
     pub fn name(&mut self, name: &str) -> &mut Self {
         self.application.name = name.to_string();
@@ -54,10 +55,10 @@ impl ApplicationBuilder {
     /// Default entry point is set to 0x0800.
     ///
     /// ```
-    /// use c64_assembler::builder::application::ApplicationBuilder;
+    /// use c64_assembler::builder::ApplicationBuilder;
     /// let application = ApplicationBuilder::default()
     ///     .entry_point(0x0800)
-    ///     .finalize();
+    ///     .build();
     /// ```
     pub fn entry_point(&mut self, entry_point: Address) -> &mut Self {
         self.application.entry_point = entry_point;
@@ -72,17 +73,23 @@ impl ApplicationBuilder {
     /// opcode is used.
     ///
     /// ```
-    /// use c64_assembler::builder::application::ApplicationBuilder;
+    /// use c64_assembler::builder::ApplicationBuilder;
     /// let application = ApplicationBuilder::default()
     ///     .define_address("VIC_BORDER_COLOR", 0xD020)
     ///     .define_address("ZEROPAGE_FE", 0xFE)
-    ///     .finalize();
+    ///     .build();
     /// ```
     pub fn define_address(&mut self, name: &str, address: Address) -> &mut Self {
         self.application.address_lookup.insert(name.to_string(), address);
-        self.application
-            .defines
-            .push(Define::new(name, Value::Address(address)));
+        if address.is_zeropage() {
+            self.application
+                .defines
+                .push(Define::new(name, Value::Zeropage(address)));
+        } else {
+            self.application
+                .defines
+                .push(Define::new(name, Value::Address(address)));
+        }
         self
     }
 
@@ -141,10 +148,10 @@ impl ApplicationBuilder {
     /// | VIC20_SPRITE_7_COLOR             | 0xD02E          | Color of sprite 7                              |
     ///
     /// ```
-    /// use c64_assembler::builder::application::ApplicationBuilder;
+    /// use c64_assembler::builder::ApplicationBuilder;
     /// let application = ApplicationBuilder::default()
     ///     .include_vic20_defines()
-    ///     .finalize();
+    ///     .build();
     /// ```
     pub fn include_vic20_defines(&mut self) -> &mut Self {
         self.define_address("VIC20_BASE", 0xD000)
@@ -234,10 +241,10 @@ impl ApplicationBuilder {
     /// | SID_ENV3                      | 0xD41C          | Envelope generator for voice 3 (read)           |
     ///
     /// ```
-    /// use c64_assembler::builder::application::ApplicationBuilder;
+    /// use c64_assembler::builder::ApplicationBuilder;
     /// let application = ApplicationBuilder::default()
     ///     .include_sid_defines()
-    ///     .finalize();
+    ///     .build();
     /// ```
     pub fn include_sid_defines(&mut self) -> &mut Self {
         self.define_address("SID_BASE", 0xD400)
@@ -278,9 +285,9 @@ impl ApplicationBuilder {
     }
 
     /// Build the application
-    pub fn finalize(&mut self) -> Application {
-        finalize(&mut self.application);
-        self.application.clone()
+    pub fn build(&mut self) -> AssemblerResult<Application> {
+        finalize(&mut self.application)?;
+        Ok(self.application.clone())
     }
 }
 
