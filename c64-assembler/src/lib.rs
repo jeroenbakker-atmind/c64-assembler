@@ -50,30 +50,6 @@
 //!     .build().unwrap();
 //! ```
 //!
-//! ### Using macros (work in progress)
-//!
-//! To reduce the boilerplating macros can be used. This is still under development.
-//!
-//! ```
-//! use c64_assembler_macro::application;
-//!
-//! let application = application!(
-//!     name="Set black border"
-//!     include_vic20_defines
-//!     module!(
-//!         name="main"
-//!         instructions!(
-//!         include_basic_header
-//!         main_entry_point:
-//!             "Load black color into accumulator"
-//!             lda #$00
-//!             sta VIC20_BORDER_COLOR
-//!             rts
-//!         )
-//!     )
-//! ).unwrap();
-//! ```
-//!
 //! ### Validating
 //!
 //! Using the [crate::validator::Validator] to check for consistency.
@@ -146,6 +122,30 @@
 //! 0010:  A9 00 8D 20  D0 60
 //! ```
 //!
+//! ### Using macros (work in progress)
+//!
+//! To reduce the boilerplating macros can be used. This is still under development.
+//! Expect less stability, error messages and some instructions not supported.
+//!
+//! ```
+//! use c64_assembler_macro::application;
+//!
+//! let application = application!(
+//!     name="Set black border"
+//!     include_vic20_defines
+//!     module!(
+//!         name="main"
+//!         instructions!(
+//!         include_basic_header
+//!         main_entry_point:
+//!             "Load black color into accumulator"
+//!             lda #$00
+//!             sta VIC20_BORDER_COLOR
+//!             rts
+//!         )
+//!     )
+//! ).unwrap();
+//! ```
 
 use std::collections::HashMap;
 
