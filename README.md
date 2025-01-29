@@ -106,7 +106,7 @@ main_entry_point:
 ### Using macros (work in progress)
 
 > [!NOTE]
-> This is still in development and doesn't include all expected features yet.
+> This is still in development and doesn't include all features yet.
 
 The `c64-assembly-macro` crate introduces several macros to reduce the boiler plating.
 

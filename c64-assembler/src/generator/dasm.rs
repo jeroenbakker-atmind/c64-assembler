@@ -75,9 +75,7 @@ impl DasmGenerator {
 
         self.line(format!("; --- Function end: {} ---", function.name.to_uppercase()));
     }
-}
 
-impl DasmGenerator {
     fn instructions(&mut self, _application: &Application, instructions: &Instructions) {
         for instruction in &instructions.instructions {
             let mut line: Vec<String> = vec![];
@@ -166,9 +164,7 @@ impl DasmGenerator {
             }
         }
     }
-}
 
-impl DasmGenerator {
     fn add_define(&mut self, define: &Define) {
         let mut line = vec![];
         line.push(define.name.clone());
