@@ -53,16 +53,15 @@ let application = ApplicationBuilder::default()
             )
             .build(),
     )
-    .build();
+    .build().unwrap();
 ```
 
 After this the application can be generated to bytes (`Vec<u8>`) using the `ProgramGenerator`
 
 ```rust
-use c64_assembler::generator::Generator;
-use c64_assembler::generator::program::{ProgramGenerator, print_hexdump};
+use c64_assembler::generator::{Generator, ProgramGenerator, print_hexdump};
 
-let bytes = ProgramGenerator::default().generate(application);
+let bytes = ProgramGenerator::default().generate(application).unwrap();
 print_hexdump(&bytes);
 ```
 
@@ -74,10 +73,9 @@ print_hexdump(&bytes);
 Or generate to dasm source using the `DasmGenerator`
 
 ```rust
-use c64_assembler::generator::Generator;
-use c64_assembler::generator::dasm::DasmGenerator;
+use c64_assembler::generator::{Generator, DasmGenerator};
 
-let source = DasmGenerator::default().generate(application);
+let source = DasmGenerator::default().generate(application).unwrap();
 println!("{}", source);
 ```
 
@@ -127,10 +125,8 @@ let application = application!(
             rts
         )
     )
-);
+).unwrap();
 ```
-
-
 
 ## Development & Contribution
 
@@ -151,16 +147,6 @@ We welcome contributions! To get started:
 **Version 0.1**
 
 *Goal*: Initial release no macros
-
-- Easy
-  - [x] Add VIC20 defines
-  - [x] Add SID defines
-- Other
-  - [x] Add example explaining how to use the defines
-  - [ ] Add example/documentation for module
-  - [ ] Add example/documentation for functions  
-  - [x] Add example to compile directly into a `.D64` file
-  - [x] Add test that performs a full roundtrip using MOS emulation
 
 **Version 0.2**
 
