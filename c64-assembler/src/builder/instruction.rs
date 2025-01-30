@@ -148,10 +148,30 @@ impl InstructionBuilder {
         self.adc(AddressMode::AbsoluteY(AddressReference::new(address_name)))
     }
 
+    /// Record a adc instruction that uses indexed indirect addressing mode.
+    ///
+    /// # Example
+    /// ```
+    /// use c64_assembler::builder::InstructionBuilder;
+    /// let instructions = InstructionBuilder::default()
+    ///     .adc_ind_x("test_label")
+    ///     .label("test_label")
+    ///     .build();
+    /// ```
     pub fn adc_ind_x(&mut self, address_name: &str) -> &mut Self {
         self.adc(AddressMode::IndexedIndirect(AddressReference::new(address_name)))
     }
 
+    /// Record a adc instruction that uses indirect indexed addressing mode.
+    ///
+    /// # Example
+    /// ```
+    /// use c64_assembler::builder::InstructionBuilder;
+    /// let instructions = InstructionBuilder::default()
+    ///     .adc_ind_y("test_label")
+    ///     .label("test_label")
+    ///     .build();
+    /// ```
     pub fn adc_ind_y(&mut self, address_name: &str) -> &mut Self {
         self.adc(AddressMode::IndirectIndexed(AddressReference::new(address_name)))
     }
@@ -268,10 +288,30 @@ impl InstructionBuilder {
         self.and(AddressMode::AbsoluteY(AddressReference::new(address_name)))
     }
 
+    /// Record a and instruction that uses indexed indirect addressing mode.
+    ///
+    /// # Example
+    /// ```
+    /// use c64_assembler::builder::InstructionBuilder;
+    /// let instructions = InstructionBuilder::default()
+    ///     .and_ind_x("test_label")
+    ///     .label("test_label")
+    ///     .build();
+    /// ```
     pub fn and_ind_x(&mut self, address_name: &str) -> &mut Self {
         self.and(AddressMode::IndexedIndirect(AddressReference::new(address_name)))
     }
 
+    /// Record a and instruction that uses indirect indexed addressing mode.
+    ///
+    /// # Example
+    /// ```
+    /// use c64_assembler::builder::InstructionBuilder;
+    /// let instructions = InstructionBuilder::default()
+    ///     .and_ind_y("test_label")
+    ///     .label("test_label")
+    ///     .build();
+    /// ```
     pub fn and_ind_y(&mut self, address_name: &str) -> &mut Self {
         self.and(AddressMode::IndirectIndexed(AddressReference::new(address_name)))
     }
@@ -866,10 +906,30 @@ impl InstructionBuilder {
         self.cmp(AddressMode::AbsoluteY(AddressReference::new(address_name)))
     }
 
+    /// Record a cmp instruction that uses indexed indirect addressing mode.
+    ///
+    /// # Example
+    /// ```
+    /// use c64_assembler::builder::InstructionBuilder;
+    /// let instructions = InstructionBuilder::default()
+    ///     .cmp_ind_x("test_label")
+    ///     .label("test_label")
+    ///     .build();
+    /// ```
     pub fn cmp_ind_x(&mut self, address_name: &str) -> &mut Self {
         self.cmp(AddressMode::IndexedIndirect(AddressReference::new(address_name)))
     }
 
+    /// Record a cmp instruction that uses indirect indexed addressing mode.
+    ///
+    /// # Example
+    /// ```
+    /// use c64_assembler::builder::InstructionBuilder;
+    /// let instructions = InstructionBuilder::default()
+    ///     .cmp_ind_y("test_label")
+    ///     .label("test_label")
+    ///     .build();
+    /// ```
     pub fn cmp_ind_y(&mut self, address_name: &str) -> &mut Self {
         self.cmp(AddressMode::IndirectIndexed(AddressReference::new(address_name)))
     }
@@ -1231,10 +1291,30 @@ impl InstructionBuilder {
         self.eor(AddressMode::AbsoluteY(AddressReference::new(address_name)))
     }
 
+    /// Record a eor instruction that uses indexed indirect addressing mode.
+    ///
+    /// # Example
+    /// ```
+    /// use c64_assembler::builder::InstructionBuilder;
+    /// let instructions = InstructionBuilder::default()
+    ///     .eor_ind_x("test_label")
+    ///     .label("test_label")
+    ///     .build();
+    /// ```
     pub fn eor_ind_x(&mut self, address_name: &str) -> &mut Self {
         self.eor(AddressMode::IndexedIndirect(AddressReference::new(address_name)))
     }
 
+    /// Record a eor instruction that uses indirect indexed addressing mode.
+    ///
+    /// # Example
+    /// ```
+    /// use c64_assembler::builder::InstructionBuilder;
+    /// let instructions = InstructionBuilder::default()
+    ///     .eor_ind_y("test_label")
+    ///     .label("test_label")
+    ///     .build();
+    /// ```
     pub fn eor_ind_y(&mut self, address_name: &str) -> &mut Self {
         self.eor(AddressMode::IndirectIndexed(AddressReference::new(address_name)))
     }
@@ -1358,6 +1438,16 @@ impl InstructionBuilder {
         )))
     }
 
+    /// Record a jmp instruction that uses indirect addressing mode.
+    ///
+    /// # Example
+    /// ```
+    /// use c64_assembler::builder::InstructionBuilder;
+    /// let instructions = InstructionBuilder::default()
+    ///     .jmp_ind("test_label")
+    ///     .label("test_label")
+    ///     .build();
+    /// ```
     pub fn jmp_ind(&mut self, address_name: &str) -> &mut Self {
         self.jmp(AddressMode::Indirect(AddressReference::new(address_name)))
     }
@@ -1512,10 +1602,30 @@ impl InstructionBuilder {
         self.lda(AddressMode::AbsoluteY(AddressReference::new(address_name)))
     }
 
+    /// Record a lda instruction that uses indexed indirect addressing mode.
+    ///
+    /// # Example
+    /// ```
+    /// use c64_assembler::builder::InstructionBuilder;
+    /// let instructions = InstructionBuilder::default()
+    ///     .lda_ind_x("test_label")
+    ///     .label("test_label")
+    ///     .build();
+    /// ```
     pub fn lda_ind_x(&mut self, address_name: &str) -> &mut Self {
         self.lda(AddressMode::IndexedIndirect(AddressReference::new(address_name)))
     }
 
+    /// Record a lda instruction that uses indirect indexed addressing mode.
+    ///
+    /// # Example
+    /// ```
+    /// use c64_assembler::builder::InstructionBuilder;
+    /// let instructions = InstructionBuilder::default()
+    ///     .lda_ind_y("test_label")
+    ///     .label("test_label")
+    ///     .build();
+    /// ```
     pub fn lda_ind_y(&mut self, address_name: &str) -> &mut Self {
         self.lda(AddressMode::IndirectIndexed(AddressReference::new(address_name)))
     }
@@ -1906,10 +2016,30 @@ impl InstructionBuilder {
         self.ora(AddressMode::AbsoluteY(AddressReference::new(address_name)))
     }
 
+    /// Record a ora instruction that uses indexed indirect addressing mode.
+    ///
+    /// # Example
+    /// ```
+    /// use c64_assembler::builder::InstructionBuilder;
+    /// let instructions = InstructionBuilder::default()
+    ///     .ora_ind_x("test_label")
+    ///     .label("test_label")
+    ///     .build();
+    /// ```
     pub fn ora_ind_x(&mut self, address_name: &str) -> &mut Self {
         self.ora(AddressMode::IndexedIndirect(AddressReference::new(address_name)))
     }
 
+    /// Record a ora instruction that uses indirect indexed addressing mode.
+    ///
+    /// # Example
+    /// ```
+    /// use c64_assembler::builder::InstructionBuilder;
+    /// let instructions = InstructionBuilder::default()
+    ///     .ora_ind_y("test_label")
+    ///     .label("test_label")
+    ///     .build();
+    /// ```
     pub fn ora_ind_y(&mut self, address_name: &str) -> &mut Self {
         self.ora(AddressMode::IndirectIndexed(AddressReference::new(address_name)))
     }
@@ -2242,10 +2372,30 @@ impl InstructionBuilder {
         self.sbc(AddressMode::AbsoluteY(AddressReference::new(address_name)))
     }
 
+    /// Record a sbc instruction that uses indexed indirect addressing mode.
+    ///
+    /// # Example
+    /// ```
+    /// use c64_assembler::builder::InstructionBuilder;
+    /// let instructions = InstructionBuilder::default()
+    ///     .sbc_ind_x("test_label")
+    ///     .label("test_label")
+    ///     .build();
+    /// ```
     pub fn sbc_ind_x(&mut self, address_name: &str) -> &mut Self {
         self.sbc(AddressMode::IndexedIndirect(AddressReference::new(address_name)))
     }
 
+    /// Record a sbc instruction that uses indirect indexed addressing mode.
+    ///
+    /// # Example
+    /// ```
+    /// use c64_assembler::builder::InstructionBuilder;
+    /// let instructions = InstructionBuilder::default()
+    ///     .sbc_ind_y("test_label")
+    ///     .label("test_label")
+    ///     .build();
+    /// ```
     pub fn sbc_ind_y(&mut self, address_name: &str) -> &mut Self {
         self.sbc(AddressMode::IndirectIndexed(AddressReference::new(address_name)))
     }
@@ -2360,10 +2510,30 @@ impl InstructionBuilder {
         self.sta(AddressMode::AbsoluteY(AddressReference::new(address_name)))
     }
 
+    /// Record a sta instruction that uses indexed indirect addressing mode.
+    ///
+    /// # Example
+    /// ```
+    /// use c64_assembler::builder::InstructionBuilder;
+    /// let instructions = InstructionBuilder::default()
+    ///     .sta_ind_x("test_label")
+    ///     .label("test_label")
+    ///     .build();
+    /// ```
     pub fn sta_ind_x(&mut self, address_name: &str) -> &mut Self {
         self.sta(AddressMode::IndexedIndirect(AddressReference::new(address_name)))
     }
 
+    /// Record a sta instruction that uses indirect indexed addressing mode.
+    ///
+    /// # Example
+    /// ```
+    /// use c64_assembler::builder::InstructionBuilder;
+    /// let instructions = InstructionBuilder::default()
+    ///     .sta_ind_y("test_label")
+    ///     .label("test_label")
+    ///     .build();
+    /// ```
     pub fn sta_ind_y(&mut self, address_name: &str) -> &mut Self {
         self.sta(AddressMode::IndirectIndexed(AddressReference::new(address_name)))
     }
