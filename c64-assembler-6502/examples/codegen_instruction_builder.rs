@@ -231,6 +231,16 @@ fn main() {
         if def.indirect != NO_INDIRECT {
             lines.push(format!(
                 "
+                /// Record a {0} instruction that uses indirect addressing mode.
+                /// 
+                /// # Example
+                /// ```
+                /// use c64_assembler::builder::InstructionBuilder;
+                /// let instructions = InstructionBuilder::default()
+                ///     .{0}_ind(\"test_label\")
+                ///     .label(\"test_label\")
+                ///     .build();
+                /// ```
                 pub fn {0}_ind(&mut self, address_name: &str) -> &mut Self {{
                     self.{0}(AddressMode::Indirect(AddressReference::new(address_name)))
                 }}
@@ -241,6 +251,16 @@ fn main() {
         if def.indexed_indirect != NO_INDEXED_INDIRECT {
             lines.push(format!(
                 "
+                /// Record a {0} instruction that uses indexed indirect addressing mode.
+                /// 
+                /// # Example
+                /// ```
+                /// use c64_assembler::builder::InstructionBuilder;
+                /// let instructions = InstructionBuilder::default()
+                ///     .{0}_ind_x(\"test_label\")
+                ///     .label(\"test_label\")
+                ///     .build();
+                /// ```
                 pub fn {0}_ind_x(&mut self, address_name: &str) -> &mut Self {{
                     self.{0}(AddressMode::IndexedIndirect(AddressReference::new(address_name)))
                 }}
@@ -251,6 +271,16 @@ fn main() {
         if def.indirect_indexed != NO_INDIRECT_INDEXED {
             lines.push(format!(
                 "
+                /// Record a {0} instruction that uses indirect indexed addressing mode.
+                /// 
+                /// # Example
+                /// ```
+                /// use c64_assembler::builder::InstructionBuilder;
+                /// let instructions = InstructionBuilder::default()
+                ///     .{0}_ind_y(\"test_label\")
+                ///     .label(\"test_label\")
+                ///     .build();
+                /// ```
                 pub fn {0}_ind_y(&mut self, address_name: &str) -> &mut Self {{
                     self.{0}(AddressMode::IndirectIndexed(AddressReference::new(address_name)))
                 }}
