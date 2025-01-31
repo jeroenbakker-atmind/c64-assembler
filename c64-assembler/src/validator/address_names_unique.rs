@@ -19,6 +19,7 @@ fn validate_instructions(visited_names: &mut Vec<String>, instructions: &Instruc
             if visited_names.contains(label) {
                 return Err(Error::AddressNameNotUnique(label.to_string()));
             }
+            visited_names.push(label.clone());
         }
     }
     Ok(())
