@@ -2728,17 +2728,46 @@ impl InstructionBuilder {
         self
     }
 
+    /// Record some raw data (bytes) in the instruction stream.
+    ///
+    /// # Example
+    /// ```
+    /// use c64_assembler::builder::InstructionBuilder;
+    /// let instructions = InstructionBuilder::default()
+    ///     .label("my_data")
+    ///     .raw(&[0x42, 0xDE, 0xAD])
+    ///     .build();
+    /// ```
     pub fn raw(&mut self, data: &[u8]) -> &mut Self {
         self.add_instruction(Operation::Raw(Vec::from(data)), AddressMode::Implied);
         self
     }
 
+    /// Record a label into the instruction stream.
+    ///
+    /// # Example
+    /// ```
+    /// use c64_assembler::builder::InstructionBuilder;
+    /// let instructions = InstructionBuilder::default()
+    ///     .label("my_data")
+    ///     .raw(&[0x42, 0xDE, 0xAD])
+    ///     .build();
+    /// ```
     pub fn label(&mut self, label: &str) -> &mut Self {
         self.add_instruction(Operation::Label(label.to_string()), AddressMode::Implied);
         self
     }
 
     /// Add a comment to the last instruction.
+    ///
+    /// # Example
+    /// ```
+    /// use c64_assembler::builder::InstructionBuilder;
+    /// let instructions = InstructionBuilder::default()
+    ///     .label("frame_number").comment("Current frame number")
+    ///     .raw(&[0x00, 0x00]).comment("Frames are counted from 0")
+    ///     .build();
+    /// ```
     pub fn comment(&mut self, comment: &str) -> &mut Self {
         self.instructions
             .instructions
@@ -2749,6 +2778,23 @@ impl InstructionBuilder {
         self
     }
 
+    /// Add a basic program, when run will start the instructions recorded right after.
+    ///
+    /// ```basic
+    /// 10 SYS 2062
+    /// ```
+    ///
+    /// NOTE: Application entry point should be 0x0800 and add_basic_header must be
+    /// called as first instruction in the first module.
+    ///
+    /// # Example
+    /// ```
+    /// use c64_assembler::builder::InstructionBuilder;
+    /// let instructions = InstructionBuilder::default()
+    ///     .add_basic_header()
+    ///     .rts()
+    ///     .build();
+    /// ```
     pub fn add_basic_header(&mut self) -> &mut Self {
         /* Basic line header */
         self.raw(&[0x00, 0x0c, 0x08])
@@ -2761,6 +2807,7 @@ impl InstructionBuilder {
             .comment("End basic program")
     }
 
+    /// Create [crate::Instructions] from this instance.
     pub fn build(&self) -> Instructions {
         self.instructions.clone()
     }
