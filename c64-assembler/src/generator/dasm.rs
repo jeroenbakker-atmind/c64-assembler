@@ -108,14 +108,25 @@ impl DasmGenerator {
                     Immediate::Low(address_reference) => line.push(format!(" #<{}", address_reference.name)),
                     Immediate::High(address_reference) => line.push(format!(" #>{}", address_reference.name)),
                 },
-                AddressMode::Absolute(address_reference)
-                | AddressMode::AbsoluteX(address_reference)
-                | AddressMode::AbsoluteY(address_reference)
-                | AddressMode::Relative(address_reference) => {
+                AddressMode::Absolute(address_reference) | AddressMode::Relative(address_reference) => {
                     line.push(format!(" {}", address_reference.name));
                     if address_reference.offset != 0 {
                         line.push(format!("+{}", address_reference.offset));
                     }
+                }
+                AddressMode::AbsoluteX(address_reference) => {
+                    line.push(format!(" {}", address_reference.name));
+                    if address_reference.offset != 0 {
+                        line.push(format!("+{}", address_reference.offset));
+                    }
+                    line.push(",x".to_string());
+                }
+                AddressMode::AbsoluteY(address_reference) => {
+                    line.push(format!(" {}", address_reference.name));
+                    if address_reference.offset != 0 {
+                        line.push(format!("+{}", address_reference.offset));
+                    }
+                    line.push(",y".to_string());
                 }
                 AddressMode::IndexedIndirect(address_reference) => {
                     line.push(format!(" ({}", address_reference.name));
