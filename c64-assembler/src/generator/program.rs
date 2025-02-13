@@ -121,8 +121,6 @@ impl ProgramGenerator {
                     self.add_u8(instruction.absolute_y);
                     self.add_u16(address);
                 }
-                self.add_u8(instruction.absolute_y);
-                self.add_u16(address);
             }
             AddressMode::Relative(address_reference) => {
                 let current_instruction =
