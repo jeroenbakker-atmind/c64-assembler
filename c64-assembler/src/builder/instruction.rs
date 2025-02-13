@@ -124,7 +124,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
-    ///     .lda_imm(0x08)
+    ///     .ldx_imm(0x08)
     ///     .adc_addr_x("test_label")
     ///     .label("test_label")
     ///     .build();
@@ -139,7 +139,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
-    ///     .lda_imm(0x08)
+    ///     .ldy_imm(0x08)
     ///     .adc_addr_y("test_label")
     ///     .label("test_label")
     ///     .build();
@@ -154,6 +154,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
+    ///     .ldx_imm(0x08)
     ///     .adc_ind_x("test_label")
     ///     .label("test_label")
     ///     .build();
@@ -168,6 +169,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
+    ///     .ldy_imm(0x08)
     ///     .adc_ind_y("test_label")
     ///     .label("test_label")
     ///     .build();
@@ -264,7 +266,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
-    ///     .lda_imm(0x08)
+    ///     .ldx_imm(0x08)
     ///     .and_addr_x("test_label")
     ///     .label("test_label")
     ///     .build();
@@ -279,7 +281,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
-    ///     .lda_imm(0x08)
+    ///     .ldy_imm(0x08)
     ///     .and_addr_y("test_label")
     ///     .label("test_label")
     ///     .build();
@@ -294,6 +296,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
+    ///     .ldx_imm(0x08)
     ///     .and_ind_x("test_label")
     ///     .label("test_label")
     ///     .build();
@@ -308,6 +311,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
+    ///     .ldy_imm(0x08)
     ///     .and_ind_y("test_label")
     ///     .label("test_label")
     ///     .build();
@@ -373,7 +377,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
-    ///     .lda_imm(0x08)
+    ///     .ldx_imm(0x08)
     ///     .asl_addr_x("test_label")
     ///     .label("test_label")
     ///     .build();
@@ -882,7 +886,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
-    ///     .lda_imm(0x08)
+    ///     .ldx_imm(0x08)
     ///     .cmp_addr_x("test_label")
     ///     .label("test_label")
     ///     .build();
@@ -897,7 +901,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
-    ///     .lda_imm(0x08)
+    ///     .ldy_imm(0x08)
     ///     .cmp_addr_y("test_label")
     ///     .label("test_label")
     ///     .build();
@@ -912,6 +916,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
+    ///     .ldx_imm(0x08)
     ///     .cmp_ind_x("test_label")
     ///     .label("test_label")
     ///     .build();
@@ -926,6 +931,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
+    ///     .ldy_imm(0x08)
     ///     .cmp_ind_y("test_label")
     ///     .label("test_label")
     ///     .build();
@@ -1142,7 +1148,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
-    ///     .lda_imm(0x08)
+    ///     .ldx_imm(0x08)
     ///     .dec_addr_x("test_label")
     ///     .label("test_label")
     ///     .build();
@@ -1267,7 +1273,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
-    ///     .lda_imm(0x08)
+    ///     .ldx_imm(0x08)
     ///     .eor_addr_x("test_label")
     ///     .label("test_label")
     ///     .build();
@@ -1282,7 +1288,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
-    ///     .lda_imm(0x08)
+    ///     .ldy_imm(0x08)
     ///     .eor_addr_y("test_label")
     ///     .label("test_label")
     ///     .build();
@@ -1297,6 +1303,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
+    ///     .ldx_imm(0x08)
     ///     .eor_ind_x("test_label")
     ///     .label("test_label")
     ///     .build();
@@ -1311,6 +1318,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
+    ///     .ldy_imm(0x08)
     ///     .eor_ind_y("test_label")
     ///     .label("test_label")
     ///     .build();
@@ -1363,7 +1371,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
-    ///     .lda_imm(0x08)
+    ///     .ldx_imm(0x08)
     ///     .inc_addr_x("test_label")
     ///     .label("test_label")
     ///     .build();
@@ -1578,7 +1586,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
-    ///     .lda_imm(0x08)
+    ///     .ldx_imm(0x08)
     ///     .lda_addr_x("test_label")
     ///     .label("test_label")
     ///     .build();
@@ -1593,7 +1601,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
-    ///     .lda_imm(0x08)
+    ///     .ldy_imm(0x08)
     ///     .lda_addr_y("test_label")
     ///     .label("test_label")
     ///     .build();
@@ -1608,6 +1616,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
+    ///     .ldx_imm(0x08)
     ///     .lda_ind_x("test_label")
     ///     .label("test_label")
     ///     .build();
@@ -1622,6 +1631,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
+    ///     .ldy_imm(0x08)
     ///     .lda_ind_y("test_label")
     ///     .label("test_label")
     ///     .build();
@@ -1718,7 +1728,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
-    ///     .lda_imm(0x08)
+    ///     .ldy_imm(0x08)
     ///     .ldx_addr_y("test_label")
     ///     .label("test_label")
     ///     .build();
@@ -1815,7 +1825,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
-    ///     .lda_imm(0x08)
+    ///     .ldx_imm(0x08)
     ///     .ldy_addr_x("test_label")
     ///     .label("test_label")
     ///     .build();
@@ -1881,7 +1891,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
-    ///     .lda_imm(0x08)
+    ///     .ldx_imm(0x08)
     ///     .lsr_addr_x("test_label")
     ///     .label("test_label")
     ///     .build();
@@ -1992,7 +2002,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
-    ///     .lda_imm(0x08)
+    ///     .ldx_imm(0x08)
     ///     .ora_addr_x("test_label")
     ///     .label("test_label")
     ///     .build();
@@ -2007,7 +2017,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
-    ///     .lda_imm(0x08)
+    ///     .ldy_imm(0x08)
     ///     .ora_addr_y("test_label")
     ///     .label("test_label")
     ///     .build();
@@ -2022,6 +2032,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
+    ///     .ldx_imm(0x08)
     ///     .ora_ind_x("test_label")
     ///     .label("test_label")
     ///     .build();
@@ -2036,6 +2047,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
+    ///     .ldy_imm(0x08)
     ///     .ora_ind_y("test_label")
     ///     .label("test_label")
     ///     .build();
@@ -2157,7 +2169,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
-    ///     .lda_imm(0x08)
+    ///     .ldx_imm(0x08)
     ///     .rol_addr_x("test_label")
     ///     .label("test_label")
     ///     .build();
@@ -2223,7 +2235,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
-    ///     .lda_imm(0x08)
+    ///     .ldx_imm(0x08)
     ///     .ror_addr_x("test_label")
     ///     .label("test_label")
     ///     .build();
@@ -2348,7 +2360,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
-    ///     .lda_imm(0x08)
+    ///     .ldx_imm(0x08)
     ///     .sbc_addr_x("test_label")
     ///     .label("test_label")
     ///     .build();
@@ -2363,7 +2375,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
-    ///     .lda_imm(0x08)
+    ///     .ldy_imm(0x08)
     ///     .sbc_addr_y("test_label")
     ///     .label("test_label")
     ///     .build();
@@ -2378,6 +2390,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
+    ///     .ldx_imm(0x08)
     ///     .sbc_ind_x("test_label")
     ///     .label("test_label")
     ///     .build();
@@ -2392,6 +2405,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
+    ///     .ldy_imm(0x08)
     ///     .sbc_ind_y("test_label")
     ///     .label("test_label")
     ///     .build();
@@ -2486,7 +2500,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
-    ///     .lda_imm(0x08)
+    ///     .ldx_imm(0x08)
     ///     .sta_addr_x("test_label")
     ///     .label("test_label")
     ///     .build();
@@ -2501,7 +2515,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
-    ///     .lda_imm(0x08)
+    ///     .ldy_imm(0x08)
     ///     .sta_addr_y("test_label")
     ///     .label("test_label")
     ///     .build();
@@ -2516,6 +2530,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
+    ///     .ldx_imm(0x08)
     ///     .sta_ind_x("test_label")
     ///     .label("test_label")
     ///     .build();
@@ -2530,6 +2545,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
+    ///     .ldy_imm(0x08)
     ///     .sta_ind_y("test_label")
     ///     .label("test_label")
     ///     .build();
@@ -2582,7 +2598,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
-    ///     .lda_imm(0x08)
+    ///     .ldy_imm(0x08)
     ///     .stx_addr_y("test_label")
     ///     .label("test_label")
     ///     .build();
@@ -2635,7 +2651,7 @@ impl InstructionBuilder {
     /// ```
     /// use c64_assembler::builder::InstructionBuilder;
     /// let instructions = InstructionBuilder::default()
-    ///     .lda_imm(0x08)
+    ///     .ldx_imm(0x08)
     ///     .sty_addr_x("test_label")
     ///     .label("test_label")
     ///     .build();
