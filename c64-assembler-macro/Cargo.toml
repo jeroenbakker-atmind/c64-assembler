@@ -1,6 +1,6 @@
 [package]
 name = "c64-assembler-macro"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Jeroen Bakker <jeroen@atmind.nl"]
 description = "Convenience macros for c64-assembler crate"
 repository = "https://github.com/jeroenbakker-atmind/c64-assembler"
