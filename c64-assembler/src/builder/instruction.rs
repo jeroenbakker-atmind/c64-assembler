@@ -18,7 +18,7 @@ use crate::{
 /// let instructions = InstructionBuilder::default()
 ///     .label("main_entry_point")
 ///     .lda_imm(0x00)
-///     .sta_addr("VIC20_BORDER_COLOR")
+///     .sta_addr("VIC2_BORDER_COLOR")
 ///     .rts()
 ///     .build();
 /// ```

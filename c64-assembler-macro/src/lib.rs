@@ -29,8 +29,8 @@ pub fn application(input: TokenStream) -> TokenStream {
                     lines.push(line.join(""));
                 }
             }
-            if name == "include_vic20_defines" {
-                lines.push("    .include_vic20_defines()".to_string());
+            if name == "include_vic2_defines" {
+                lines.push("    .include_vic2_defines()".to_string());
             }
             if name == "include_sid_defines" {
                 lines.push("    .include_sid_defines()".to_string());

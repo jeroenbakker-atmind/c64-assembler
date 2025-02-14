@@ -6,7 +6,7 @@ use c64_assembler_macro::application;
 fn main() -> AssemblerResult<()> {
     let application = application!(
         name="Set black border"
-        include_vic20_defines
+        include_vic2_defines
         module!(
             name="main"
             instructions!(
@@ -14,7 +14,7 @@ fn main() -> AssemblerResult<()> {
             main_entry_point:
                 "Load black color into accumulator"
                 lda #$00
-                sta VIC20_BORDER_COLOR
+                sta VIC2_BORDER_COLOR
                 rts
             )
         )
