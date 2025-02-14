@@ -1,6 +1,6 @@
 [package]
 name = "c64-assembler-6502"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Jeroen Bakker <jeroen@atmind.nl"]
 description = "Definition of 6502 instruction set"
 repository = "https://github.com/jeroenbakker-atmind/c64-assembler"
