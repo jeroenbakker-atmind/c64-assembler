@@ -8,7 +8,7 @@ use c64_assembler::validator::AssemblerResult;
 fn main() -> AssemblerResult<()> {
     let application = ApplicationBuilder::default()
         .name("Set black border")
-        .include_vic20_defines()
+        .include_vic2_defines()
         .module(
             ModuleBuilder::default()
                 .name("main")
@@ -18,7 +18,7 @@ fn main() -> AssemblerResult<()> {
                         .label("main_entry_point")
                         .lda_imm(0x00)
                         .comment("Load black color")
-                        .sta_addr("VIC20_BORDER_COLOR")
+                        .sta_addr("VIC2_BORDER_COLOR")
                         .rts()
                         .build(),
                 )

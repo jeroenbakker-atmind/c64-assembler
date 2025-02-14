@@ -8,7 +8,7 @@ use crate::{
 fn test_application() -> AssemblerResult<Application> {
     ApplicationBuilder::default()
         .name("test build dasm")
-        .include_vic20_defines()
+        .include_vic2_defines()
         .module(
             ModuleBuilder::default()
                 .name("main")
@@ -18,7 +18,7 @@ fn test_application() -> AssemblerResult<Application> {
                         .label("main_entry_point")
                         .lda_imm(0x00)
                         .comment("Load black color")
-                        .sta_addr("VIC20_BORDER_COLOR")
+                        .sta_addr("VIC2_BORDER_COLOR")
                         .rts()
                         .build(),
                 )

@@ -31,7 +31,7 @@
 //!
 //! let application = ApplicationBuilder::default()
 //!     .name("Set black border")
-//!     .include_vic20_defines()
+//!     .include_vic2_defines()
 //!     .module(
 //!         ModuleBuilder::default()
 //!             .name("main")
@@ -41,7 +41,7 @@
 //!                     .label("main_entry_point")
 //!                     .lda_imm(0x00)
 //!                     .comment("Load black color")
-//!                     .sta_addr("VIC20_BORDER_COLOR")
+//!                     .sta_addr("VIC2_BORDER_COLOR")
 //!                     .rts()
 //!                     .build(),
 //!             )
@@ -86,7 +86,7 @@
 //!
 //!   processor 6502
 //!
-//! VIC20_BORDER_COLOR = $D020
+//! VIC2_BORDER_COLOR = $D020
 //!
 //!   org $0800
 //!
@@ -98,7 +98,7 @@
 //!
 //! main_entry_point:
 //!   lda #$00
-//!   sta VIC20_BORDER_COLOR
+//!   sta VIC2_BORDER_COLOR
 //!   rts
 //! ; --- Module end: MAIN ---
 //! ```
@@ -132,7 +132,7 @@
 //!
 //! let application = application!(
 //!     name="Set black border"
-//!     include_vic20_defines
+//!     include_vic2_defines
 //!     module!(
 //!         name="main"
 //!         instructions!(
@@ -140,7 +140,7 @@
 //!         main_entry_point:
 //!             "Load black color into accumulator"
 //!             lda #$00
-//!             sta VIC20_BORDER_COLOR
+//!             sta VIC2_BORDER_COLOR
 //!             rts
 //!         )
 //!     )
