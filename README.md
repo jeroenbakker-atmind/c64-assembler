@@ -15,9 +15,6 @@ A modern assembler for the Commodore 64 that integrates seamlessly with Rust and
 
 ## Installation
 
-> [!NOTE]
-> Currently not possible as the crate hasn't been released yet.
-
 You can add `c64-assembler` as a rust dependency into your cargo.toml:
 
 ```sh
@@ -37,7 +34,7 @@ use c64_assembler::builder::InstructionBuilder;
 
 let application = ApplicationBuilder::default()
     .name("Set black border")
-    .add_vic20()
+    .include_vic2_defines()
     .module(
         ModuleBuilder::default()
             .name("main")
@@ -47,7 +44,7 @@ let application = ApplicationBuilder::default()
                     .label("main_entry_point")
                     .lda_imm(0x00)
                     .comment("Load black color")
-                    .sta_addr("VIC20_BORDER_COLOR")
+                    .sta_addr("VIC2_BORDER_COLOR")
                     .rts()
                     .build(),
             )
@@ -85,7 +82,7 @@ println!("{}", source);
 
   processor 6502
 
-VIC20_BORDER_COLOR = $D020
+VIC2_BORDER_COLOR = $D020
 
   org $0800
 
@@ -97,7 +94,7 @@ VIC20_BORDER_COLOR = $D020
 
 main_entry_point:
   lda #$00               ; Load black color
-  sta VIC20_BORDER_COLOR
+  sta VIC2_BORDER_COLOR
   rts
 ```
 
@@ -121,7 +118,7 @@ let application = application!(
         main_entry_point:
             "Load black color into accumulator"
             lda #$00
-            sta VIC20_BORDER_COLOR
+            sta VIC2_BORDER_COLOR
             rts
         )
     )
@@ -142,21 +139,7 @@ We welcome contributions! To get started:
 
 3. Make your changes and submit a pull request.
 
-### Near term targets
-
-**Version 0.1**
-
-*Goal*: Initial release no macros
-
-**Version 0.2**
-
-*Goal*: Add macro support to reduce boiler plating
-
-- [ ] Add kernel defines
-- [ ] Add basic defines
-- [ ] Parse indirect address mode
-- [ ] Add documentation
-- [ ] Add examples
+TIP: Create an issue first, for discussing of getting guidance.
 
 ## License
 
