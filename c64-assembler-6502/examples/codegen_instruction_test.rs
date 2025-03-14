@@ -173,6 +173,7 @@ fn main() {
                 def.instruction
             ));
         }
+
         if def.indirect != NO_INDIRECT {
             lines.push(format!(
                 "
