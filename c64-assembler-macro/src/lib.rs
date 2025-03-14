@@ -119,7 +119,22 @@ fn build_function(input: TokenStream) -> String {
     lines.push("    .build()".to_string());
     lines.join("\n")
 }
-
+/*
+Ident {
+    ident: "jmp",
+    span: #0 bytes(20193..20196),
+},
+Group {
+    delimiter: Parenthesis,
+    stream: TokenStream [
+        Ident {
+            ident: "test",
+            span: #0 bytes(20198..20202),
+        },
+        ],
+        span: #0 bytes(20197..20203),
+    },
+`*/
 fn build_address_mode(
     line: &mut Vec<String>,
     tokens: &[TokenTree],
@@ -147,7 +162,7 @@ fn build_address_mode(
             assert!(allow_absolute);
             return build_address_mode_absolute(line, tokens);
         }
-        _ => todo!(),
+        _ => todo!("HUH!"),
     }
     0
 }
@@ -341,12 +356,12 @@ pub fn function(input: TokenStream) -> TokenStream {
 
 #[proc_macro]
 pub fn instructions(input: TokenStream) -> TokenStream {
-    //dbg!(input.clone());
+    dbg!(input.clone());
     let mut lines = Vec::<String>::default();
     lines.push("{".to_string());
     lines.push("  use c64_assembler::builder::{*};".to_string());
     lines.push(build_instructions(input));
     lines.push("}".to_string());
-    //println!("{:#?}", lines.join("\n"));
+    println!("{:#?}", lines.join("\n"));
     lines.join("\n").parse().unwrap()
 }
