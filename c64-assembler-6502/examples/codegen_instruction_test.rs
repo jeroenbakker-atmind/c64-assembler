@@ -61,7 +61,7 @@ fn main() {
                     test_first(
                         instructions!({0} #<test),
                         OP,
-                        AddressMode::Immediate(Immediate::Low(AddressReference::new(&\"test\"))),
+                        AddressMode::Immediate(Immediate::Low(AddressReference::new(\"test\"))),
                     );
                 }}
 
@@ -70,7 +70,7 @@ fn main() {
                     test_first(
                         instructions!({0} #>test),
                         OP,
-                        AddressMode::Immediate(Immediate::High(AddressReference::new(&\"test\"))),
+                        AddressMode::Immediate(Immediate::High(AddressReference::new(\"test\"))),
                     );
                 }}
                 ",
@@ -102,7 +102,7 @@ fn main() {
                     test_first(
                         instructions!({0} test),
                         OP,
-                        AddressMode::Absolute(AddressReference::new(&\"test\")),
+                        AddressMode::Absolute(AddressReference::new(\"test\")),
                     );
                 }}
 
@@ -111,7 +111,7 @@ fn main() {
                     test_first(
                         instructions!({0} test+1),
                         OP,
-                        AddressMode::Absolute(AddressReference::with_offset(&\"test\", 1)),
+                        AddressMode::Absolute(AddressReference::with_offset(\"test\", 1)),
                     );
                 }}
                 ",
@@ -126,7 +126,7 @@ fn main() {
                     test_first(
                         instructions!({0} test),
                         OP,
-                        AddressMode::Relative(AddressReference::new(&\"test\")),
+                        AddressMode::Relative(AddressReference::new(\"test\")),
                     );
                 }}
 
@@ -135,7 +135,7 @@ fn main() {
                     test_first(
                         instructions!({0} test+1),
                         OP,
-                        AddressMode::Relative(AddressReference::with_offset(&\"test\", 1)),
+                        AddressMode::Relative(AddressReference::with_offset(\"test\", 1)),
                     );
                 }}
                 ",
@@ -151,7 +151,7 @@ fn main() {
                     test_first(
                         instructions!({0} test,x),
                         OP,
-                        AddressMode::AbsoluteX(AddressReference::new(&\"test\")),
+                        AddressMode::AbsoluteX(AddressReference::new(\"test\")),
                     );
                 }}
                 ",
@@ -166,7 +166,7 @@ fn main() {
                     test_first(
                         instructions!({0} test,y),
                         OP,
-                        AddressMode::AbsoluteY(AddressReference::new(&\"test\")),
+                        AddressMode::AbsoluteY(AddressReference::new(\"test\")),
                     );
                 }}
                 ",
@@ -182,7 +182,7 @@ fn main() {
                     test_first(
                         instructions!({0} (test)),
                         OP,
-                        AddressMode::Indirect(AddressReference::new(&\"test\")),
+                        AddressMode::Indirect(AddressReference::new(\"test\")),
                         );
                         }}
                         ",
@@ -198,7 +198,7 @@ fn main() {
                     test_first(
                         instructions!({0} (test,x)),
                         OP,
-                        AddressMode::IndexedIndirect(AddressReference::new(&\"test\")),
+                        AddressMode::IndexedIndirect(AddressReference::new(\"test\")),
                     );
                 }}
                 ",
@@ -214,7 +214,7 @@ fn main() {
                     test_first(
                         instructions!({0} (test),y),
                         OP,
-                        AddressMode::IndirectIndexed(AddressReference::new(&\"test\")),
+                        AddressMode::IndirectIndexed(AddressReference::new(\"test\")),
                     );
                 }}
                 ",

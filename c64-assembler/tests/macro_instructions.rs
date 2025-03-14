@@ -41,7 +41,7 @@ mod adc {
         test_first(
             instructions!(adc #<test),
             OP,
-            AddressMode::Immediate(Immediate::Low(AddressReference::new(&"test"))),
+            AddressMode::Immediate(Immediate::Low(AddressReference::new("test"))),
         );
     }
 
@@ -50,7 +50,7 @@ mod adc {
         test_first(
             instructions!(adc #>test),
             OP,
-            AddressMode::Immediate(Immediate::High(AddressReference::new(&"test"))),
+            AddressMode::Immediate(Immediate::High(AddressReference::new("test"))),
         );
     }
 
@@ -59,7 +59,7 @@ mod adc {
         test_first(
             instructions!(adc test),
             OP,
-            AddressMode::Absolute(AddressReference::new(&"test")),
+            AddressMode::Absolute(AddressReference::new("test")),
         );
     }
 
@@ -68,7 +68,7 @@ mod adc {
         test_first(
             instructions!(adc test+1),
             OP,
-            AddressMode::Absolute(AddressReference::with_offset(&"test", 1)),
+            AddressMode::Absolute(AddressReference::with_offset("test", 1)),
         );
     }
 
@@ -77,7 +77,7 @@ mod adc {
         test_first(
             instructions!(adc test,x),
             OP,
-            AddressMode::AbsoluteX(AddressReference::new(&"test")),
+            AddressMode::AbsoluteX(AddressReference::new("test")),
         );
     }
 
@@ -86,7 +86,7 @@ mod adc {
         test_first(
             instructions!(adc test,y),
             OP,
-            AddressMode::AbsoluteY(AddressReference::new(&"test")),
+            AddressMode::AbsoluteY(AddressReference::new("test")),
         );
     }
 }
@@ -116,7 +116,7 @@ mod and {
         test_first(
             instructions!(and #<test),
             OP,
-            AddressMode::Immediate(Immediate::Low(AddressReference::new(&"test"))),
+            AddressMode::Immediate(Immediate::Low(AddressReference::new("test"))),
         );
     }
 
@@ -125,7 +125,7 @@ mod and {
         test_first(
             instructions!(and #>test),
             OP,
-            AddressMode::Immediate(Immediate::High(AddressReference::new(&"test"))),
+            AddressMode::Immediate(Immediate::High(AddressReference::new("test"))),
         );
     }
 
@@ -134,7 +134,7 @@ mod and {
         test_first(
             instructions!(and test),
             OP,
-            AddressMode::Absolute(AddressReference::new(&"test")),
+            AddressMode::Absolute(AddressReference::new("test")),
         );
     }
 
@@ -143,7 +143,7 @@ mod and {
         test_first(
             instructions!(and test+1),
             OP,
-            AddressMode::Absolute(AddressReference::with_offset(&"test", 1)),
+            AddressMode::Absolute(AddressReference::with_offset("test", 1)),
         );
     }
 
@@ -152,7 +152,7 @@ mod and {
         test_first(
             instructions!(and test,x),
             OP,
-            AddressMode::AbsoluteX(AddressReference::new(&"test")),
+            AddressMode::AbsoluteX(AddressReference::new("test")),
         );
     }
 
@@ -161,7 +161,7 @@ mod and {
         test_first(
             instructions!(and test,y),
             OP,
-            AddressMode::AbsoluteY(AddressReference::new(&"test")),
+            AddressMode::AbsoluteY(AddressReference::new("test")),
         );
     }
 }
@@ -186,7 +186,7 @@ mod asl {
         test_first(
             instructions!(asl test),
             OP,
-            AddressMode::Absolute(AddressReference::new(&"test")),
+            AddressMode::Absolute(AddressReference::new("test")),
         );
     }
 
@@ -195,7 +195,7 @@ mod asl {
         test_first(
             instructions!(asl test+1),
             OP,
-            AddressMode::Absolute(AddressReference::with_offset(&"test", 1)),
+            AddressMode::Absolute(AddressReference::with_offset("test", 1)),
         );
     }
 
@@ -204,7 +204,7 @@ mod asl {
         test_first(
             instructions!(asl test,x),
             OP,
-            AddressMode::AbsoluteX(AddressReference::new(&"test")),
+            AddressMode::AbsoluteX(AddressReference::new("test")),
         );
     }
 }
@@ -224,7 +224,7 @@ mod bcc {
         test_first(
             instructions!(bcc test),
             OP,
-            AddressMode::Relative(AddressReference::new(&"test")),
+            AddressMode::Relative(AddressReference::new("test")),
         );
     }
 
@@ -233,7 +233,7 @@ mod bcc {
         test_first(
             instructions!(bcc test+1),
             OP,
-            AddressMode::Relative(AddressReference::with_offset(&"test", 1)),
+            AddressMode::Relative(AddressReference::with_offset("test", 1)),
         );
     }
 }
@@ -253,7 +253,7 @@ mod bcs {
         test_first(
             instructions!(bcs test),
             OP,
-            AddressMode::Relative(AddressReference::new(&"test")),
+            AddressMode::Relative(AddressReference::new("test")),
         );
     }
 
@@ -262,7 +262,7 @@ mod bcs {
         test_first(
             instructions!(bcs test+1),
             OP,
-            AddressMode::Relative(AddressReference::with_offset(&"test", 1)),
+            AddressMode::Relative(AddressReference::with_offset("test", 1)),
         );
     }
 }
@@ -282,7 +282,7 @@ mod beq {
         test_first(
             instructions!(beq test),
             OP,
-            AddressMode::Relative(AddressReference::new(&"test")),
+            AddressMode::Relative(AddressReference::new("test")),
         );
     }
 
@@ -291,7 +291,7 @@ mod beq {
         test_first(
             instructions!(beq test+1),
             OP,
-            AddressMode::Relative(AddressReference::with_offset(&"test", 1)),
+            AddressMode::Relative(AddressReference::with_offset("test", 1)),
         );
     }
 }
@@ -311,7 +311,7 @@ mod bit {
         test_first(
             instructions!(bit test),
             OP,
-            AddressMode::Absolute(AddressReference::new(&"test")),
+            AddressMode::Absolute(AddressReference::new("test")),
         );
     }
 
@@ -320,7 +320,7 @@ mod bit {
         test_first(
             instructions!(bit test+1),
             OP,
-            AddressMode::Absolute(AddressReference::with_offset(&"test", 1)),
+            AddressMode::Absolute(AddressReference::with_offset("test", 1)),
         );
     }
 }
@@ -340,7 +340,7 @@ mod bmi {
         test_first(
             instructions!(bmi test),
             OP,
-            AddressMode::Relative(AddressReference::new(&"test")),
+            AddressMode::Relative(AddressReference::new("test")),
         );
     }
 
@@ -349,7 +349,7 @@ mod bmi {
         test_first(
             instructions!(bmi test+1),
             OP,
-            AddressMode::Relative(AddressReference::with_offset(&"test", 1)),
+            AddressMode::Relative(AddressReference::with_offset("test", 1)),
         );
     }
 }
@@ -369,7 +369,7 @@ mod bne {
         test_first(
             instructions!(bne test),
             OP,
-            AddressMode::Relative(AddressReference::new(&"test")),
+            AddressMode::Relative(AddressReference::new("test")),
         );
     }
 
@@ -378,7 +378,7 @@ mod bne {
         test_first(
             instructions!(bne test+1),
             OP,
-            AddressMode::Relative(AddressReference::with_offset(&"test", 1)),
+            AddressMode::Relative(AddressReference::with_offset("test", 1)),
         );
     }
 }
@@ -398,7 +398,7 @@ mod bpl {
         test_first(
             instructions!(bpl test),
             OP,
-            AddressMode::Relative(AddressReference::new(&"test")),
+            AddressMode::Relative(AddressReference::new("test")),
         );
     }
 
@@ -407,7 +407,7 @@ mod bpl {
         test_first(
             instructions!(bpl test+1),
             OP,
-            AddressMode::Relative(AddressReference::with_offset(&"test", 1)),
+            AddressMode::Relative(AddressReference::with_offset("test", 1)),
         );
     }
 }
@@ -432,7 +432,7 @@ mod bvc {
         test_first(
             instructions!(bvc test),
             OP,
-            AddressMode::Relative(AddressReference::new(&"test")),
+            AddressMode::Relative(AddressReference::new("test")),
         );
     }
 
@@ -441,7 +441,7 @@ mod bvc {
         test_first(
             instructions!(bvc test+1),
             OP,
-            AddressMode::Relative(AddressReference::with_offset(&"test", 1)),
+            AddressMode::Relative(AddressReference::with_offset("test", 1)),
         );
     }
 }
@@ -461,7 +461,7 @@ mod bvs {
         test_first(
             instructions!(bvs test),
             OP,
-            AddressMode::Relative(AddressReference::new(&"test")),
+            AddressMode::Relative(AddressReference::new("test")),
         );
     }
 
@@ -470,7 +470,7 @@ mod bvs {
         test_first(
             instructions!(bvs test+1),
             OP,
-            AddressMode::Relative(AddressReference::with_offset(&"test", 1)),
+            AddressMode::Relative(AddressReference::with_offset("test", 1)),
         );
     }
 }
@@ -520,7 +520,7 @@ mod cmp {
         test_first(
             instructions!(cmp #<test),
             OP,
-            AddressMode::Immediate(Immediate::Low(AddressReference::new(&"test"))),
+            AddressMode::Immediate(Immediate::Low(AddressReference::new("test"))),
         );
     }
 
@@ -529,7 +529,7 @@ mod cmp {
         test_first(
             instructions!(cmp #>test),
             OP,
-            AddressMode::Immediate(Immediate::High(AddressReference::new(&"test"))),
+            AddressMode::Immediate(Immediate::High(AddressReference::new("test"))),
         );
     }
 
@@ -538,7 +538,7 @@ mod cmp {
         test_first(
             instructions!(cmp test),
             OP,
-            AddressMode::Absolute(AddressReference::new(&"test")),
+            AddressMode::Absolute(AddressReference::new("test")),
         );
     }
 
@@ -547,7 +547,7 @@ mod cmp {
         test_first(
             instructions!(cmp test+1),
             OP,
-            AddressMode::Absolute(AddressReference::with_offset(&"test", 1)),
+            AddressMode::Absolute(AddressReference::with_offset("test", 1)),
         );
     }
 
@@ -556,7 +556,7 @@ mod cmp {
         test_first(
             instructions!(cmp test,x),
             OP,
-            AddressMode::AbsoluteX(AddressReference::new(&"test")),
+            AddressMode::AbsoluteX(AddressReference::new("test")),
         );
     }
 
@@ -565,7 +565,7 @@ mod cmp {
         test_first(
             instructions!(cmp test,y),
             OP,
-            AddressMode::AbsoluteY(AddressReference::new(&"test")),
+            AddressMode::AbsoluteY(AddressReference::new("test")),
         );
     }
 }
@@ -595,7 +595,7 @@ mod cpx {
         test_first(
             instructions!(cpx #<test),
             OP,
-            AddressMode::Immediate(Immediate::Low(AddressReference::new(&"test"))),
+            AddressMode::Immediate(Immediate::Low(AddressReference::new("test"))),
         );
     }
 
@@ -604,7 +604,7 @@ mod cpx {
         test_first(
             instructions!(cpx #>test),
             OP,
-            AddressMode::Immediate(Immediate::High(AddressReference::new(&"test"))),
+            AddressMode::Immediate(Immediate::High(AddressReference::new("test"))),
         );
     }
 
@@ -613,7 +613,7 @@ mod cpx {
         test_first(
             instructions!(cpx test),
             OP,
-            AddressMode::Absolute(AddressReference::new(&"test")),
+            AddressMode::Absolute(AddressReference::new("test")),
         );
     }
 
@@ -622,7 +622,7 @@ mod cpx {
         test_first(
             instructions!(cpx test+1),
             OP,
-            AddressMode::Absolute(AddressReference::with_offset(&"test", 1)),
+            AddressMode::Absolute(AddressReference::with_offset("test", 1)),
         );
     }
 }
@@ -652,7 +652,7 @@ mod cpy {
         test_first(
             instructions!(cpy #<test),
             OP,
-            AddressMode::Immediate(Immediate::Low(AddressReference::new(&"test"))),
+            AddressMode::Immediate(Immediate::Low(AddressReference::new("test"))),
         );
     }
 
@@ -661,7 +661,7 @@ mod cpy {
         test_first(
             instructions!(cpy #>test),
             OP,
-            AddressMode::Immediate(Immediate::High(AddressReference::new(&"test"))),
+            AddressMode::Immediate(Immediate::High(AddressReference::new("test"))),
         );
     }
 
@@ -670,7 +670,7 @@ mod cpy {
         test_first(
             instructions!(cpy test),
             OP,
-            AddressMode::Absolute(AddressReference::new(&"test")),
+            AddressMode::Absolute(AddressReference::new("test")),
         );
     }
 
@@ -679,7 +679,7 @@ mod cpy {
         test_first(
             instructions!(cpy test+1),
             OP,
-            AddressMode::Absolute(AddressReference::with_offset(&"test", 1)),
+            AddressMode::Absolute(AddressReference::with_offset("test", 1)),
         );
     }
 }
@@ -699,7 +699,7 @@ mod dec {
         test_first(
             instructions!(dec test),
             OP,
-            AddressMode::Absolute(AddressReference::new(&"test")),
+            AddressMode::Absolute(AddressReference::new("test")),
         );
     }
 
@@ -708,7 +708,7 @@ mod dec {
         test_first(
             instructions!(dec test+1),
             OP,
-            AddressMode::Absolute(AddressReference::with_offset(&"test", 1)),
+            AddressMode::Absolute(AddressReference::with_offset("test", 1)),
         );
     }
 
@@ -717,7 +717,7 @@ mod dec {
         test_first(
             instructions!(dec test,x),
             OP,
-            AddressMode::AbsoluteX(AddressReference::new(&"test")),
+            AddressMode::AbsoluteX(AddressReference::new("test")),
         );
     }
 }
@@ -757,7 +757,7 @@ mod eor {
         test_first(
             instructions!(eor #<test),
             OP,
-            AddressMode::Immediate(Immediate::Low(AddressReference::new(&"test"))),
+            AddressMode::Immediate(Immediate::Low(AddressReference::new("test"))),
         );
     }
 
@@ -766,7 +766,7 @@ mod eor {
         test_first(
             instructions!(eor #>test),
             OP,
-            AddressMode::Immediate(Immediate::High(AddressReference::new(&"test"))),
+            AddressMode::Immediate(Immediate::High(AddressReference::new("test"))),
         );
     }
 
@@ -775,7 +775,7 @@ mod eor {
         test_first(
             instructions!(eor test),
             OP,
-            AddressMode::Absolute(AddressReference::new(&"test")),
+            AddressMode::Absolute(AddressReference::new("test")),
         );
     }
 
@@ -784,7 +784,7 @@ mod eor {
         test_first(
             instructions!(eor test+1),
             OP,
-            AddressMode::Absolute(AddressReference::with_offset(&"test", 1)),
+            AddressMode::Absolute(AddressReference::with_offset("test", 1)),
         );
     }
 
@@ -793,7 +793,7 @@ mod eor {
         test_first(
             instructions!(eor test,x),
             OP,
-            AddressMode::AbsoluteX(AddressReference::new(&"test")),
+            AddressMode::AbsoluteX(AddressReference::new("test")),
         );
     }
 
@@ -802,7 +802,7 @@ mod eor {
         test_first(
             instructions!(eor test,y),
             OP,
-            AddressMode::AbsoluteY(AddressReference::new(&"test")),
+            AddressMode::AbsoluteY(AddressReference::new("test")),
         );
     }
 }
@@ -822,7 +822,7 @@ mod inc {
         test_first(
             instructions!(inc test),
             OP,
-            AddressMode::Absolute(AddressReference::new(&"test")),
+            AddressMode::Absolute(AddressReference::new("test")),
         );
     }
 
@@ -831,7 +831,7 @@ mod inc {
         test_first(
             instructions!(inc test+1),
             OP,
-            AddressMode::Absolute(AddressReference::with_offset(&"test", 1)),
+            AddressMode::Absolute(AddressReference::with_offset("test", 1)),
         );
     }
 
@@ -840,7 +840,7 @@ mod inc {
         test_first(
             instructions!(inc test,x),
             OP,
-            AddressMode::AbsoluteX(AddressReference::new(&"test")),
+            AddressMode::AbsoluteX(AddressReference::new("test")),
         );
     }
 }
@@ -870,7 +870,7 @@ mod jmp {
         test_first(
             instructions!(jmp test),
             OP,
-            AddressMode::Absolute(AddressReference::new(&"test")),
+            AddressMode::Absolute(AddressReference::new("test")),
         );
     }
 
@@ -879,16 +879,15 @@ mod jmp {
         test_first(
             instructions!(jmp test+1),
             OP,
-            AddressMode::Absolute(AddressReference::with_offset(&"test", 1)),
+            AddressMode::Absolute(AddressReference::with_offset("test", 1)),
         );
     }
-
     #[test]
     fn ind() {
         test_first(
-            instructions!(jmp (test)),
+            instructions!(jmp(test)),
             OP,
-            AddressMode::Indirect(AddressReference::new(&"test")),
+            AddressMode::Indirect(AddressReference::new("test")),
         );
     }
 }
@@ -908,7 +907,7 @@ mod jsr {
         test_first(
             instructions!(jsr test),
             OP,
-            AddressMode::Absolute(AddressReference::new(&"test")),
+            AddressMode::Absolute(AddressReference::new("test")),
         );
     }
 
@@ -917,7 +916,7 @@ mod jsr {
         test_first(
             instructions!(jsr test+1),
             OP,
-            AddressMode::Absolute(AddressReference::with_offset(&"test", 1)),
+            AddressMode::Absolute(AddressReference::with_offset("test", 1)),
         );
     }
 }
@@ -947,7 +946,7 @@ mod lda {
         test_first(
             instructions!(lda #<test),
             OP,
-            AddressMode::Immediate(Immediate::Low(AddressReference::new(&"test"))),
+            AddressMode::Immediate(Immediate::Low(AddressReference::new("test"))),
         );
     }
 
@@ -956,7 +955,7 @@ mod lda {
         test_first(
             instructions!(lda #>test),
             OP,
-            AddressMode::Immediate(Immediate::High(AddressReference::new(&"test"))),
+            AddressMode::Immediate(Immediate::High(AddressReference::new("test"))),
         );
     }
 
@@ -965,7 +964,7 @@ mod lda {
         test_first(
             instructions!(lda test),
             OP,
-            AddressMode::Absolute(AddressReference::new(&"test")),
+            AddressMode::Absolute(AddressReference::new("test")),
         );
     }
 
@@ -974,7 +973,7 @@ mod lda {
         test_first(
             instructions!(lda test+1),
             OP,
-            AddressMode::Absolute(AddressReference::with_offset(&"test", 1)),
+            AddressMode::Absolute(AddressReference::with_offset("test", 1)),
         );
     }
 
@@ -983,7 +982,7 @@ mod lda {
         test_first(
             instructions!(lda test,x),
             OP,
-            AddressMode::AbsoluteX(AddressReference::new(&"test")),
+            AddressMode::AbsoluteX(AddressReference::new("test")),
         );
     }
 
@@ -992,7 +991,7 @@ mod lda {
         test_first(
             instructions!(lda test,y),
             OP,
-            AddressMode::AbsoluteY(AddressReference::new(&"test")),
+            AddressMode::AbsoluteY(AddressReference::new("test")),
         );
     }
 }
@@ -1022,7 +1021,7 @@ mod ldx {
         test_first(
             instructions!(ldx #<test),
             OP,
-            AddressMode::Immediate(Immediate::Low(AddressReference::new(&"test"))),
+            AddressMode::Immediate(Immediate::Low(AddressReference::new("test"))),
         );
     }
 
@@ -1031,7 +1030,7 @@ mod ldx {
         test_first(
             instructions!(ldx #>test),
             OP,
-            AddressMode::Immediate(Immediate::High(AddressReference::new(&"test"))),
+            AddressMode::Immediate(Immediate::High(AddressReference::new("test"))),
         );
     }
 
@@ -1040,7 +1039,7 @@ mod ldx {
         test_first(
             instructions!(ldx test),
             OP,
-            AddressMode::Absolute(AddressReference::new(&"test")),
+            AddressMode::Absolute(AddressReference::new("test")),
         );
     }
 
@@ -1049,7 +1048,7 @@ mod ldx {
         test_first(
             instructions!(ldx test+1),
             OP,
-            AddressMode::Absolute(AddressReference::with_offset(&"test", 1)),
+            AddressMode::Absolute(AddressReference::with_offset("test", 1)),
         );
     }
 
@@ -1058,7 +1057,7 @@ mod ldx {
         test_first(
             instructions!(ldx test,y),
             OP,
-            AddressMode::AbsoluteY(AddressReference::new(&"test")),
+            AddressMode::AbsoluteY(AddressReference::new("test")),
         );
     }
 }
@@ -1088,7 +1087,7 @@ mod ldy {
         test_first(
             instructions!(ldy #<test),
             OP,
-            AddressMode::Immediate(Immediate::Low(AddressReference::new(&"test"))),
+            AddressMode::Immediate(Immediate::Low(AddressReference::new("test"))),
         );
     }
 
@@ -1097,7 +1096,7 @@ mod ldy {
         test_first(
             instructions!(ldy #>test),
             OP,
-            AddressMode::Immediate(Immediate::High(AddressReference::new(&"test"))),
+            AddressMode::Immediate(Immediate::High(AddressReference::new("test"))),
         );
     }
 
@@ -1106,7 +1105,7 @@ mod ldy {
         test_first(
             instructions!(ldy test),
             OP,
-            AddressMode::Absolute(AddressReference::new(&"test")),
+            AddressMode::Absolute(AddressReference::new("test")),
         );
     }
 
@@ -1115,7 +1114,7 @@ mod ldy {
         test_first(
             instructions!(ldy test+1),
             OP,
-            AddressMode::Absolute(AddressReference::with_offset(&"test", 1)),
+            AddressMode::Absolute(AddressReference::with_offset("test", 1)),
         );
     }
 
@@ -1124,7 +1123,7 @@ mod ldy {
         test_first(
             instructions!(ldy test,x),
             OP,
-            AddressMode::AbsoluteX(AddressReference::new(&"test")),
+            AddressMode::AbsoluteX(AddressReference::new("test")),
         );
     }
 }
@@ -1149,7 +1148,7 @@ mod lsr {
         test_first(
             instructions!(lsr test),
             OP,
-            AddressMode::Absolute(AddressReference::new(&"test")),
+            AddressMode::Absolute(AddressReference::new("test")),
         );
     }
 
@@ -1158,7 +1157,7 @@ mod lsr {
         test_first(
             instructions!(lsr test+1),
             OP,
-            AddressMode::Absolute(AddressReference::with_offset(&"test", 1)),
+            AddressMode::Absolute(AddressReference::with_offset("test", 1)),
         );
     }
 
@@ -1167,7 +1166,7 @@ mod lsr {
         test_first(
             instructions!(lsr test,x),
             OP,
-            AddressMode::AbsoluteX(AddressReference::new(&"test")),
+            AddressMode::AbsoluteX(AddressReference::new("test")),
         );
     }
 }
@@ -1202,7 +1201,7 @@ mod ora {
         test_first(
             instructions!(ora #<test),
             OP,
-            AddressMode::Immediate(Immediate::Low(AddressReference::new(&"test"))),
+            AddressMode::Immediate(Immediate::Low(AddressReference::new("test"))),
         );
     }
 
@@ -1211,7 +1210,7 @@ mod ora {
         test_first(
             instructions!(ora #>test),
             OP,
-            AddressMode::Immediate(Immediate::High(AddressReference::new(&"test"))),
+            AddressMode::Immediate(Immediate::High(AddressReference::new("test"))),
         );
     }
 
@@ -1220,7 +1219,7 @@ mod ora {
         test_first(
             instructions!(ora test),
             OP,
-            AddressMode::Absolute(AddressReference::new(&"test")),
+            AddressMode::Absolute(AddressReference::new("test")),
         );
     }
 
@@ -1229,7 +1228,7 @@ mod ora {
         test_first(
             instructions!(ora test+1),
             OP,
-            AddressMode::Absolute(AddressReference::with_offset(&"test", 1)),
+            AddressMode::Absolute(AddressReference::with_offset("test", 1)),
         );
     }
 
@@ -1238,7 +1237,7 @@ mod ora {
         test_first(
             instructions!(ora test,x),
             OP,
-            AddressMode::AbsoluteX(AddressReference::new(&"test")),
+            AddressMode::AbsoluteX(AddressReference::new("test")),
         );
     }
 
@@ -1247,7 +1246,7 @@ mod ora {
         test_first(
             instructions!(ora test,y),
             OP,
-            AddressMode::AbsoluteY(AddressReference::new(&"test")),
+            AddressMode::AbsoluteY(AddressReference::new("test")),
         );
     }
 }
@@ -1292,7 +1291,7 @@ mod rol {
         test_first(
             instructions!(rol test),
             OP,
-            AddressMode::Absolute(AddressReference::new(&"test")),
+            AddressMode::Absolute(AddressReference::new("test")),
         );
     }
 
@@ -1301,7 +1300,7 @@ mod rol {
         test_first(
             instructions!(rol test+1),
             OP,
-            AddressMode::Absolute(AddressReference::with_offset(&"test", 1)),
+            AddressMode::Absolute(AddressReference::with_offset("test", 1)),
         );
     }
 
@@ -1310,7 +1309,7 @@ mod rol {
         test_first(
             instructions!(rol test,x),
             OP,
-            AddressMode::AbsoluteX(AddressReference::new(&"test")),
+            AddressMode::AbsoluteX(AddressReference::new("test")),
         );
     }
 }
@@ -1335,7 +1334,7 @@ mod ror {
         test_first(
             instructions!(ror test),
             OP,
-            AddressMode::Absolute(AddressReference::new(&"test")),
+            AddressMode::Absolute(AddressReference::new("test")),
         );
     }
 
@@ -1344,7 +1343,7 @@ mod ror {
         test_first(
             instructions!(ror test+1),
             OP,
-            AddressMode::Absolute(AddressReference::with_offset(&"test", 1)),
+            AddressMode::Absolute(AddressReference::with_offset("test", 1)),
         );
     }
 
@@ -1353,7 +1352,7 @@ mod ror {
         test_first(
             instructions!(ror test,x),
             OP,
-            AddressMode::AbsoluteX(AddressReference::new(&"test")),
+            AddressMode::AbsoluteX(AddressReference::new("test")),
         );
     }
 }
@@ -1393,7 +1392,7 @@ mod sbc {
         test_first(
             instructions!(sbc #<test),
             OP,
-            AddressMode::Immediate(Immediate::Low(AddressReference::new(&"test"))),
+            AddressMode::Immediate(Immediate::Low(AddressReference::new("test"))),
         );
     }
 
@@ -1402,7 +1401,7 @@ mod sbc {
         test_first(
             instructions!(sbc #>test),
             OP,
-            AddressMode::Immediate(Immediate::High(AddressReference::new(&"test"))),
+            AddressMode::Immediate(Immediate::High(AddressReference::new("test"))),
         );
     }
 
@@ -1411,7 +1410,7 @@ mod sbc {
         test_first(
             instructions!(sbc test),
             OP,
-            AddressMode::Absolute(AddressReference::new(&"test")),
+            AddressMode::Absolute(AddressReference::new("test")),
         );
     }
 
@@ -1420,7 +1419,7 @@ mod sbc {
         test_first(
             instructions!(sbc test+1),
             OP,
-            AddressMode::Absolute(AddressReference::with_offset(&"test", 1)),
+            AddressMode::Absolute(AddressReference::with_offset("test", 1)),
         );
     }
 
@@ -1429,7 +1428,7 @@ mod sbc {
         test_first(
             instructions!(sbc test,x),
             OP,
-            AddressMode::AbsoluteX(AddressReference::new(&"test")),
+            AddressMode::AbsoluteX(AddressReference::new("test")),
         );
     }
 
@@ -1438,7 +1437,7 @@ mod sbc {
         test_first(
             instructions!(sbc test,y),
             OP,
-            AddressMode::AbsoluteY(AddressReference::new(&"test")),
+            AddressMode::AbsoluteY(AddressReference::new("test")),
         );
     }
 }
@@ -1473,7 +1472,7 @@ mod sta {
         test_first(
             instructions!(sta test),
             OP,
-            AddressMode::Absolute(AddressReference::new(&"test")),
+            AddressMode::Absolute(AddressReference::new("test")),
         );
     }
 
@@ -1482,7 +1481,7 @@ mod sta {
         test_first(
             instructions!(sta test+1),
             OP,
-            AddressMode::Absolute(AddressReference::with_offset(&"test", 1)),
+            AddressMode::Absolute(AddressReference::with_offset("test", 1)),
         );
     }
 
@@ -1491,7 +1490,7 @@ mod sta {
         test_first(
             instructions!(sta test,x),
             OP,
-            AddressMode::AbsoluteX(AddressReference::new(&"test")),
+            AddressMode::AbsoluteX(AddressReference::new("test")),
         );
     }
 
@@ -1500,7 +1499,7 @@ mod sta {
         test_first(
             instructions!(sta test,y),
             OP,
-            AddressMode::AbsoluteY(AddressReference::new(&"test")),
+            AddressMode::AbsoluteY(AddressReference::new("test")),
         );
     }
 }
@@ -1520,7 +1519,7 @@ mod stx {
         test_first(
             instructions!(stx test),
             OP,
-            AddressMode::Absolute(AddressReference::new(&"test")),
+            AddressMode::Absolute(AddressReference::new("test")),
         );
     }
 
@@ -1529,7 +1528,7 @@ mod stx {
         test_first(
             instructions!(stx test+1),
             OP,
-            AddressMode::Absolute(AddressReference::with_offset(&"test", 1)),
+            AddressMode::Absolute(AddressReference::with_offset("test", 1)),
         );
     }
 
@@ -1538,7 +1537,7 @@ mod stx {
         test_first(
             instructions!(stx test,y),
             OP,
-            AddressMode::AbsoluteY(AddressReference::new(&"test")),
+            AddressMode::AbsoluteY(AddressReference::new("test")),
         );
     }
 }
@@ -1558,7 +1557,7 @@ mod sty {
         test_first(
             instructions!(sty test),
             OP,
-            AddressMode::Absolute(AddressReference::new(&"test")),
+            AddressMode::Absolute(AddressReference::new("test")),
         );
     }
 
@@ -1567,7 +1566,7 @@ mod sty {
         test_first(
             instructions!(sty test+1),
             OP,
-            AddressMode::Absolute(AddressReference::with_offset(&"test", 1)),
+            AddressMode::Absolute(AddressReference::with_offset("test", 1)),
         );
     }
 
@@ -1576,7 +1575,7 @@ mod sty {
         test_first(
             instructions!(sty test,x),
             OP,
-            AddressMode::AbsoluteX(AddressReference::new(&"test")),
+            AddressMode::AbsoluteX(AddressReference::new("test")),
         );
     }
 }
