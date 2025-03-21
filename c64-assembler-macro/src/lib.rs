@@ -149,10 +149,6 @@ fn build_address_mode(
                 assert!(allow_immediate);
                 return build_address_mode_imm(line, &tokens[1..]) + 1;
             }
-            if punct.to_string() == "(" {
-                assert!(allow_indirect);
-                return build_address_mode_indirect(line, &tokens[1..]) + 1;
-            }
         }
         TokenTree::Ident(ident) => {
             if ident.to_string() == *"a" {
@@ -161,6 +157,10 @@ fn build_address_mode(
             }
             assert!(allow_absolute);
             return build_address_mode_absolute(line, tokens);
+        }
+        TokenTree::Group(_group) => {
+            assert!(allow_indirect);
+            return build_address_mode_indirect(line, &tokens[0..]);
         }
         _ => todo!("HUH!"),
     }
@@ -213,7 +213,37 @@ fn build_address_mode_absolute(line: &mut Vec<String>, tokens: &[TokenTree]) -> 
 }
 
 fn build_address_mode_indirect(line: &mut Vec<String>, tokens: &[TokenTree]) -> usize {
-    0
+    let mut is_indirect_indexed = false;
+    let mut is_indexed_indirect = false;
+    let mut address = String::new();
+    if let TokenTree::Group(group) = &tokens[0] {
+        for token in group.stream() {
+            if let TokenTree::Ident(identifier) = &token {
+                address = identifier.to_string();
+            }
+            if let TokenTree::Punct(punct) = &token {
+                if punct.as_char() == ',' {
+                    is_indexed_indirect = true;
+                }
+            }
+        }
+    }
+    if let Some(TokenTree::Punct(punct)) = &tokens.get(1) {
+        if punct.as_char() == ',' {
+            is_indirect_indexed = true;
+        }
+    }
+
+    if is_indexed_indirect {
+        line.push(format!("_ind_y(\"{address}\")"));
+        1
+    } else if is_indirect_indexed {
+        line.push(format!("_ind_x(\"{address}\")"));
+        3
+    } else {
+        line.push(format!("_ind(\"{address}\")"));
+        1
+    }
 }
 
 fn build_address_mode_imm(line: &mut Vec<String>, tokens: &[TokenTree]) -> usize {
