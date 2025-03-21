@@ -189,8 +189,7 @@ fn main() {
                 def.instruction.to_string()
             ));
         }
-        /*
-        if def.indexed_indirect != UNUSED {
+        if def.indexed_indirect != NO_INDIRECT {
             lines.push(format!(
                 "
                 #[test]
@@ -205,8 +204,7 @@ fn main() {
                 def.instruction.to_string()
             ));
         }
-
-        if def.indirect_indexed != UNUSED {
+        if def.indirect_indexed != NO_INDIRECT {
             lines.push(format!(
                 "
                 #[test]
@@ -221,7 +219,6 @@ fn main() {
                 def.instruction.to_string()
             ));
         }
-        */
 
         // Close module
         lines.push(

@@ -89,6 +89,24 @@ mod adc {
             AddressMode::AbsoluteY(AddressReference::new("test")),
         );
     }
+
+    #[test]
+    fn ind_x() {
+        test_first(
+            instructions!(adc(test, x)),
+            OP,
+            AddressMode::IndexedIndirect(AddressReference::new("test")),
+        );
+    }
+
+    #[test]
+    fn ind_y() {
+        test_first(
+            instructions!(adc(test), y),
+            OP,
+            AddressMode::IndirectIndexed(AddressReference::new("test")),
+        );
+    }
 }
 
 mod and {
@@ -162,6 +180,24 @@ mod and {
             instructions!(and test,y),
             OP,
             AddressMode::AbsoluteY(AddressReference::new("test")),
+        );
+    }
+
+    #[test]
+    fn ind_x() {
+        test_first(
+            instructions!(and(test, x)),
+            OP,
+            AddressMode::IndexedIndirect(AddressReference::new("test")),
+        );
+    }
+
+    #[test]
+    fn ind_y() {
+        test_first(
+            instructions!(and(test), y),
+            OP,
+            AddressMode::IndirectIndexed(AddressReference::new("test")),
         );
     }
 }
@@ -568,6 +604,24 @@ mod cmp {
             AddressMode::AbsoluteY(AddressReference::new("test")),
         );
     }
+
+    #[test]
+    fn ind_x() {
+        test_first(
+            instructions!(cmp(test, x)),
+            OP,
+            AddressMode::IndexedIndirect(AddressReference::new("test")),
+        );
+    }
+
+    #[test]
+    fn ind_y() {
+        test_first(
+            instructions!(cmp(test), y),
+            OP,
+            AddressMode::IndirectIndexed(AddressReference::new("test")),
+        );
+    }
 }
 
 mod cpx {
@@ -805,6 +859,24 @@ mod eor {
             AddressMode::AbsoluteY(AddressReference::new("test")),
         );
     }
+
+    #[test]
+    fn ind_x() {
+        test_first(
+            instructions!(eor(test, x)),
+            OP,
+            AddressMode::IndexedIndirect(AddressReference::new("test")),
+        );
+    }
+
+    #[test]
+    fn ind_y() {
+        test_first(
+            instructions!(eor(test), y),
+            OP,
+            AddressMode::IndirectIndexed(AddressReference::new("test")),
+        );
+    }
 }
 
 mod inc {
@@ -882,6 +954,7 @@ mod jmp {
             AddressMode::Absolute(AddressReference::with_offset("test", 1)),
         );
     }
+
     #[test]
     fn ind() {
         test_first(
@@ -992,6 +1065,24 @@ mod lda {
             instructions!(lda test,y),
             OP,
             AddressMode::AbsoluteY(AddressReference::new("test")),
+        );
+    }
+
+    #[test]
+    fn ind_x() {
+        test_first(
+            instructions!(lda(test, x)),
+            OP,
+            AddressMode::IndexedIndirect(AddressReference::new("test")),
+        );
+    }
+
+    #[test]
+    fn ind_y() {
+        test_first(
+            instructions!(lda(test), y),
+            OP,
+            AddressMode::IndirectIndexed(AddressReference::new("test")),
         );
     }
 }
@@ -1249,6 +1340,24 @@ mod ora {
             AddressMode::AbsoluteY(AddressReference::new("test")),
         );
     }
+
+    #[test]
+    fn ind_x() {
+        test_first(
+            instructions!(ora(test, x)),
+            OP,
+            AddressMode::IndexedIndirect(AddressReference::new("test")),
+        );
+    }
+
+    #[test]
+    fn ind_y() {
+        test_first(
+            instructions!(ora(test), y),
+            OP,
+            AddressMode::IndirectIndexed(AddressReference::new("test")),
+        );
+    }
 }
 
 #[test]
@@ -1440,6 +1549,24 @@ mod sbc {
             AddressMode::AbsoluteY(AddressReference::new("test")),
         );
     }
+
+    #[test]
+    fn ind_x() {
+        test_first(
+            instructions!(sbc(test, x)),
+            OP,
+            AddressMode::IndexedIndirect(AddressReference::new("test")),
+        );
+    }
+
+    #[test]
+    fn ind_y() {
+        test_first(
+            instructions!(sbc(test), y),
+            OP,
+            AddressMode::IndirectIndexed(AddressReference::new("test")),
+        );
+    }
 }
 
 #[test]
@@ -1500,6 +1627,24 @@ mod sta {
             instructions!(sta test,y),
             OP,
             AddressMode::AbsoluteY(AddressReference::new("test")),
+        );
+    }
+
+    #[test]
+    fn ind_x() {
+        test_first(
+            instructions!(sta(test, x)),
+            OP,
+            AddressMode::IndexedIndirect(AddressReference::new("test")),
+        );
+    }
+
+    #[test]
+    fn ind_y() {
+        test_first(
+            instructions!(sta(test), y),
+            OP,
+            AddressMode::IndirectIndexed(AddressReference::new("test")),
         );
     }
 }

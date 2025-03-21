@@ -224,6 +224,7 @@ fn build_address_mode_indirect(line: &mut Vec<String>, tokens: &[TokenTree]) -> 
             if let TokenTree::Punct(punct) = &token {
                 if punct.as_char() == ',' {
                     is_indexed_indirect = true;
+                    break;
                 }
             }
         }
@@ -235,10 +236,10 @@ fn build_address_mode_indirect(line: &mut Vec<String>, tokens: &[TokenTree]) -> 
     }
 
     if is_indexed_indirect {
-        line.push(format!("_ind_y(\"{address}\")"));
+        line.push(format!("_ind_x(\"{address}\")"));
         1
     } else if is_indirect_indexed {
-        line.push(format!("_ind_x(\"{address}\")"));
+        line.push(format!("_ind_y(\"{address}\")"));
         3
     } else {
         line.push(format!("_ind(\"{address}\")"));
