@@ -1,8 +1,8 @@
 use c64_assembler_6502::{
     isa_6502,
     opcodes::{
-        NO_ABSOLUTE, NO_ABSOLUTE_X, NO_ABSOLUTE_Y, NO_ACCUMULATOR, NO_IMMEDIATE, NO_IMPLIED, NO_RELATIVE, NO_ZEROPAGE,
-        NO_ZEROPAGE_X, NO_ZEROPAGE_Y,
+        NO_ABSOLUTE, NO_ABSOLUTE_X, NO_ABSOLUTE_Y, NO_ACCUMULATOR, NO_IMMEDIATE, NO_IMPLIED, NO_INDIRECT, NO_RELATIVE,
+        NO_ZEROPAGE, NO_ZEROPAGE_X, NO_ZEROPAGE_Y,
     },
 };
 
@@ -61,7 +61,7 @@ fn main() {
                     test_first(
                         instructions!({0} #<test),
                         OP,
-                        AddressMode::Immediate(Immediate::Low(AddressReference::new(&\"test\"))),
+                        AddressMode::Immediate(Immediate::Low(AddressReference::new(\"test\"))),
                     );
                 }}
 
@@ -70,7 +70,7 @@ fn main() {
                     test_first(
                         instructions!({0} #>test),
                         OP,
-                        AddressMode::Immediate(Immediate::High(AddressReference::new(&\"test\"))),
+                        AddressMode::Immediate(Immediate::High(AddressReference::new(\"test\"))),
                     );
                 }}
                 ",
@@ -102,7 +102,7 @@ fn main() {
                     test_first(
                         instructions!({0} test),
                         OP,
-                        AddressMode::Absolute(AddressReference::new(&\"test\")),
+                        AddressMode::Absolute(AddressReference::new(\"test\")),
                     );
                 }}
 
@@ -111,7 +111,7 @@ fn main() {
                     test_first(
                         instructions!({0} test+1),
                         OP,
-                        AddressMode::Absolute(AddressReference::with_offset(&\"test\", 1)),
+                        AddressMode::Absolute(AddressReference::with_offset(\"test\", 1)),
                     );
                 }}
                 ",
@@ -126,7 +126,7 @@ fn main() {
                     test_first(
                         instructions!({0} test),
                         OP,
-                        AddressMode::Relative(AddressReference::new(&\"test\")),
+                        AddressMode::Relative(AddressReference::new(\"test\")),
                     );
                 }}
 
@@ -135,7 +135,7 @@ fn main() {
                     test_first(
                         instructions!({0} test+1),
                         OP,
-                        AddressMode::Relative(AddressReference::with_offset(&\"test\", 1)),
+                        AddressMode::Relative(AddressReference::with_offset(\"test\", 1)),
                     );
                 }}
                 ",
@@ -151,7 +151,7 @@ fn main() {
                     test_first(
                         instructions!({0} test,x),
                         OP,
-                        AddressMode::AbsoluteX(AddressReference::new(&\"test\")),
+                        AddressMode::AbsoluteX(AddressReference::new(\"test\")),
                     );
                 }}
                 ",
@@ -166,15 +166,15 @@ fn main() {
                     test_first(
                         instructions!({0} test,y),
                         OP,
-                        AddressMode::AbsoluteY(AddressReference::new(&\"test\")),
+                        AddressMode::AbsoluteY(AddressReference::new(\"test\")),
                     );
                 }}
                 ",
                 def.instruction
             ));
         }
-        /*
-        if def.indirect != UNUSED {
+
+        if def.indirect != NO_INDIRECT {
             lines.push(format!(
                 "
                 #[test]
@@ -182,14 +182,14 @@ fn main() {
                     test_first(
                         instructions!({0} (test)),
                         OP,
-                        AddressMode::Indirect(AddressReference::new(&\"test\")),
-                    );
-                }}
-                ",
+                        AddressMode::Indirect(AddressReference::new(\"test\")),
+                        );
+                        }}
+                        ",
                 def.instruction.to_string()
             ));
         }
-        if def.indexed_indirect != UNUSED {
+        if def.indexed_indirect != NO_INDIRECT {
             lines.push(format!(
                 "
                 #[test]
@@ -197,15 +197,14 @@ fn main() {
                     test_first(
                         instructions!({0} (test,x)),
                         OP,
-                        AddressMode::IndexedIndirect(AddressReference::new(&\"test\")),
+                        AddressMode::IndexedIndirect(AddressReference::new(\"test\")),
                     );
                 }}
                 ",
                 def.instruction.to_string()
             ));
         }
-
-        if def.indirect_indexed != UNUSED {
+        if def.indirect_indexed != NO_INDIRECT {
             lines.push(format!(
                 "
                 #[test]
@@ -213,14 +212,13 @@ fn main() {
                     test_first(
                         instructions!({0} (test),y),
                         OP,
-                        AddressMode::IndirectIndexed(AddressReference::new(&\"test\")),
+                        AddressMode::IndirectIndexed(AddressReference::new(\"test\")),
                     );
                 }}
                 ",
                 def.instruction.to_string()
             ));
         }
-        */
 
         // Close module
         lines.push(
