@@ -387,12 +387,12 @@ pub fn function(input: TokenStream) -> TokenStream {
 
 #[proc_macro]
 pub fn instructions(input: TokenStream) -> TokenStream {
-    dbg!(input.clone());
+    //dbg!(input.clone());
     let mut lines = Vec::<String>::default();
     lines.push("{".to_string());
     lines.push("  use c64_assembler::builder::{*};".to_string());
     lines.push(build_instructions(input));
     lines.push("}".to_string());
-    println!("{:#?}", lines.join("\n"));
+    //println!("{:#?}", lines.join("\n"));
     lines.join("\n").parse().unwrap()
 }
