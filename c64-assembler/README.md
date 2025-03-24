@@ -110,7 +110,7 @@ use c64_assembler_macro::application;
 
 let application = application!(
     name="Set black border"
-    include_vic20_defines
+    include_vic2_defines
     module!(
         name="main"
         instructions!(
