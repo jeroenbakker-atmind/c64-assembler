@@ -3,7 +3,7 @@
 A modern assembler for the Commodore 64 that integrates seamlessly with Rust and Cargo workflows. This tool allows you to assemble 6502 assembly code into PRG, making it easy to build and test Commodore 64 programs directly from your Rust projects.
 
 > [!NOTE]
-> This project is still in development. You're free to use/adapt/distribute it (as long as you respect the license).
+> This project is in development. You're free to use/adapt/distribute it (as long as you respect the license).
 
 ## Features
 
@@ -98,10 +98,7 @@ main_entry_point:
   rts
 ```
 
-### Using macros (work in progress)
-
-> [!NOTE]
-> This is still in development and doesn't include all features yet.
+### Using macros
 
 The `c64-assembly-macro` crate introduces several macros to reduce the boiler plating.
 
