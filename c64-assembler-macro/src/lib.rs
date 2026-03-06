@@ -35,6 +35,13 @@ pub fn application(input: TokenStream) -> TokenStream {
             if name == "include_sid_defines" {
                 lines.push("    .include_sid_defines()".to_string());
             }
+            if name == "define_address" {
+                let token = iter.next().unwrap();
+                let _eq = iter.next().unwrap();
+                let _dollar = iter.next().unwrap();
+                let address = iter.next().unwrap();
+                lines.push(format!("    .define_address(\"{token}\", 0x{address})\n"));
+            }
             if name == "module" {
                 let _eq = iter.next().unwrap();
                 if let Some(TokenTree::Group(sub_tree)) = iter.next() {
